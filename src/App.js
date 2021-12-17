@@ -13,14 +13,17 @@ class App extends React.Component {
   }
   componentDidMount(){
     axios.get(`/api/books`)
-    .then(res => console.log(res.data))
+    //data is destructured here from res, as if saying res.data
+    //then the data is being sent to state in the books array
+    .then(({ data }) => this.setState({books : data}))
     .catch(err => console.log(err))
   }
 
   render(){
+    const mappedBooks = this.state.books.map(book => <h3 key={book.isbn}>{book.title}</h3>)
    return (
     <div>
-
+        {mappedBooks}
     </div>
    )
   }
