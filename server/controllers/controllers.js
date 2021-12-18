@@ -1,5 +1,5 @@
-const {books} = require('../../db/bookList')
-
+const bookList = require('../../db/bookList')
+let books = [...bookList.books]
 
 module.exports = {
     getBooks : (req, res) => {
@@ -12,9 +12,9 @@ module.exports = {
     },
     updateBook : (req, res) => {
         const {id} = req.params
-        const {book} = req.body
+        const newBook = req.body
         const index = books.findIndex(book => book.isbn == id)
-        books.splice(index, 1, book )
+        books.splice(index, 1, newBook )
         res.status(200).json(books)
     },
     deleteBook : (req, res) => {
