@@ -22,7 +22,6 @@ export default class AllBooks extends React.Component {
             const { isbn, title, author, pages } = book;
             // this.setState({id:isbn})
             return (
-                <>
                 <section key={isbn} >
                 {/* <button onClick={this.deleteBook} >Delete Book</button>    */}
                     <h3 >Title: {title}</h3>
@@ -30,8 +29,6 @@ export default class AllBooks extends React.Component {
                     <h3 >Number of pages: {pages}</h3>
                     <EditBook/>
                 </section>
-                </>
-
             )
         })
         return (

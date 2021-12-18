@@ -21,13 +21,22 @@ export default class AddBook extends React.Component {
     
     addBook = () =>{
         const {title, author, pages, isbn} = this.state
-         const newBook = {
-               "isbn":isbn,
-               "title": title,
-               "author": author,
-               "pages":pages, 
+        const {getBooks} = this.props
+         const body = {
+            //    "isbn":isbn,
+            //    "title": title,
+            //    "author": author,
+            //    "pages":pages, 
+            isbn,
+            title,
+            author,
+            pages, 
+            
        }
-       axios.post(`/api/book`, {newBook})
+       JSON.stringify(body)
+       axios.post(`/api/book`, body)
+       .then(res => console.log(res))
+       .catch(err => console.log(err))
          }
 
     render(){
