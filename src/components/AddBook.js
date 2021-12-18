@@ -1,33 +1,45 @@
+import axios from "axios";
 import React from "react";
-import axios from 'axios';
 
 export default class AddBook extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             title: '',
             author: '',
-            pages: '',
+            pages: 0,
             isbn: 0,
         }
 
     }
     
-    addBook = (title, author, pages, isbn) => {
-        const newBook = this.props.books
-    }
+    
+    handleTitleInput = (e) => this.setState({title: e.target.value})
+    handleAuthorInput = (e) => this.setState({author: e.target.value})
+    handlePagesInput = (e) => this.setState({pages: e.target.value})
+    handleIsbnInput = (e) => this.setState({isbn: e.target.value})
+    
+    addBook = () =>{
+        const {title, author, pages, isbn} = this.state
+         const newBook = {
+               "isbn":isbn,
+               "title": title,
+               "author": author,
+               "pages":pages, 
+       }
+       axios.post(`/api/book`, {newBook})
+         }
 
     render(){
-    const {title, author, pages} = this.state
     
         return(
             <section>
                 <h2>Add book to list here</h2>
-            <input placeholder="Title" value={title} />
-            <input placeholder="Author" value={author} />
-            <input placeholder="Number of Pages" value={pages} />
-            <input placeholder="isbn number" />
-            <button>Add Now</button>
+            <input onChange={this.handleTitleInput} placeholder="Title" />
+            <input onChange={this.handleAuthorInput} placeholder="Author"  />
+            <input onChange={this.handlePagesInput} placeholder="Number of Pages"  />
+            <input onChange={this.handleIsbnInput} placeholder="isbn number" />
+            <button onClick={this.addBook} >Add Now</button>
           </section> 
         )
     }

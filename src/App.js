@@ -5,8 +5,8 @@ import AddBook from './components/AddBook';
 import AllBooks from './components/AllBooks';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       books: [],
@@ -21,12 +21,7 @@ class App extends React.Component {
         .then(({ data }) => this.setState({ books: data }))
         .catch(err => console.log(err))
 }
-// deleteBook(){
-// // const {id} = req.params.isbn
-// //make sure you are actually referring to the isbn on the object even if you name the variable id
-// // and in endpoint `.../:${id}`
-//     axios.delete()
-// }
+
 
   render() {
     return (
@@ -36,7 +31,6 @@ class App extends React.Component {
         </section>
         <h1>Full Booklist:</h1>
         <AllBooks books={this.state.books}
-        deleteBook={this.deleteBook}
         />
       </div>
     )
