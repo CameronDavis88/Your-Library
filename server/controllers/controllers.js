@@ -14,6 +14,7 @@ module.exports = {
         const {id} = req.params
         const newBook = req.body
         const index = books.findIndex(book => book.isbn == id)
+        
         books.splice(index, 1, newBook )
         res.status(200).json(books)
     },
