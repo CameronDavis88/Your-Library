@@ -12,7 +12,7 @@ class App extends React.Component {
       books: [],
 
     }
-
+    this.getBooks = this.getBooks.bind(this)
   }
   getBooks() {
     axios.get(`/api/books`)
