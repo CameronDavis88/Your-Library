@@ -1,4 +1,4 @@
-//muse()
+//muse();
 import React from 'react';
 import axios from 'axios';
 import AddBook from './components/AddBook';
@@ -32,11 +32,11 @@ class App extends React.Component {
   }
 
   displayAddMode = () => {
-    this.setState({addMode: false})
+    this.setState({addMode: false});
   } 
 
   hideAddMode = () => {
-    this.setState({addMode: true})
+    this.setState({addMode: true});
   }
  
   render() {

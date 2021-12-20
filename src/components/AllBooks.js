@@ -3,11 +3,6 @@ import axios from 'axios';
 import EditBook from './EditBook';
 
 export default class AllBooks extends React.Component {
-    constructor(props) {
-        super(props);
-      this.state = {
-      }
-    }
 
     deleteBook = (id) => {
         axios.delete(`/api/book/${id}`)

@@ -17,11 +17,11 @@ export default class EditBook extends React.Component {
     handlePagesInput = (e) => this.setState({ newPages: e.target.value });
 
     hideEditMode = () => {
-        this.setState({ editMode: false })
+        this.setState({ editMode: false });
     }
 
     displayEditMode = () => {
-        this.setState({ editMode: true })
+        this.setState({ editMode: true });
     }
 
     updateBook = (id) => {
@@ -45,7 +45,7 @@ export default class EditBook extends React.Component {
 
     render() {
         const { newTitle, newAuthor, newPages, } = this.state;
-        const { isbn } = this.props
+        const { isbn } = this.props;
         return (
             <div>
                 {this.state.editMode === false

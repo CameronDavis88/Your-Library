@@ -17,10 +17,6 @@ module.exports = {
         title ? books[index].title = title: books[index].title =books[index].title;
         author ? books[index].author = author : books[index].author = books[index].author;
         pages ? books[index].pages = pages : books[index].pages = books[index].pages;
-
-
-        // books[index].author = author;
-        // books[index].pages = pages;
         res.status(200).json(books);
     },
     deleteBook : (req, res) => {

@@ -20,7 +20,7 @@ export default class AddBook extends React.Component {
 
     addBook = () => {
         const { title, author, pages, isbn } = this.state
-        const { hideAddMode } = this.props
+        const { hideAddMode } = this.props;
 
         const body = {
             isbn,
@@ -42,15 +42,15 @@ export default class AddBook extends React.Component {
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
         } else {
-            hideAddMode()
-            alert('Please fill in all values')
+            hideAddMode();
+            alert('Please fill in all values');
         }
 
 
     }
 
     render() {
-        const { title, author, pages, isbn } = this.state
+        const { title, author, pages, isbn } = this.state;
         return (
             <div>
                 <h2>Add book to list here</h2>
