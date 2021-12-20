@@ -27,7 +27,7 @@ export default class EditBook extends React.Component {
             newAuthor: '',
             newPages: '',
         })
-        axios.post(`/api/book/${id}`, body)
+        axios.put(`/api/book/${id}`, body)
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
