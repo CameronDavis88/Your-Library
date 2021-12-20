@@ -12,13 +12,15 @@ module.exports = {
     },
     updateBook : (req, res) => {
         const {id} = req.params;
-        // const newBook = req.body;
-        const {title, isbn, author, pages} = req.body
+        const {title, author, pages} = req.body;
         const index = books.findIndex(book => book.isbn == id);
-        // books.splice(index, 1, newBook );
-        books[index].title = title;
-        books[index].author = author;
-        books[index].pages = pages;
+        title ? books[index].title = title: books[index].title =books[index].title;
+        author ? books[index].author = author : books[index].author = books[index].author;
+        pages ? books[index].pages = pages : books[index].pages = books[index].pages;
+
+
+        // books[index].author = author;
+        // books[index].pages = pages;
         res.status(200).json(books);
     },
     deleteBook : (req, res) => {

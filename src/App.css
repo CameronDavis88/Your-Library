@@ -9,5 +9,21 @@ h1 {
 section {
   text-align: center;
   margin-bottom: 5vh;
+  margin-bottom: 10vh;
+    border: solid black;
 }
 
+button{
+  height: 5vh;
+  width: 15vw;
+}
+
+input{
+  height: 5vh;
+  width: 15vw;
+}
+#addBtn{
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+}

@@ -1,8 +1,10 @@
+//muse()
 import React from 'react';
 import axios from 'axios';
-import './App.css';
 import AddBook from './components/AddBook';
 import AllBooks from './components/AllBooks';
+import './App.css';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -10,9 +12,10 @@ class App extends React.Component {
 
     this.state = {
       books: [],
+      addMode : true,
 
     }
-    this.getBooks = this.getBooks.bind(this)
+    this.getBooks = this.getBooks.bind(this);
   }
   getBooks() {
     axios.get(`/api/books`)
@@ -22,24 +25,36 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
   componentDidMount() {
-    this.getBooks()
+    this.getBooks();
   }
   componentDidUpdate() {
-    this.getBooks()
+    this.getBooks();
   }
 
+  displayAddMode = () => {
+    this.setState({addMode: false})
+  } 
+
+  hideAddMode = () => {
+    this.setState({addMode: true})
+  }
+ 
   render() {
     return (
-      <div>
-        <section>
-          <AddBook books={this.state.books} />
-        </section>
-        <h1>----------------------------------------------------------</h1>
-        <h1>Full Booklist:</h1>
+      <main>
+        <div id='addBtn'>
+          { this.state.addMode === true
+          ?
+          <button onClick={this.displayAddMode}>Add New Book</button> 
+          :
+          <AddBook books={this.state.books} 
+          hideAddMode={this.hideAddMode} />
+          }
+        </div>
+        <h1 >Full Booklist:</h1>
         <AllBooks books={this.state.books}
-        getBooks={this.getBooks}
-        />
-      </div>
+        getBooks={this.getBooks} />
+      </main>
     )
   }
 }

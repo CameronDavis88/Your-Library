@@ -8,41 +8,58 @@ export default class EditBook extends React.Component {
             newTitle: '',
             newAuthor: '',
             newPages: '',
+            editMode: false,
         }
     }
-    handleTitleInput = (e) => this.setState({ newTitle: e.target.value })
-    handleAuthorInput = (e) => this.setState({ newAuthor: e.target.value })
-    handlePagesInput = (e) => this.setState({ newPages: e.target.value })
+
+    handleTitleInput = (e) => this.setState({ newTitle: e.target.value });
+    handleAuthorInput = (e) => this.setState({ newAuthor: e.target.value });
+    handlePagesInput = (e) => this.setState({ newPages: e.target.value });
+
+    hideEditMode = () => {
+        this.setState({ editMode: false })
+    }
+
+    displayEditMode = () => {
+        this.setState({ editMode: true })
+    }
 
     updateBook = (id) => {
-        const { newTitle, newAuthor, newPages, } = this.state
+        const { newTitle, newAuthor, newPages, } = this.state;
         const body = {
             title: newTitle,
             author: newAuthor,
             pages: newPages,
         }
-        JSON.stringify(body)
+        JSON.stringify(body);
         this.setState({
             newTitle: '',
             newAuthor: '',
             newPages: '',
         })
-        axios.put(`/api/book/${id}`, body)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            this.hideEditMode();
+            axios.put(`/api/book/${id}`, body)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
     }
 
     render() {
         const { newTitle, newAuthor, newPages, } = this.state;
-        const { isbn } =this.props
-
+        const { isbn } = this.props
         return (
             <div>
-                <input onChange={this.handleTitleInput} placeholder='Edit Title Here' value={newTitle} />
-                <input onChange={this.handleAuthorInput} placeholder='Edit Author Here' value={newAuthor} />
-                <input onChange={this.handlePagesInput} placeholder='Edit # of Pages Here' value={newPages} />
-                {/* this is how you pass in the data from the specific element as it is mapped */}
-                <button onClick={() => this.updateBook(isbn)}>Update Book</button>
+                {this.state.editMode === false
+                    ?
+                    <button onClick={this.displayEditMode}>Edit Book Info</button>
+                    :
+                    <div>
+                        <input onChange={this.handleTitleInput} placeholder='Edit Title Here' value={newTitle} />
+                        <input onChange={this.handleAuthorInput} placeholder='Edit Author Here' value={newAuthor} />
+                        <input onChange={this.handlePagesInput} placeholder='Edit # of Pages Here' value={newPages} />
+                        <button onClick={() => this.updateBook(isbn)}>Update Book</button>
+                        <button onClick={this.hideEditMode}>Cancel</button>
+                    </div>
+                }
             </div>
         )
     }
