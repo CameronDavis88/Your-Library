@@ -13,17 +13,17 @@ export default class AllBooks extends React.Component {
     render() {
         const { books } = this.props;
         const mappedBooks = books.map(book => {
-            const { isbn, title, author, pages } = book;
+            const { id, title, authors, pages } = book;
             return (
-                <section key={isbn} >
+                <section key={id} >
                     <div>
                     <h3 >Title: {title}</h3>
-                    <h3 >Author: {author}</h3>
-                    <h3 >Number of pages: {pages}</h3>
+                    <h3 >Author: {authors[0].name}</h3>
+                    {/* <h3 >Number of pages: {pages}</h3> */}
                     </div>
-                    <button onClick={() => this.deleteBook(isbn)} >Delete Book</button>   
+                    <button onClick={() => this.deleteBook(id)} >Delete Book</button>   
                     <EditBook 
-                    isbn={isbn} 
+                    id={id} 
                     />
         
                 </section>

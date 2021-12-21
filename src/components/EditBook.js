@@ -28,8 +28,8 @@ export default class EditBook extends React.Component {
         const { newTitle, newAuthor, newPages, } = this.state;
         const body = {
             title: newTitle,
-            author: newAuthor,
-            pages: newPages,
+            authors: newAuthor,
+            // pages: newPages,
         }
         JSON.stringify(body);
         this.setState({
@@ -45,7 +45,7 @@ export default class EditBook extends React.Component {
 
     render() {
         const { newTitle, newAuthor, newPages, } = this.state;
-        const { isbn } = this.props;
+        const { id } = this.props;
         return (
             <div>
                 {this.state.editMode === false
@@ -55,8 +55,8 @@ export default class EditBook extends React.Component {
                     <div>
                         <input onChange={this.handleTitleInput} placeholder='Edit Title Here' value={newTitle} />
                         <input onChange={this.handleAuthorInput} placeholder='Edit Author Here' value={newAuthor} />
-                        <input onChange={this.handlePagesInput} placeholder='Edit # of Pages Here' value={newPages} />
-                        <button onClick={() => this.updateBook(isbn)}>Update Book</button>
+                        {/* <input onChange={this.handlePagesInput} placeholder='Edit # of Pages Here' value={newPages} /> */}
+                        <button onClick={() => this.updateBook(id)}>Update Book</button>
                         <button onClick={this.hideEditMode}>Cancel</button>
                     </div>
                 }

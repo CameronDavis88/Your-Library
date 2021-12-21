@@ -1,4 +1,4 @@
-//muse();
+//codingMuse();
 import React from 'react';
 import axios from 'axios';
 import AddBook from './components/AddBook';
@@ -13,18 +13,31 @@ class App extends React.Component {
     this.state = {
       books: [],
       addMode : true,
+      // bookList : [],
 
     }
     this.getBooks = this.getBooks.bind(this);
   }
+
+  getData = () => {
+    axios.get(`/api/data`)
+    // .then((res) => console.log(res))
+    .catch(err => console.log(err))
+  }
+
   getBooks() {
     axios.get(`/api/books`)
       //data is destructured here from res, as if saying res.data
       //then the data is being sent to state in the books array
-      .then(({ data }) => this.setState({ books: data }))
+      .then(({ data }) => {
+        this.setState({ books: data })
+        // console.log(data)
+      }
+      )
       .catch(err => console.log(err))
   }
   componentDidMount() {
+    this.getData();
     this.getBooks();
   }
   componentDidUpdate() {
