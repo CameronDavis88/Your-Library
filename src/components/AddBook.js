@@ -7,7 +7,6 @@ export default class AddBook extends React.Component {
         this.state = {
             title: '',
             author: '',
-            // pages: '',
             id: '',
         }
 
@@ -15,26 +14,24 @@ export default class AddBook extends React.Component {
 
     handleTitleInput = (e) => this.setState({ title: e.target.value });
     handleAuthorInput = (e) => this.setState({ author: e.target.value });
-    // handlePagesInput = (e) => this.setState({ pages: e.target.value });
     handleIsbnInput = (e) => this.setState({ id: e.target.value });
 
     addBook = () => {
-        const { title, author, id } = this.state
+        const { title, author, id } = this.state;
         const { hideAddMode } = this.props;
 
         const body = {
             id,
             title,
             authors: [
-                {name : author}
+                { name: author }
             ],
-            // pages,
+
         }
         JSON.stringify(body);
         this.setState({
             title: '',
             author: '',
-            // pages: '',
             id: '',
         })
 
@@ -43,7 +40,7 @@ export default class AddBook extends React.Component {
             axios.post(`/api/book`, body)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
-        }  else {
+        } else {
             alert('Please fill in all values');
         }
 
@@ -57,7 +54,6 @@ export default class AddBook extends React.Component {
                 <h2>Add book to list here</h2>
                 <input onChange={this.handleTitleInput} value={title} placeholder="Title" />
                 <input onChange={this.handleAuthorInput} value={author} placeholder="Author" />
-                {/* <input onChange={this.handlePagesInput} value={pages} placeholder="Number of Pages" /> */}
                 <input onChange={this.handleIsbnInput} value={id} placeholder="id Number" />
                 <button onClick={this.addBook} >Add Now</button>
                 <button onClick={this.props.hideAddMode} >Cancel</button>

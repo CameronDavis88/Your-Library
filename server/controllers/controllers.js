@@ -1,7 +1,5 @@
 const axios = require('axios');
-// const bookList = require('../../db/bookList');
-let books = []
-// [...bookList.books];
+let books = [];
 
 sendData = () => {
     axios.get(`http://gutendex.com/books`)
@@ -9,10 +7,9 @@ sendData = () => {
         .catch(() => console.log('Api request failed big time!'))
 }
 
-
 module.exports = {
     getData: (req, res) => {
-        res.status(200)
+        res.status(200);
         axios.get(`http://gutendex.com/books`)
             .then(res => books = res.data.results)
             .catch(() => console.log('Api request failed big time!'))
@@ -31,7 +28,6 @@ module.exports = {
         const index = books.findIndex(book => book.id == id);
         title ? books[index].title = title : books[index].title = books[index].title;
         authors ? books[index].authors[0].name = authors : books[index].authors[0].name = books[index].authors[0].name;
-        // pages ? books[index].pages = pages : books[index].pages = books[index].pages;
         res.status(200).json(books);
     },
     deleteBook: (req, res) => {
@@ -40,5 +36,4 @@ module.exports = {
         books.splice(index, 1);
         res.status(200).json(books);
     },
-
 }

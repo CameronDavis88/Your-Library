@@ -5,35 +5,27 @@ import AddBook from './components/AddBook';
 import AllBooks from './components/AllBooks';
 import './App.css';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       books: [],
-      addMode : true,
-      // bookList : [],
-
+      addMode: true,
     }
     this.getBooks = this.getBooks.bind(this);
   }
 
   getData = () => {
     axios.get(`/api/data`)
-    // .then((res) => console.log(res))
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
   }
 
   getBooks() {
     axios.get(`/api/books`)
       //data is destructured here from res, as if saying res.data
       //then the data is being sent to state in the books array
-      .then(({ data }) => {
-        this.setState({ books: data })
-        // console.log(data)
-      }
-      )
+      .then(({ data }) => this.setState({ books: data }))
       .catch(err => console.log(err))
   }
   componentDidMount() {
@@ -45,28 +37,28 @@ class App extends React.Component {
   }
 
   displayAddMode = () => {
-    this.setState({addMode: false});
-  } 
+    this.setState({ addMode: false });
+  }
 
   hideAddMode = () => {
-    this.setState({addMode: true});
+    this.setState({ addMode: true });
   }
- 
+
   render() {
     return (
       <main>
         <div id='addBtn'>
-          { this.state.addMode === true
-          ?
-          <button onClick={this.displayAddMode}>Add New Book</button> 
-          :
-          <AddBook books={this.state.books} 
-          hideAddMode={this.hideAddMode} />
+          {this.state.addMode === true
+            ?
+            <button onClick={this.displayAddMode}>Add New Book</button>
+            :
+            <AddBook books={this.state.books}
+              hideAddMode={this.hideAddMode} />
           }
         </div>
         <h1 >Full Booklist:</h1>
         <AllBooks books={this.state.books}
-        getBooks={this.getBooks} />
+          getBooks={this.getBooks} />
       </main>
     )
   }

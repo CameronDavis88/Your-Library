@@ -7,7 +7,6 @@ export default class EditBook extends React.Component {
         this.state = {
             newTitle: '',
             newAuthor: '',
-            newPages: '',
             editMode: false,
         }
     }
@@ -25,26 +24,24 @@ export default class EditBook extends React.Component {
     }
 
     updateBook = (id) => {
-        const { newTitle, newAuthor, newPages, } = this.state;
+        const { newTitle, newAuthor, } = this.state;
         const body = {
             title: newTitle,
             authors: newAuthor,
-            // pages: newPages,
         }
         JSON.stringify(body);
         this.setState({
             newTitle: '',
             newAuthor: '',
-            newPages: '',
         })
-            this.hideEditMode();
-            axios.put(`/api/book/${id}`, body)
-                .then(res => console.log(res))
-                .catch(err => console.log(err))
+        this.hideEditMode();
+        axios.put(`/api/book/${id}`, body)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     render() {
-        const { newTitle, newAuthor, newPages, } = this.state;
+        const { newTitle, newAuthor, } = this.state;
         const { id } = this.props;
         return (
             <div>
@@ -55,7 +52,6 @@ export default class EditBook extends React.Component {
                     <div>
                         <input onChange={this.handleTitleInput} placeholder='Edit Title Here' value={newTitle} />
                         <input onChange={this.handleAuthorInput} placeholder='Edit Author Here' value={newAuthor} />
-                        {/* <input onChange={this.handlePagesInput} placeholder='Edit # of Pages Here' value={newPages} /> */}
                         <button onClick={() => this.updateBook(id)}>Update Book</button>
                         <button onClick={this.hideEditMode}>Cancel</button>
                     </div>
