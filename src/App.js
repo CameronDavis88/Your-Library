@@ -21,11 +21,18 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
+  
+
+
   getBooks() {
     axios.get(`/api/books`)
       //data is destructured here from res, as if saying res.data
       //then the data is being sent to state in the books array
-      .then(({ data }) => this.setState({ books: data }))
+      .then(({ data }) => {
+        this.setState({ books: data })
+        console.log(data)
+      }
+     )
       .catch(err => console.log(err))
   }
   componentDidMount() {

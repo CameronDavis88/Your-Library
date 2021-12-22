@@ -1,12 +1,6 @@
 const axios = require('axios');
 let books = [];
 
-sendData = () => {
-    axios.get(`http://gutendex.com/books`)
-        .then(res => books = res.data.results)
-        .catch(() => console.log('Api request failed big time!'))
-}
-
 module.exports = {
     getData: (req, res) => {
         res.status(200);
