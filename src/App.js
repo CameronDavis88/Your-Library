@@ -12,13 +12,35 @@ class App extends React.Component {
     this.state = {
       books: [],
       addMode: true,
+      page: '',
     }
     this.getBooks = this.getBooks.bind(this);
   }
 
+//maybe you could pass in as an argument into the function the last page
+   nextPage = (pageNum) => {
+    axios.get(`http://gutendex.com/books?page=${pageNum}`)
+    .then(({ data }) =>{
+      console.log(data.results)
+      this.setState({ page: this.state.page + 1 })
+    })
+    .catch(err => console.log(err))
+}
+
+
   getData = () => {
     axios.get(`/api/data`)
       .catch(err => console.log(err))
+
+      //The part above is normal the part below is testing if I can add multiple pages
+      axios.get(`http://gutendex.com/books`)
+      .then(({ data }) =>{
+        console.log(data.results)
+        const page = parseInt(data.next[data.next.length - 1])
+        console.log(page)
+        console.log(data.next)
+        this.setState({ page: page })
+      })
   }
 
   getBooks() {
@@ -28,8 +50,8 @@ class App extends React.Component {
       .then(({ data }) => {
         this.setState({ books: data })
         // this.setState({ carol: data[0].formats["text/html"] })
-        console.log(data[0].title)
-        console.log(data[0].formats["text/plain"])
+        // console.log(data[0].title)
+        // console.log(data[0].formats["text/plain"])
         // this.setState({ carol: data[0].formats["text/plain"] })
       }
      )
@@ -42,6 +64,7 @@ class App extends React.Component {
   }
   componentDidUpdate() {
     // this.getBooks();
+    console.log(this.state.page)
   }
 
   displayAddMode = () => {
@@ -58,6 +81,9 @@ class App extends React.Component {
          You need to set up a search bar for the user and allow them to create their own library 
         of at least the titles and link that to the actual book-- so it's not just loading all
         their books but only the user's books!
+
+<button onClick={() => this.nextPage(this.state.page)}  >Add more pages to console</button>
+
         <div id='addBtn'>
           {this.state.addMode === true
             ?

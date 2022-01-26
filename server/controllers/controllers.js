@@ -30,4 +30,9 @@ module.exports = {
         books.splice(index, 1);
         res.status(200).json(books);
     },
+
+    //This will be just like getData at the top of the page only it will get the data for the various pages of 31 books
+    // and thus to use them the same way as with the one above you will need to gey into books from pages
+
+
 }

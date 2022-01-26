@@ -27,7 +27,7 @@ export default class AllBooks extends React.Component {
                         id={id}
                     />
                     {/* Set up a conditional rendering that only links to gutenberg if it came from them and not if user created it 
-                    --maybe let them search the gutenber library to see if the book they created is already in gutneberg */}
+                    --maybe let them search the gutenberg library to see if the book they created is already in gutenberg */}
                     <nav>
             <a href={url} >Access book for free at Project Gutenberg</a>
           </nav>
