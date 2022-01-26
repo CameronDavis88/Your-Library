@@ -18,7 +18,7 @@ module.exports = {
     },
     updateBook: (req, res) => {
         const { id } = req.params;
-        const { title, authors, pages } = req.body;
+        const { title, authors } = req.body;
         const index = books.findIndex(book => book.id == id);
         title ? books[index].title = title : books[index].title = books[index].title;
         authors ? books[index].authors[0].name = authors : books[index].authors[0].name = books[index].authors[0].name;
