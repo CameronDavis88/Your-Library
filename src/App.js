@@ -66,6 +66,18 @@ class App extends React.Component {
 
   }
 
+  //This is for logging in the console the data to follow it and see if it's doing what it should
+  showMeTheData = (data) => {
+   console.log('-----------------------next-------------')
+          console.log('prevNum', this.state.prevPage)
+          console.log('page', this.state.page)
+          console.log('nextNum', this.state.nextPage)
+          console.log('prevURL', data.previous)
+          console.log('nextURL', data.next)
+          console.log(data)
+          console.log(data.results)
+  }
+
   prevPage = async (pageNum) => {
     const { books, prevPage, nextPage } = this.state;
     if (prevPage === 0) {
@@ -77,14 +89,7 @@ class App extends React.Component {
           this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
           this.setState({ prevPage: 0 })
 
-             // console.log('-----------------------next-------------')
-          // console.log('prevNum', this.state.prevPage)
-          // console.log('page', this.state.page)
-          // console.log('nextNum', this.state.nextPage)
-          // console.log('prevURL', data.previous)
-          // console.log('nextURL', data.next)
-          // console.log(data)
-          // console.log(data.results)
+          this.showMeTheData(data)
 
           // this.loadBooks(data.results)
         })
@@ -96,14 +101,7 @@ class App extends React.Component {
           this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
           this.setState({ prevPage: 1 })
 
-          // console.log('-----------------------next-------------')
-          // console.log('prevNum', this.state.prevPage)
-          // console.log('page', this.state.page)
-          // console.log('nextNum', this.state.nextPage)
-          // console.log('prevURL', data.previous)
-          // console.log('nextURL', data.next)
-          // console.log(data)
-          // console.log(data.results)
+          this.showMeTheData(data)
 
           // this.loadBooks(data.results)
         }).catch((err) => console.log(err))
@@ -114,16 +112,7 @@ class App extends React.Component {
           this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
           this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
 
-          // console.log('-----------------------next-------------')
-          // console.log('prevNum', this.state.prevPage)
-          // console.log('page', this.state.page)
-          // console.log('nextNum', this.state.nextPage)
-          // console.log('prevURL', data.previous)
-          // console.log('nextURL', data.next)
-          // console.log(data)
-          // console.log(data.results)
-
-          // this.loadBooks(data.results)
+          this.showMeTheData(data)
 
         })
         .catch(err => console.log(err))
