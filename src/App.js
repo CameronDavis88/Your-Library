@@ -94,15 +94,15 @@ class App extends React.Component {
 
   nextPage = async (pageNum) => {
     const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
-    searchView === false ?
+    if (searchView === true) {
+      console.log('Switching to searchView pages-- should send to next page now')
+      nextPage === 0 ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+        .then((res) => this.nextSearch(res))
+    } else {
       nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}`)
         .then((res) => this.nextDefault(res))
         .catch(err => console.log(err))
-
-      // --------------Dividing between the searchView below and non-searchView above-----------
-      : console.log('Switching to searchView pages-- not set up for it yet')
-    nextPage === 0 ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
-      .then((res) => this.nextSearch(res))
+    }
   };
 
 
