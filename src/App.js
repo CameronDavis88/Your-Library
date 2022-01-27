@@ -25,13 +25,17 @@ class App extends React.Component {
   //For search page you need to make the next and prev buttons fit the search data
   // -- or make it dynamic between default or search pages
   testSearch = () => {
+    this.setState({ searchView: true })
     const { authorSearch, titleSearch } = this.state
     axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
       .then(({ data }) => {
         this.setState({ books: data.results })
-        this.setState({ searchView: true })
         console.log(data)
-
+        // console.log(data.next[32])
+        if (data.next === null) {
+          this.setState({ nextPage: 0 })
+        }
+        console.log(this.state.nextPage)
       })
   };
 
@@ -47,42 +51,66 @@ class App extends React.Component {
     console.log(data.results)
   };
 
+  nextDefault = ({ data }) => {
+
+    if (data.next[data.next.length - 1] === '/') {
+      this.getData();
+    } else if (data.next === null) {
+      this.setState({ nextPage: 1 })
+    } else {
+      this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
+      this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
+
+      if (data.previous[data.previous.length - 1] === '/' || data.previous[data.previous.length - 1] === 's') {
+        this.setState({ prevPage: 1 })
+      } else {
+        this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
+      }
+    }
+    this.showMeTheData(data)
+    // this.loadBooks(data.results)
+  }
+
+  nextSearch = ({ data }) => {
+    this.setState({ searchView: true })
+    if (data.next === null) {
+      this.setState({ nextPage: 1 })
+      console.log('Already on the first page')
+    } else {
+      this.setState({ nextPage: parseInt(data.next[32]) })
+      this.setState({ page: parseInt(data.next[32]) - 1 })
+
+      // if (data.previous[data.previous.length - 1] === '/' || data.previous[data.previous.length - 1] === 's') {
+      //   this.setState({ prevPage: 1 })
+      // } else {
+      //   this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
+      // }
+
+    }
+    this.showMeTheData(data)
+    // this.loadBooks(data.results)
+  }
+
 
   nextPage = async (pageNum) => {
     const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
     searchView === false ?
       nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}`)
-        .then(({ data }) => {
-          if (data.next[data.next.length - 1] === '/') {
-            this.getData();
-          } else {
-            this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
-            this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
-
-            if (data.previous[data.previous.length - 1] === '/' || data.previous[data.previous.length - 1] === 's') {
-              this.setState({ prevPage: 1 })
-            } else {
-              this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
-            }
-          }
-
-          this.showMeTheData(data)
-          // this.loadBooks(data.results)
-        })
+        .then((res) => this.nextDefault(res))
         .catch(err => console.log(err))
 
       // --------------Dividing between the searchView below and non-searchView above-----------
       : console.log('Switching to searchView pages-- not set up for it yet')
-
+    nextPage === 0 ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+      .then((res) => this.nextSearch(res))
   };
-
-
 
 
   prevPage = async (pageNum) => {
     const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
+    //setting condition for default pages displayed
     if (searchView === false) {
-
+      //Withing false-searchView conditional usage of button 
       if (prevPage === 0) {
         console.log('already on first page')
       } else if (prevPage === 1) {
@@ -118,11 +146,10 @@ class App extends React.Component {
           })
           .catch(err => console.log(err))
       };
-
+      //Now conditional usage for when searchView is True
     } else {
       console.log('Switching to searchView pages-- not set up for it yet')
     }
-
   };
 
 
