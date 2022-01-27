@@ -17,25 +17,41 @@ class App extends React.Component {
       prevPage: 0,
       authorSearch: '',
       titleSearch: '',
+      searchView: false,
 
     }
-    // this.getBooks = this.getBooks.bind(this);
-  }
+  };
 
+  //For search page you need to make the next and prev buttons fit the search data
+  // -- or make it dynamic between default or search pages
   testSearch = () => {
     const { authorSearch, titleSearch } = this.state
     axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
       .then(({ data }) => {
         this.setState({ books: data.results })
+        this.setState({ searchView: true })
         console.log(data)
 
       })
-  }
+  };
+
+  //This is for logging in the console the data to follow it and see if it's doing what it should
+  showMeTheData = (data) => {
+    console.log('-----------------------next-------------')
+    console.log('prevNum', this.state.prevPage)
+    console.log('page', this.state.page)
+    console.log('nextNum', this.state.nextPage)
+    console.log('prevURL', data.previous)
+    console.log('nextURL', data.next)
+    console.log(data)
+    console.log(data.results)
+  };
 
 
   nextPage = async (pageNum) => {
-    const { books, prevPage, nextPage } = this.state;
-    nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}`)
+    const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
+    searchView === false ?
+      nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}`)
         .then(({ data }) => {
           if (data.next[data.next.length - 1] === '/') {
             this.getData();
@@ -48,86 +64,71 @@ class App extends React.Component {
             } else {
               this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
             }
-          };
+          }
 
-             // console.log('-----------------------next-------------')
-          // console.log('prevNum', this.state.prevPage)
-          // console.log('page', this.state.page)
-          // console.log('nextNum', this.state.nextPage)
-          // console.log('prevURL', data.previous)
-          // console.log('nextURL', data.next)
-          // console.log(data)
-          // console.log(data.results)
-
+          this.showMeTheData(data)
           // this.loadBooks(data.results)
-
         })
         .catch(err => console.log(err))
 
-  }
+      // --------------Dividing between the searchView below and non-searchView above-----------
+      : console.log('Switching to searchView pages-- not set up for it yet')
 
-  //This is for logging in the console the data to follow it and see if it's doing what it should
-  showMeTheData = (data) => {
-   console.log('-----------------------next-------------')
-          console.log('prevNum', this.state.prevPage)
-          console.log('page', this.state.page)
-          console.log('nextNum', this.state.nextPage)
-          console.log('prevURL', data.previous)
-          console.log('nextURL', data.next)
-          console.log(data)
-          console.log(data.results)
-  }
+  };
+
+
+
 
   prevPage = async (pageNum) => {
-    const { books, prevPage, nextPage } = this.state;
-    if (prevPage === 0) {
-      console.log('already on first page')
-    } else if (prevPage === 1) {
-      await axios.get(`http://gutendex.com/books?page=${pageNum}`)
-        .then(({ data }) => {
-          this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
-          this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
-          this.setState({ prevPage: 0 })
+    const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
+    if (searchView === false) {
 
-          this.showMeTheData(data)
+      if (prevPage === 0) {
+        console.log('already on first page')
+      } else if (prevPage === 1) {
+        await axios.get(`http://gutendex.com/books?page=${pageNum}`)
+          .then(({ data }) => {
+            this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
+            this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
+            this.setState({ prevPage: 0 })
 
-          // this.loadBooks(data.results)
-        })
-        .catch(err => console.log(err))
-    } else if (prevPage === 2) {
-      await axios.get(`http://gutendex.com/books?page=${pageNum}`)
-        .then(({ data }) => {
-          this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
-          this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
-          this.setState({ prevPage: 1 })
+            this.showMeTheData(data)
+            // this.loadBooks(data.results)
+          })
+          .catch(err => console.log(err))
+      } else if (prevPage === 2) {
+        await axios.get(`http://gutendex.com/books?page=${pageNum}`)
+          .then(({ data }) => {
+            this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
+            this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
+            this.setState({ prevPage: 1 })
 
-          this.showMeTheData(data)
+            this.showMeTheData(data)
+            // this.loadBooks(data.results)
+          }).catch((err) => console.log(err))
+      } else {
+        await axios.get(`http://gutendex.com/books?page=${pageNum}`)
+          .then(({ data }) => {
+            this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
+            this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
+            this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
 
-          // this.loadBooks(data.results)
-        }).catch((err) => console.log(err))
+            this.showMeTheData(data)
+            // this.loadBooks(data.results)
+          })
+          .catch(err => console.log(err))
+      };
+
     } else {
-      await axios.get(`http://gutendex.com/books?page=${pageNum}`)
-        .then(({ data }) => {
-          this.setState({ page: parseInt(data.next[data.next.length - 1]) - 1 })
-          this.setState({ nextPage: parseInt(data.next[data.next.length - 1]) })
-          this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
-
-          this.showMeTheData(data)
-
-        })
-        .catch(err => console.log(err))
+      console.log('Switching to searchView pages-- not set up for it yet')
     }
 
   };
 
 
-
-
-
   loadBooks = (stuff) => {
     this.setState({ books: stuff })
   };
-
 
 
   getData = () => {
@@ -154,7 +155,7 @@ class App extends React.Component {
 
 
 
-  // getBooks() {
+  // getBooks = () => {
   //   // axios.get(`/api/books`)
   //   axios.get(`http://gutendex.com/books`)
   //     //data is destructured here from res, as if saying res.data
@@ -168,36 +169,27 @@ class App extends React.Component {
   //     }
   //    )
   //     .catch(err => console.log(err))
-  // }
+  // };
 
   componentDidMount() {
     this.getData();
     // this.getBooks();
     console.log(this.state.nextPage)
     console.log(this.state.prevPage)
-
-
   }
 
   componentDidUpdate() {
     // this.getBooks();
-    // console.log(this.state.page)
-    // console.log(this.state.nextPage)
-
     // this.loadBooks()
-    // this.getData()
-
-  }
+  };
 
   displayAddMode = () => {
     this.setState({ addMode: false });
-  }
+  };
 
   hideAddMode = () => {
     this.setState({ addMode: true });
-  }
-
-
+  };
 
   render() {
     return (
