@@ -31,7 +31,7 @@ class App extends React.Component {
       .then(({ data }) => {
         this.setState({ books: data.results })
         console.log(data)
-        // console.log(data.next[32])
+        // console.log(data.next[25])
         if (data.next === null) {
           this.setState({ nextPage: 0 })
         }
@@ -76,17 +76,22 @@ class App extends React.Component {
     if (data.next === null) {
       this.setState({ nextPage: 1 })
       console.log('Already on the first page')
-    } else {
+    } 
+    // else if(data.){
+
+    // }
+     else {
       this.setState({ nextPage: parseInt(data.next[32]) })
       this.setState({ page: parseInt(data.next[32]) - 1 })
+//above is dealing with next page stuff and below is dealing with previous page
 
-      // if (data.previous[data.previous.length - 1] === '/' || data.previous[data.previous.length - 1] === 's') {
-      //   this.setState({ prevPage: 1 })
-      // } else {
-      //   this.setState({ prevPage: parseInt(data.previous[data.previous.length - 1]) })
-      // }
-
+      if (data.previous[27] === 's' ) {
+        this.setState({ prevPage: 1 })
+      } else {
+        this.setState({ prevPage: parseInt(data.previous[32]) })
+      }
     }
+
     this.showMeTheData(data)
     // this.loadBooks(data.results)
   }
@@ -96,7 +101,7 @@ class App extends React.Component {
     const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
     if (searchView === true) {
       console.log('Switching to searchView pages-- should send to next page now')
-      nextPage === 0 ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+      nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
         .then((res) => this.nextSearch(res))
     } else {
       nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}`)
@@ -145,10 +150,47 @@ class App extends React.Component {
             // this.loadBooks(data.results)
           })
           .catch(err => console.log(err))
-      };
-      //Now conditional usage for when searchView is True
+      }
+
+      //-----------------Now conditional usage for when searchView is True--------------------
+
     } else {
-      console.log('Switching to searchView pages-- not set up for it yet')
+      console.log('---------top of backwards button------')
+      if (prevPage === 0) {
+        console.log('Already on first page--state prevPage = 0')
+      } else if (prevPage === 1) {
+        await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+          .then(({ data }) => {
+            this.setState({ page: parseInt(data.next[32]) - 1 })
+            this.setState({ nextPage: parseInt(data.next[32]) })
+            this.setState({ prevPage: 0 })
+
+            this.showMeTheData(data)
+            // this.loadBooks(data.results)
+          })
+          .catch(err => console.log(err))
+      } else if (prevPage === 2) {
+        await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+          .then(({ data }) => {
+            this.setState({ page: parseInt(data.next[32]) - 1 })
+            this.setState({ nextPage: parseInt(data.next[32]) })
+            this.setState({ prevPage: 1 })
+
+            this.showMeTheData(data)
+            // this.loadBooks(data.results)
+          }).catch((err) => console.log(err))
+      } else {
+        await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+          .then(({ data }) => {
+            this.setState({ page: parseInt(data.next[32]) - 1 })
+            this.setState({ nextPage: parseInt(data.next[32]) })
+            this.setState({ prevPage: parseInt(data.previous[32]) })
+
+            this.showMeTheData(data)
+            // this.loadBooks(data.results)
+          })
+          .catch(err => console.log(err))
+      }
     }
   };
 
