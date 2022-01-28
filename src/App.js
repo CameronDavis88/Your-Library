@@ -8,7 +8,6 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       books: [],
       addMode: true,
@@ -27,9 +26,9 @@ class App extends Component {
    await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
       .then(({ data }) => {
         this.setState({ books: data.results });
-       this.showMeTheData(data)
+       this.showMeTheData(data);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   };
 
 
@@ -48,46 +47,46 @@ class App extends Component {
     const { nextPage, searchView, titleSearch, authorSearch, page, prevPage } = this.state;
     if (searchView === true) {
       //---------------- searchView === true-----------------------------
-      console.log('-----Switching to searchView pages--------')
-      this.setState({ searchView: true })
+      console.log('-----Switching to searchView pages--------');
+      this.setState({ searchView: true });
       await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
         .then(({ data }) => {
           if (data.next === null) {
             //If you want to just have it end and alert them that they have reached the end, un comment the line below
-            // console.log('Already on last page')
+            // console.log('Already on last page');
             //If you want to send them back to page one uncomment stuff below
-            console.log('Last page, sent you back to page 1')
+            console.log('Last page, sent you back to page 1');
             axios.get(`http://gutendex.com/books?page=1&search=${authorSearch}+${titleSearch}`)
               .then(({ data }) => {
-                this.showMeTheData(data)
+                this.showMeTheData(data);
                 // this.setState({ books: data.results });
               })
               .catch((err) => console.log(err))
           } else {
-            this.setState({ page: page + 1 })
+            this.setState({ page: page + 1 });
             axios.get(`${data.next}`).then(({ data }) => {
-              this.showMeTheData(data)
+              this.showMeTheData(data);
               // this.setState({ books: data.results });
-            }).catch((err) => console.log(err))
+            }).catch((err) => console.log(err));
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
 
       //-----------default view----------SearchView === false-----------------------
     } else {
       await axios.get(`http://gutendex.com/books?page=${pageNum}`)
         .then(({ data }) => {
-          if (data.next[data.next.length - 1] === '/' || data.next === null) {
-            this.getData()
+          if (data.next === null) {
+            this.getData();
           } else {
-            this.setState({ page: page + 1 })
+            this.setState({ page: page + 1 });
             axios.get(`${data.next}`).then(({ data }) => {
-              this.showMeTheData(data)
+              this.showMeTheData(data);
               // this.setState({ books: data.results });
-            }).catch((err) => console.log(err))
+            }).catch((err) => console.log(err));
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     };
   };
 
@@ -101,46 +100,46 @@ class App extends Component {
       await axios.get(`http://gutendex.com/books?page=${pageNum}`)
         .then(({ data }) => {
           if (data.previous === null) {
-            console.log('Already on first page')
+            console.log('Already on first page');
           } else {
-            this.setState({ page: page - 1 })
-            axios.get(`${data.previous}`).then(({ data }) => {
-              this.showMeTheData(data)
+            this.setState({ page: page - 1 });
+            axios.get(`${data.previous}`)
+            .then(({ data }) => {
+              this.showMeTheData(data);
               // this.setState({ books: data.results });
-            }).catch((err) => console.log(err))
+            }).catch((err) => console.log(err));
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
       //-----------------Now conditional usage for when searchView is true--------------------
     } else {
-      console.log('-----Switching to searchView pages---backwards-----')
-      this.setState({ searchView: true })
+      console.log('-----Switching to searchView pages---backwards-----');
+      this.setState({ searchView: true });
       await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
         .then(({ data }) => {
           if (data.previous === null) {
             //If you want to just have it end and alert them that they have reached the end, un comment the line below
-            console.log('Already on first page')
-            alert('You are already on the first page.')
+            console.log('Already on first page');
+            alert('You are already on the first page.');
             //If you want to loop them to the last page
-            // console.log('Last page, sent you back to page 1')
+            // console.log('Last page, sent you back to page 1');
             // axios.get(`http://gutendex.com/books?page=1&search=${authorSearch}+${titleSearch}`)
             //   .then(({ data }) => {
-            //     this.showMeTheData(data)
+            //     this.showMeTheData(data);
             // this.setState({ books: data.results });
             //   })
-            //   .catch((err) => console.log(err))
+            //   .catch((err) => console.log(err));
           }
           else {
-            this.setState({ page: page - 1 })
-            // this.setState({ prevPage: prevPage + 1 })
+            this.setState({ page: page - 1 });
             axios.get(`${data.previous}`).then(({ data }) => {
-              this.showMeTheData(data)
+              this.showMeTheData(data);
               // this.setState({ books: data.results });
-            }).catch((err) => console.log(err))
+            }).catch((err) => console.log(err));
 
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err));
     };
   };
 
@@ -148,7 +147,7 @@ class App extends Component {
   getData = () => {
     //This part commented out was from my server but I'm not using that right now
     // axios.get(`/api/data`)
-    //   .catch(err => console.log(err))
+    //   .catch(err => console.log(err));
 
     axios.get(`http://gutendex.com/books`)
       .then(({ data }) => {
@@ -180,8 +179,6 @@ class App extends Component {
   componentDidMount() {
     this.getData();
     // this.getBooks();
-    // console.log(this.state.nextPage)
-    // console.log(this.state.prevPage)
   }
 
   componentDidUpdate() {
