@@ -1,5 +1,9 @@
 const axios = require('axios');
+//The books array below will be replaced by the database 
 let books = [];
+
+//I'm thinking all of the public library stuff is sent right to the component, from Gutenberg 
+//  but all the User's book data and functions like Post, Put, and Delete are controlled here 
 
 module.exports = {
     getData: (req, res) => {
@@ -22,6 +26,7 @@ module.exports = {
         const index = books.findIndex(book => book.id == id);
         title ? books[index].title = title : books[index].title = books[index].title;
         authors ? books[index].authors[0].name = authors : books[index].authors[0].name = books[index].authors[0].name;
+        //Make it so they could add a different cover picture?
         res.status(200).json(books);
     },
     deleteBook: (req, res) => {

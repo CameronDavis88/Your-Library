@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+//A lot of this is not what I need it for anymore! This will not add a new book but will just send the GutenBerg book id to the database
+
 export default class AddBook extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +27,7 @@ export default class AddBook extends React.Component {
             authors: [
                 { name: author }
             ],
+            // imageUrl: '',
         }
 
         JSON.stringify(body);
@@ -32,6 +35,7 @@ export default class AddBook extends React.Component {
             title: '',
             author: '',
             id: '',
+            // imageUrl: '',
         })
         if (id, title, author) {
             hideAddMode();
@@ -39,6 +43,7 @@ export default class AddBook extends React.Component {
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
         } else {
+            //
             alert('Please fill in all values');
         }
     };
