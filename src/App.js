@@ -25,34 +25,32 @@ class App extends React.Component {
   //For search page you need to make the next and prev buttons fit the search data
   // -- or make it dynamic between default or search pages
   testSearch = () => {
-    this.setState({ searchView: true })
-    const { authorSearch, titleSearch } = this.state
+    this.setState({ searchView: true });
+    const { authorSearch, titleSearch } = this.state;
     axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
       .then(({ data }) => {
-        this.setState({ books: data.results })
-        console.log(data)
-        // console.log(data.next[25])
+        this.setState({ books: data.results });
+        console.log(data);
         if (data.next === null) {
-          this.setState({ nextPage: 0 })
+          this.setState({ nextPage: 0 });
         }
-        console.log(this.state.nextPage)
       })
+      .catch((err) => console.log(err))
   };
 
   //This is for logging in the console the data to follow it and see if it's doing what it should
   showMeTheData = (data) => {
-    console.log('-----------------------next-------------')
-    console.log('prevNum', this.state.prevPage)
-    console.log('page', this.state.page)
-    console.log('nextNum', this.state.nextPage)
-    console.log('prevURL', data.previous)
-    console.log('nextURL', data.next)
-    console.log(data)
-    console.log(data.results)
+    console.log('-----------------------next-------------');
+    console.log('prevNum', this.state.prevPage);
+    console.log('page', this.state.page);
+    console.log('nextNum', this.state.nextPage);
+    console.log('prevURL', data.previous);
+    console.log('nextURL', data.next);
+    console.log(data);
+    console.log(data.results);
   };
-
+  //This takes care of the functionality of the nextBtn when searchView is false -- called in nextBtn
   nextDefault = ({ data }) => {
-
     if (data.next[data.next.length - 1] === '/') {
       this.getData();
     } else if (data.next === null) {
@@ -69,40 +67,37 @@ class App extends React.Component {
     }
     this.showMeTheData(data)
     // this.loadBooks(data.results)
-  }
+  };
 
+  //This takes care of the functionality of the nextBtn when searchView is true -- called in nextBtn
   nextSearch = ({ data }) => {
     this.setState({ searchView: true })
     if (data.next === null) {
       this.setState({ nextPage: 1 })
       console.log('Already on the first page')
     } 
-    // else if(data.){
-
-    // }
      else {
       this.setState({ nextPage: parseInt(data.next[32]) })
       this.setState({ page: parseInt(data.next[32]) - 1 })
 //above is dealing with next page stuff and below is dealing with previous page
-
       if (data.previous[27] === 's' ) {
         this.setState({ prevPage: 1 })
       } else {
         this.setState({ prevPage: parseInt(data.previous[32]) })
       }
     }
-
     this.showMeTheData(data)
     // this.loadBooks(data.results)
-  }
+  };
 
 
-  nextPage = async (pageNum) => {
-    const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
+  nextBtn = async (pageNum) => {
+    const { nextPage, searchView, titleSearch, authorSearch } = this.state;
     if (searchView === true) {
       console.log('Switching to searchView pages-- should send to next page now')
       nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
         .then((res) => this.nextSearch(res))
+        .catch((err) => console.log(err))
     } else {
       nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}`)
         .then((res) => this.nextDefault(res))
@@ -111,8 +106,8 @@ class App extends React.Component {
   };
 
 
-  prevPage = async (pageNum) => {
-    const { books, prevPage, nextPage, searchView, titleSearch, authorSearch } = this.state;
+  prevBtn = async (pageNum) => {
+    const { prevPage, searchView, titleSearch, authorSearch } = this.state;
     //setting condition for default pages displayed
     if (searchView === false) {
       //Withing false-searchView conditional usage of button 
@@ -152,7 +147,7 @@ class App extends React.Component {
           .catch(err => console.log(err))
       }
 
-      //-----------------Now conditional usage for when searchView is True--------------------
+      //-----------------Now conditional usage for when searchView is true--------------------
 
     } else {
       console.log('---------top of backwards button------')
@@ -201,23 +196,16 @@ class App extends React.Component {
 
 
   getData = () => {
-    //This was from my server but I'm not using that right now
+    //This part commented out was from my server but I'm not using that right now
     // axios.get(`/api/data`)
     //   .catch(err => console.log(err))
 
     axios.get(`http://gutendex.com/books`)
       .then(({ data }) => {
         this.setState({ books: data.results })
-        // console.log(data.next)
         console.log(data.results)
-        // const nextPage = parseInt(data.next[data.next.length - 1])
-        // const prevPage = parseInt(data.previous[data.previous.length - 1])
-        // data.previous ? this.setState({ prevPage: prevPage }) : console.log('First page')
-        // this.setState({ nextPage: nextPage })
         this.setState({ page: 1, prevPage: 0, nextPage: 2 })
         console.log(data)
-
-        // console.log(this.state.nextPage)
       })
       .catch(err => console.log(err))
   };
@@ -266,8 +254,8 @@ class App extends React.Component {
         You need to set up a search bar for the user and allow them to create their own library
         of at least the titles and link that to the actual book-- so it's not just loading all
         their books but only the user's books!
-        <button onClick={() => this.prevPage(this.state.prevPage)}  >Back Page</button>
-        <button onClick={() => this.nextPage(this.state.nextPage)}  >Next Page</button>
+        <button onClick={() => this.prevBtn(this.state.prevPage)}  >Back Page</button>
+        <button onClick={() => this.nextBtn(this.state.nextPage)}  >Next Page</button>
         <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
         <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
         <button onClick={this.testSearch}> Search </button>
