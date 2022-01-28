@@ -9,9 +9,6 @@ import PubBook from '../PubBook/PubBook';
 const PubLibrary = ({ books }) => {
 
    
-
-
-
     const mappedBooks = books.map((book) => {
         const { id, title, authors, formats } = book;
         const url = formats["text/html"]

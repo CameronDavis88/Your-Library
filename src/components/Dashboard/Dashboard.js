@@ -4,7 +4,6 @@
 //codingMuse();
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import PubLibrary from '../PubLibrary/PubLibrary'
 import './Dashboard.css';
 
@@ -18,7 +17,7 @@ class Dashboard extends Component {
             authorSearch: '',
             titleSearch: '',
             searchView: false,
-        }
+        };
     };
 
     searchFn = async () => {
