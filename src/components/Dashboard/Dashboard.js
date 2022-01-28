@@ -5,3 +5,15 @@
 //It says welcome to the library and allows them to add to their place and a button to navigate to their library
 // ----- Maybe this is not the place it takes you at first? but when you sign in it takes you to your library
 //unless its empty, and there it allows you to search for more books and that takes you here
+
+import React from 'react';
+
+const Dashboard = () => {
+  return (
+    <div>
+        
+    </div>
+  )
+};
+
+export default Dashboard;

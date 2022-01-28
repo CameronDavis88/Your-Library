@@ -1,5 +1,5 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
 
 export default class AddBook extends React.Component {
     constructor(props) {
@@ -9,8 +9,7 @@ export default class AddBook extends React.Component {
             author: '',
             id: '',
         }
-
-    }
+    };
 
     handleTitleInput = (e) => this.setState({ title: e.target.value });
     handleAuthorInput = (e) => this.setState({ author: e.target.value });
@@ -26,15 +25,14 @@ export default class AddBook extends React.Component {
             authors: [
                 { name: author }
             ],
-
         }
+
         JSON.stringify(body);
         this.setState({
             title: '',
             author: '',
             id: '',
         })
-
         if (id, title, author) {
             hideAddMode();
             axios.post(`/api/book`, body)
@@ -43,9 +41,7 @@ export default class AddBook extends React.Component {
         } else {
             alert('Please fill in all values');
         }
-
-
-    }
+    };
 
     render() {
         const { title, author, pages, id } = this.state;
@@ -60,4 +56,4 @@ export default class AddBook extends React.Component {
             </div>
         )
     }
-}
+};

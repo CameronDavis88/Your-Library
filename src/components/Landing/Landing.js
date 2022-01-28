@@ -2,3 +2,15 @@
 //and allows the user to brows or search for books (and click to the gutenberg) but does not allow them
 //to add any to their own library until they sing in
 //So there is at the top a place to log in or register etc
+
+import React from 'react';
+
+const Landing = () => {
+  return (
+    <div>
+        
+    </div>
+  )
+};
+
+export default Landing;
