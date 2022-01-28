@@ -130,31 +130,44 @@ class App extends Component {
   //       .catch(err => console.log(err))
   //   }
   // };
-  
+
   nextBtn = async (pageNum) => {
     const { nextPage, searchView, titleSearch, authorSearch, page, prevPage } = this.state;
     if (searchView === true) {
-      console.log('Switching to searchView pages--')
-      nextPage === null ? console.log('Already on last page') : await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
+      //---------------- searchView === true-----------------------------
+      console.log('-----Switching to searchView pages--------')
+      this.setState({ searchView: true })
+      await axios.get(`http://gutendex.com/books?page=${pageNum}&search=${authorSearch}+${titleSearch}`)
         .then(({ data }) => {
-          //------ searchView === true------------
-          this.setState({ searchView: true })
           if (data.next === null) {
+            //If you want to just have it end and alert them that they have reached the end, un comment the line below
+            // console.log('Already on last page')
+            //If you want to send them back to page one uncomment stuff below
             this.setState({ nextPage: 1 })
-            console.log('Already on the first page')
+            console.log('Last page, sent you back to page 1')
+            axios.get(`http://gutendex.com/books?page=1&search=${authorSearch}+${titleSearch}`)
+              .then(({ data }) => {
+                this.showMeTheData(data)
+                // this.loadBooks(data.results)
+              })
+              .catch((err) => console.log(err))
           }
           else {
-            this.setState({ nextPage: parseInt(data.next[32]) })
-            this.setState({ page: parseInt(data.next[32]) - 1 })
+            this.setState({ nextPage: nextPage + 1 })
+            this.setState({ page: page + 1 })
+            this.setState({ prevPage: prevPage + 1 })
+            axios.get(`${data.next}`).then(({ data }) => {
+              this.showMeTheData(data)
+              // this.loadBooks(data.results)
+            }).catch((err) => console.log(err))
+
             //above is dealing with next page stuff and below is dealing with previous page
-            if (data.previous[27] === 's') {
-              this.setState({ prevPage: 1 })
-            } else {
-              this.setState({ prevPage: parseInt(data.previous[32]) })
-            }
+            // if (data.previous[27] === 's') {
+            //   this.setState({ prevPage: 1 })
+            // } else {
+            //   this.setState({ prevPage: parseInt(data.previous[32]) })
+            // }
           }
-          this.showMeTheData(data)
-          // this.loadBooks(data.results)
         })
         .catch((err) => console.log(err))
 
