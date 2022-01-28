@@ -441,7 +441,7 @@ class App extends Component {
         You need to set up a search bar for the user and allow them to create their own library
         of at least the titles and link that to the actual book-- so it's not just loading all
         their books but only the user's books!
-        <button onClick={() => this.prevBtn(this.state.prevPage)}  >Back Page</button>
+        <button onClick={() => this.prevBtn(this.state.page)}  >Back Page</button>
         <button onClick={() => this.nextBtn(this.state.page)}  >Next Page</button>
         <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
         <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
