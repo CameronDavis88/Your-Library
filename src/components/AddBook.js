@@ -10,6 +10,7 @@ export default class AddBook extends React.Component {
             title: '',
             author: '',
             id: '',
+            // imageUrl: '',
         }
     };
 

@@ -4,9 +4,9 @@
 //codingMuse();
 import React, { Component } from 'react';
 import axios from 'axios';
-import AddBook from './components/AddBook';
-import AllBooks from './components/AllBooks';
-import './App.css';
+
+import PubLibrary from '../PubLibrary/PubLibrary'
+import './Dashboard.css';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -56,6 +56,7 @@ class Dashboard extends Component {
                         // console.log('Already on last page');
                         //If you want to send them back to page one uncomment stuff below
                         console.log('Last page, sent you back to page 1');
+                        this.setState({ page: 1 })
                         axios.get(`http://gutendex.com/books?page=1&search=${authorSearch}+${titleSearch}`)
                             .then(({ data }) => {
                                 this.showMeTheData(data);
@@ -180,7 +181,8 @@ class Dashboard extends Component {
                 <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
                 <button onClick={this.searchFn}> Search </button>
                 {/* -- this add mode will be if user is signed in and will not add you own but add from the public library into yours -- */}
-                <div id='addBtn'>
+
+                {/* <div id='addBtn'>
                     {this.state.addMode === true
                         ?
                         <button onClick={this.displayAddMode}>Add Book</button>
@@ -188,10 +190,10 @@ class Dashboard extends Component {
                         <AddBook books={this.state.books}
                             hideAddMode={this.hideAddMode} />
                     }
-                </div>
+                </div> */}
                 <h1>Full Book list:</h1>
                 {/* <h2> Page: {this.state.page}</h2> */}
-                <AllBooks books={this.state.books}
+                <PubLibrary books={this.state.books}
                 />
             </main>
         )
