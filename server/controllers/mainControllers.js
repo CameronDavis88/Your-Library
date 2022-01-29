@@ -1,19 +1,17 @@
 const bcrypt = require('bcryptjs');
-// const axios = require('axios');
-
-//The books array below will be replaced by the database 
-// let books = [];
-
-//I'm thinking all of the public library stuff is sent right to the component, from Gutenberg 
-//  but all the User's book data and functions like Post, Put, and Delete are controlled here 
-
 module.exports = {
-    // getData: (req, res) => {
-    //     res.status(200);
-    //     axios.get(`http://gutendex.com/books`)
-    //         .then(res => books = res.data.results)
-    //         .catch(() => console.log('Api request failed big time!'))
-    // },
+    // ------------User Controller--------------------
+    updateUsersInfo: (req, res) => {
+        const { userId } = req.params;
+        const { username, email, password } = req.body;
+        const db = req.app.get('db');
+        let salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        db.usersInfo.edit_users_info({ userId, hash, email, username })
+            .then(([user]) => res.status(200).send(user))
+            .catch(err => res.status(500).send(err))
+    },
+    //-------------Book Controllers--------------
     getUsersBooks: async (req, res) => {
         const { userId } = req.params;
         const db = req.app.get('db');

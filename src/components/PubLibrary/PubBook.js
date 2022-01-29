@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { getUsersBooks } from '../../../server/controllers/controllers';
+import { getUsersBooks } from '../../../server/controllers/mainControllers';
 
 const PubBook = (props) => {
     const { id, title, author, gutUrl, hideAddMode, imageUrl } = props

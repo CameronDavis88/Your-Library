@@ -44,6 +44,11 @@ const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook,  }) => {
                         <input onChange={handleAuthorInput} placeholder={author} value={newAuthor} label='Author(s)'/>
                         <input onChange={handleImageUrlInput} placeholder={imageUrl} value={newImageUrl} label='Image Url'/>
 
+                        {/* If the conditional value assigning does not work in the input handle functions -- try using this below
+                        <input onChange={handleTitleInput} placeholder='Edit Title' value={newTitle === '' ? title : newTitle}/>
+                        <input onChange={handleAuthorInput} placeholder='Edit Author(s)' value={newAuthor === '' ? author : newAuthor}/>
+                        <input onChange={handleImageUrlInput} placeholder='Edit Image Url' value={newImageUrl === '' ? imageUrl: newImageUrl}/> */}
+
                         <button onClick={editBook}>Submit Update</button>
                         <button onClick={deleteBook} >Delete Book</button>
                         <button onClick={() => setEditMode(false)}>Cancel/Go back</button>
