@@ -6,10 +6,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import './Dashboard.css';
+import Authentication from './Authentication';
 
 //--------------I AM THINKING OF HAVING THE DASHBOARD ONLY BEING THE THING WITH LANDING STUFF AND IT RENDERS THE PUBlIBRARY 
 //SO i WOULD WANT TO MOVE ALL THE DATA TO THE PUBlIBRARY -- DOING SO WOULD ESSENTIALLY MAKE THE PUBLIBRARY AND USERSLIBRARY 
 //THE SAME THINGS ONLY GETTING THEIR DATA FROM DIFFERENT PLACES , ONE FROM GUTENBERG THE OTHER FROM THE DATABASE
+
+
+  //For the editing of the user's info see how it was done in sql query for edit_book
+    //and how I set up the editing book function in the front end
+
+
 
 
 class Dashboard extends Component {
@@ -184,17 +191,7 @@ class Dashboard extends Component {
                 <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                 <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
                 <button onClick={this.searchFn}> Search </button>
-                {/* -- this add mode will be if user is signed in and will not add you own but add from the public library into yours -- */}
-
-                {/* <div id='addBtn'>
-                    {this.state.addMode === true
-                        ?
-                        <button onClick={this.displayAddMode}>Add Book</button>
-                        :
-                        <AddBook books={this.state.books}
-                            hideAddMode={this.hideAddMode} />
-                    }
-                </div> */}
+               
                 <h1>Full Book list:</h1>
                 {/* <h2> Page: {this.state.page}</h2> */}
                 <PubLibrary books={this.state.books}
