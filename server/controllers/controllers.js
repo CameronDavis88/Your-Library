@@ -32,7 +32,7 @@ module.exports = {
         const { usersBookId } = req.params;
         const { title, author, imageUrl } = req.body;
         const db = req.app.get('db');
-        const books = await db.usersBooks.edit_book(title, author, imageUrl)
+        const books = await db.usersBooks.edit_book(title, author, imageUrl, usersBookId)
         res.status(200).json(books);
     },
     deleteBook: async (req, res) => {

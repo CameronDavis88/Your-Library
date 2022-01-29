@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getUsersBooks } from '../../../server/controllers/controllers';
 
 const PubBook = (props) => {
-    const { id, title, author, gutUrl, getBooks, hideAddMode, imageUrl } = props
+    const { id, title, author, gutUrl, hideAddMode, imageUrl } = props
 
     const addBook = () => {
         const newBook = {
@@ -22,6 +22,7 @@ const PubBook = (props) => {
                 //probably dont need to do this because the book added goes to another view,
                 // the usersLibrary and when that component is updated it will have that added book
                 // getBooks();
+                console.log(`Data from added book: ${data}`)
             })
             .catch(err => console.log(err))
     };
@@ -38,7 +39,7 @@ const PubBook = (props) => {
             {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
             <button onClick={() => addBook(id)} >Add Book to Your Library</button>
             <nav>
-                <a href={url} >Access book for free at Project Gutenberg</a>
+                <a href={gutUrl} >Access book for free at Project Gutenberg</a>
             </nav>
         </section>
     )
