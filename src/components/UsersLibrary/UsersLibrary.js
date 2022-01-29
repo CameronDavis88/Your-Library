@@ -31,9 +31,10 @@ const UsersLibrary = () => {
     //No need for next page and previous page etc etc
 
     getBooks = () => {
-        axios.get(`/api/getBooks:id--or something like that!`)
+        const userId = props.user.user_id;
+        axios.get(`/api/books/${userId}`)
             .then(({ data }) => {
-                setBooks({ books: data.results });
+                setBooks({ books: data });
                 showMeTheData();
             })
             .catch(err => console.log(err));
@@ -47,9 +48,12 @@ const UsersLibrary = () => {
 
    
         const mappedBooks = books.map((book) => {
-            const { id, title, authors, formats } = book;
-            const url = formats["text/html"]
-            return <UsersBook key={id} id={id} title={title} authors={authors} formats={formats} url={url} />
+            const { id, title, authors, formats, users_book_id } = book;
+            const gutUrl = formats["text/html"];
+            const imageUrl = formats["image/jpeg"];
+            const author = authors[0].name;
+            const usersBookId = users_book_id;
+            return <UsersBook key={id} id={id} usersBookId={usersBookId} title={title} author={author} imageUrl={imageUrl} gutUrl={gutUrl} getBooks={getBooks} />
         })
 
         return (

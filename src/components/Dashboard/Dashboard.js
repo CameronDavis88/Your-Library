@@ -82,7 +82,7 @@ class Dashboard extends Component {
             await axios.get(`http://gutendex.com/books?page=${pageNum}`)
                 .then(({ data }) => {
                     if (data.next === null) {
-                        this.getBooks();
+                        this.getPubBooks();
                     } else {
                         this.setState({ page: page + 1 });
                         axios.get(`${data.next}`).then(({ data }) => {
@@ -146,7 +146,7 @@ class Dashboard extends Component {
         };
     };
 
-    getBooks = () => {
+    getPubBooks = () => {
         axios.get(`http://gutendex.com/books`)
             .then(({ data }) => {
                 this.setState({ books: data.results });
@@ -157,12 +157,12 @@ class Dashboard extends Component {
     };
 
     componentDidMount() {
-        this.getBooks();
-        // this.getBooks();
+        this.getPubBooks();
+        // this.getPubBooks();
     };
 
     componentDidUpdate() {
-        // this.getBooks();
+        // this.getPubBooks();
     };
 
     displayAddMode = () => {

@@ -1,23 +1,28 @@
 import React from 'react';
 import axios from 'axios';
+import { getUsersBooks } from '../../../server/controllers/controllers';
 
 const PubBook = (props) => {
-    const { id, title, authors, formats, url } = props
+    const { id, title, author, gutUrl, getBooks, hideAddMode, imageUrl } = props
 
     const addBook = () => {
-        // const { hideAddMode } = this.props;
-
-        const body = {
-            id: id,
+        const newBook = {
+            gutBookId: id,
             title: title,
-            authors: authors,
-            formats: formats,
+            author: author,
+            imageUrl: imageUrl,
+            gutUrl: gutUrl,
+
         };
 
-        JSON.stringify(body);
-
-        axios.post(`/api/book`, body)
-            .then(res => console.log(res))
+        JSON.stringify(newBook);
+                // --userId here is coming from redux!
+        axios.post(`/api/book/${userId}`, newBook)
+            .then(({ data }) => {
+                //probably dont need to do this because the book added goes to another view,
+                // the usersLibrary and when that component is updated it will have that added book
+                // getBooks();
+            })
             .catch(err => console.log(err))
     };
 
@@ -26,8 +31,8 @@ const PubBook = (props) => {
         <section key={id}>
             <div>
                 <h3 >Title: {title}</h3>
-                <h3 >Author: {authors[0].name}</h3>
-                <img alt='cover' src={formats["image/jpeg"]} />
+                <h3 >Author: {author}</h3>
+                <img alt='cover' src={imageUrl} />
             </div>
 
             {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
