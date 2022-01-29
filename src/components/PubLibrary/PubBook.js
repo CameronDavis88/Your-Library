@@ -4,7 +4,7 @@ import axios from 'axios';
 const PubBook = (props) => {
     const { id, title, authors, formats, url } = props
 
-   const addBook = () => {
+    const addBook = () => {
         // const { hideAddMode } = this.props;
 
         const body = {
@@ -31,7 +31,7 @@ const PubBook = (props) => {
             </div>
 
             {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
-            <button onClick={() => this.addBook(id)} >Add Book to Your Library</button>
+            <button onClick={() => addBook(id)} >Add Book to Your Library</button>
             <nav>
                 <a href={url} >Access book for free at Project Gutenberg</a>
             </nav>

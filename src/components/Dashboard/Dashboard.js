@@ -7,6 +7,11 @@ import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import './Dashboard.css';
 
+//--------------I AM THINKING OF HAVING THE DASHBOARD ONLY BEING THE THING WITH LANDING STUFF AND IT RENDERS THE PUBlIBRARY 
+//SO i WOULD WANT TO MOVE ALL THE DATA TO THE PUBlIBRARY -- DOING SO WOULD ESSENTIALLY MAKE THE PUBLIBRARY AND USERSLIBRARY 
+//THE SAME THINGS ONLY GETTING THEIR DATA FROM DIFFERENT PLACES , ONE FROM GUTENBERG THE OTHER FROM THE DATABASE
+
+
 class Dashboard extends Component {
     constructor(props) {
         super(props);
