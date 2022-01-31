@@ -1,16 +1,17 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
-const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook,  }) => {
+const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook, setEditMode, user  }) => {
    const [newTitle, setNewTitle] = useState('');
    const [newAuthor, setNewAuthor] = useState('');
    const [newImageUrl, setNewImageUrl] = useState('');
 //    const [editMode, setEditMode] = useState(false);
 
 //if this conditional assigning of NewTitle newAuthor and newImageUrl works see if you can just put every thing after the = into the onClick below
-    handleTitleInput = (e) => setNewTitle(e ? e.target.value : title);
-    handleAuthorInput = (e) => setNewAuthor(e ? e.target.value : author);
-    handleImageUrlInput = (e) => setNewImageUrl(e ? e.target.value : imageUrl);
+const handleTitleInput = (e) => setNewTitle(e ? e.target.value : title);
+const   handleAuthorInput = (e) => setNewAuthor(e ? e.target.value : author);
+const   handleImageUrlInput = (e) => setNewImageUrl(e ? e.target.value : imageUrl);
 
     // handleTitleInput = (e) => setNewTitle(e.target.value);
     // handleAuthorInput = (e) => setNewAuthor(e.target.value);
@@ -18,7 +19,7 @@ const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook,  }) => {
    
     const editBook = () => {
        // ---userId is coming from redux!---
-        const userId = props.user.user_id;
+        // const userId = user.user_id;
 
         const updatedBook = {
             //Only updates these vales will be updated in the sql query and the others will remain untouched
@@ -58,4 +59,9 @@ const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook,  }) => {
         )
 };
 
-export default EditBook;
+const mapStateToProps = (reduxState) => {
+    return {
+      user: reduxState.user
+    }
+    };
+    export default connect(mapStateToProps)(EditBook);

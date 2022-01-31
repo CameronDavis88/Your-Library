@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import EditBook from './EditBook';
 
 
 
 
 
 const UsersBook = (props) => {
-    const { id, title, author, gutUrl, getBooks, imageUrl, getBooks, usersBookId} = props
+    const { id, title, author, gutUrl, imageUrl, getBooks, usersBookId} = props
     const [editMode, setEditMode] = useState(false);
 
     const deleteBook = () => {

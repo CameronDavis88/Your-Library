@@ -1,18 +1,20 @@
 import React, { useEffect, useState} from 'react';
 import UsersBook from './UsersBook';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 
 //I think you will need to have all the data from the books sent and retrieved from the database, not gutenberg (see and alter AddBook function)
 // unless you set a condition if the book has been edited then only send the edited version --which would be weird just sent all the data to the database
 //then you will need to or can use the functionality of the getBooks or getData in the controllers
 
-const UsersLibrary = () => {
+const UsersLibrary = (props) => {
     const [books, setBooks] = useState([]);
     const [authorSearch, setAuthorSearch] = useState('');
     const [titleSearch, setTitleSearch] = useState('');
     const [searchView, setSearchView] = useState(false);
      
-    searchFn = async () => {
+  const  searchFn = async () => {
         setSearchView({ searchView: true });
         await axios.get(`/api/books=search?=title{}--etc etc----------I dont know something like this`)
             .then(({ data }) => {
@@ -23,14 +25,14 @@ const UsersLibrary = () => {
     };
 
     //This is for logging in the console the data to follow it and see if it's doing what it should
-    showMeTheData = (data) => {
+    const  showMeTheData = (data) => {
         console.log(data);
         console.log(data.results);
     };
 
     //No need for next page and previous page etc etc
 
-    getBooks = () => {
+    const   getBooks = () => {
         const userId = props.user.user_id;
         axios.get(`/api/books/${userId}`)
             .then(({ data }) => {
@@ -65,4 +67,9 @@ const UsersLibrary = () => {
     
 };
 
-export default UsersLibrary;
+const mapStateToProps = (reduxState) => {
+    return {
+      user: reduxState.user
+    }
+    };
+    export default connect(mapStateToProps)(UsersLibrary);

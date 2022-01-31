@@ -1,9 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import { getUsersBooks } from '../../../server/controllers/mainControllers';
+// import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+
 
 const PubBook = (props) => {
-    const { id, title, author, gutUrl, hideAddMode, imageUrl } = props
+    const { id, title, author, gutUrl, hideAddMode, imageUrl, user } = props
+    // const userId = useSelector()
+    const userId = user.user_id;
 
     const addBook = () => {
         const newBook = {
@@ -45,4 +49,9 @@ const PubBook = (props) => {
     )
 };
 
-export default PubBook;
+const mapStateToProps = (reduxState) => {
+    return {
+      user: reduxState.user
+    }
+    };
+    export default connect(mapStateToProps)(PubBook);
