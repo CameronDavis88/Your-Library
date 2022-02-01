@@ -41,6 +41,11 @@ const Authentication = (props) => {
       This is the Authentication component
       <main className='registering'>
       <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
+      <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+      <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+      <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+
+
       <button onClick={handleRegister} >Submit</button>
       </main>
       {/* <main className='loggingIn' ></main> */}
