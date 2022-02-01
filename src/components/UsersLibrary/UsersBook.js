@@ -44,4 +44,3 @@ const UsersBook = (props) => {
 export default UsersBook;
 
 
-{/* <EditBook id={id}/> */ }

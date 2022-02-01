@@ -59,9 +59,6 @@ const   handleImageUrlInput = (e) => setNewImageUrl(e ? e.target.value : imageUr
         )
 };
 
-const mapStateToProps = (reduxState) => {
-    return {
-      user: reduxState.user
-    }
-    };
+const mapStateToProps = (reduxState) => reduxState;
+
     export default connect(mapStateToProps)(EditBook);

@@ -49,9 +49,6 @@ const PubBook = (props) => {
     )
 };
 
-const mapStateToProps = (reduxState) => {
-    return {
-      user: reduxState.user
-    }
-    };
+const mapStateToProps = (reduxState) => reduxState;
+
     export default connect(mapStateToProps)(PubBook);

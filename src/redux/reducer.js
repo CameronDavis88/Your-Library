@@ -1,5 +1,7 @@
 const initialState = {
-    user: {}
+    user: {
+        testing: 'Working'
+    }
 };
 
 const GET_USER = 'GET_USER';

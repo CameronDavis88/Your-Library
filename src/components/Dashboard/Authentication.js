@@ -12,9 +12,9 @@ const Authentication = (props) => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
 
-  // useEffect(() => {
-  //   console.log(props)
-  // }, [])
+  useEffect(() => {
+    console.log(props)
+  }, [])
 
   const handleRegister = () => {
     // const { username, email, password, verPassword } = this.state;
@@ -55,9 +55,6 @@ const Authentication = (props) => {
   )
 };
 
-const mapStateToProps = (reduxState) => {
-  return {
-    user: reduxState.user
-  }
-  };
+const mapStateToProps = (reduxState) => reduxState
+
   export default connect(mapStateToProps)(Authentication);
