@@ -7,7 +7,7 @@ import React from 'react';
 const Authentication = () => {
   return (
     <div>
-      
+      This is the Authentication component
     </div>
   )
 };
