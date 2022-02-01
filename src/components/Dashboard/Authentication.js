@@ -27,7 +27,7 @@ const Authentication = (props) => {
       axios.post('/api/register', newUser)
         .then(res => {
           // props.getUser(res.data);
-          // props.history.push('/users_library');
+          props.history.push('/users_library');
           alert("Congratulations, you're all registered!");
         })
         .catch(err => console.log(err));
