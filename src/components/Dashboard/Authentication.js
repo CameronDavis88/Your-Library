@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { getUser } from '../../redux/reducer';
 
 //    This component will be rendered instead of the Dashboard when the user clicks login or register 
 //-- and will conditionally render depending on if the user is registering or logging in
@@ -12,9 +13,9 @@ const Authentication = (props) => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
 
-  useEffect(() => {
-    console.log(props)
-  }, [])
+  // useEffect(() => {
+  //   console.log(props)
+  // }, [])
 
   const handleRegister = () => {
     // const { username, email, password, verPassword } = this.state;
@@ -57,4 +58,4 @@ const Authentication = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState
 
-  export default connect(mapStateToProps)(Authentication);
+  export default connect(mapStateToProps, { getUser })(Authentication);
