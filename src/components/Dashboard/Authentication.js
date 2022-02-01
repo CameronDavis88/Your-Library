@@ -15,6 +15,27 @@ const Authentication = (props) => {
     console.log(props)
   }, [])
 
+  const handleRegister = () => {
+    // const { username, email, password, verPassword } = this.state;
+    const newUser = {
+      username: usernameInput,
+      password: passwordInput,
+      email: emailInput,
+    }
+
+    if (passwordInput === passwordConfirmationInput) {
+      axios.post('/api/register', newUser)
+        .then(res => {
+          // props.getUser(res.data);
+          // props.history.push('/users_library');
+          alert("Congratulations, you're all registered!");
+        })
+        .catch(err => console.log(err));
+    } else {
+      alert("Passwords don't match");
+    }
+  };
+
   return (
     <div>
       This is the Authentication component
