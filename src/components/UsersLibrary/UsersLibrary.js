@@ -61,7 +61,9 @@ const UsersLibrary = (props) => {
         return (
             // You will need to make this component like a merger of the Dashboard and PubLibrary but for the user
             <div>
-               {mappedBooks}
+               {/* {mappedBooks} */}
+
+               This is the User's Library
             </div>
         )
     

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 //    This component will be rendered instead of the Dashboard when the user clicks login or register 
 //-- and will conditionally render depending on if the user is registering or logging in
@@ -54,4 +55,9 @@ const Authentication = (props) => {
   )
 };
 
-export default Authentication;
+const mapStateToProps = (reduxState) => {
+  return {
+    user: reduxState.user
+  }
+  };
+  export default connect(mapStateToProps)(Authentication);
