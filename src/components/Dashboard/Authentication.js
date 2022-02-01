@@ -11,9 +11,9 @@ const Authentication = (props) => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
 
-  useEffect(() => {
-    console.log(props)
-  }, [])
+  // useEffect(() => {
+  //   console.log(props)
+  // }, [])
 
   const handleRegister = () => {
     // const { username, email, password, verPassword } = this.state;
@@ -39,7 +39,11 @@ const Authentication = (props) => {
   return (
     <div>
       This is the Authentication component
-
+      <main className='registering'>
+      <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
+      <button onClick={handleRegister} >Submit</button>
+      </main>
+      {/* <main className='loggingIn' ></main> */}
 
     </div>
   )
