@@ -1,4 +1,6 @@
 require('dotenv').config();
+const bcrypt = require('bcryptjs');
+
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
@@ -32,21 +34,30 @@ massive({
 app.post('/api/register', async (req, res) => {
     console.log(req.body)
         const { username, email, password } = req.body;
-
         const db = req.app.get('db');
-        const [newUser] = await db.usersInfo.add_user([username, password, email]);
+        let salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt);
+        // const hash = bcrypt.hashSync(password);
+
+        const [newUser] = await db.usersInfo.add_user([username, hash, email]);
                 req.session.user = newUser;
                 res.status(201).send(req.session.user);
 
 });
 
-//     register: async (req, res) => {
-//         const { username, email, password } = req.body;
-//         const db = req.app.get('db');
-//         const newUser = await db.usersInfo.add_user([username, password, email]);
-//         req.session.user = newUser;
-//         res.status(201).send(req.session.user);
-//     },
+    // register: async (req, res) => {
+    //     const { username, email, password } = req.body;
+    //     const db = req.app.get('db');
+    //     const [foundUser] = await db.usersInfo.get_user(email);
+    //     if (foundUser) {
+    //         return res.status(400).send('Email already in use');
+    //     };
+    //     let salt = bcrypt.genSaltSync(10);
+    //     const hash = bcrypt.hashSync(password, salt);
+    //     const [newUser] = await db.usersInfo.add_user([username, hash, email]);
+    //     req.session.user = newUser;
+    //     res.status(201).send(req.session.user);
+    // },
 
 
 // app.post('/api/login', login);

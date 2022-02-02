@@ -17,7 +17,7 @@ const Authentication = (props) => {
     console.log(props)
   }, [])
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     // const { username, email, password, verPassword } = this.state;
     const newUser = {
       username: usernameInput,
@@ -26,7 +26,7 @@ const Authentication = (props) => {
     }
 
     if (passwordInput === passwordConfirmationInput) {
-      axios.post('/api/register', newUser)
+     await axios.post('/api/register', newUser)
         .then(res => {
           props.getUser(res.data);
           // props.history.push('/users_library');

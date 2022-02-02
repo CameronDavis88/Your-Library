@@ -3,7 +3,7 @@ module.exports = {
     // register: async (req, res) => {
     //     const { username, email, password } = req.body;
     //     const db = req.app.get('db');
-    //     const [foundUser] = await db.usersInfo.get_user({ email });
+    //     const [foundUser] = await db.usersInfo.get_user(email);
     //     if (foundUser) {
     //         return res.status(400).send('Email already in use');
     //     };
