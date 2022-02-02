@@ -13,9 +13,9 @@ const Authentication = (props) => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
 
-  // useEffect(() => {
-  //   console.log(props)
-  // }, [])
+  useEffect(() => {
+    console.log(props)
+  }, [])
 
   const handleRegister = () => {
     // const { username, email, password, verPassword } = this.state;
@@ -28,9 +28,9 @@ const Authentication = (props) => {
     if (passwordInput === passwordConfirmationInput) {
       axios.post('/api/register', newUser)
         .then(res => {
-          // props.getUser(res.data);
+          props.getUser(res.data);
           // props.history.push('/users_library');
-          console.log(res.data)
+          console.log(props)
           alert("Congratulations, you're all registered!");
         })
         .catch(err => console.log(err));
