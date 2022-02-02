@@ -1,6 +1,6 @@
 const initialState = {
     user: {
-        testing: 'Redux is working'
+        testing: 'Redux is working, but no user is signed in yet'
     }
 };
 

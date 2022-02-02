@@ -18,7 +18,6 @@ const Authentication = (props) => {
   }, [])
 
   const handleRegister = async () => {
-    // const { username, email, password, verPassword } = this.state;
     const newUser = {
       username: usernameInput,
       password: passwordInput,

@@ -15,14 +15,15 @@ module.exports = {
     getUsersBooks: async (req, res) => {
         const { userId } = req.params;
         const db = req.app.get('db');
-        const books = await db.usersBooks.get_books(userId);
+        const [books] = await db.usersBooks.get_books([userId]);
         res.status(200).json(books);
     },
     addBook: async (req, res) => {
         const { userId } = req.params;
+        console.log(userId)
         const db = req.app.get('db');
         const { gutBookId, title, author, imageUrl, gutUrl } = req.body;
-        const books = await db.usersBooks.add_book(gutBookId, title, author, imageUrl, gutUrl, userId);
+        const [books] = await db.usersBooks.add_book([gutBookId, title, author, imageUrl, gutUrl, userId]);
         res.status(200).json(books);
     },
     updateBook: async (req, res) => {

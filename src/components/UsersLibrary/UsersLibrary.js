@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { getUser } from '../../redux/reducer'; 
+
 
 
 //I think you will need to have all the data from the books sent and retrieved from the database, not gutenberg (see and alter AddBook function)
@@ -9,6 +11,9 @@ import { connect } from 'react-redux';
 //then you will need to or can use the functionality of the getBooks or getData in the controllers
 
 const UsersLibrary = (props) => {
+    const userId = props.user.user_id;
+    // const user = getUser()
+    // const user = useSelector()
     const [books, setBooks] = useState([]);
     const [authorSearch, setAuthorSearch] = useState('');
     const [titleSearch, setTitleSearch] = useState('');
@@ -43,9 +48,16 @@ const UsersLibrary = (props) => {
     };
 
     // useEffect(() => {
-    //   getBooks();
-    // }, [])
+    // //   getBooks();
 
+    // }, [props.user.user_id])
+
+    useEffect(() => {
+        // console.log(user)
+        console.log(userId)
+        
+        }, [])
+    
 
 
 
@@ -61,9 +73,20 @@ const UsersLibrary = (props) => {
     return (
         // You will need to make this component like a merger of the Dashboard and PubLibrary but for the user
         <div>
-            {/* {mappedBooks} */}
-
             This is the User's Library
+            {/* {mappedBooks} */}
+            {/* {
+            // props.user.usersBook
+             ? 
+                
+                <div>
+                    <h2>Note that the user has no books yet asks if they
+                        would like to add some from the public library</h2>
+                        <button onClick={() => props.history.push('/')} >Go to Public Library</button>
+                </div>
+                : mappedBooks
+            } */}
+
         </div>
     )
 
@@ -71,4 +94,4 @@ const UsersLibrary = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps)(UsersLibrary);
+export default connect(mapStateToProps, {getUser})(UsersLibrary);

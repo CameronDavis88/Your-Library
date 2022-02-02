@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 // import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ const PubBook = (props) => {
 
         };
 
-        JSON.stringify(newBook);
+        // JSON.stringify(newBook);
                 // --userId here is coming from redux!
         axios.post(`/api/book/${userId}`, newBook)
             .then(({ data }) => {
@@ -30,7 +30,9 @@ const PubBook = (props) => {
             })
             .catch(err => console.log(err))
     };
-
+ useEffect(() => {
+console.log(userId)
+ }, [])
 
     return (
         <section key={id}>
@@ -41,7 +43,8 @@ const PubBook = (props) => {
             </div>
 
             {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
-            <button onClick={() => addBook(id)} >Add Book to Your Library</button>
+
+            {userId ? <button onClick={() => addBook()} >Add Book to Your Library</button> : <></>}
             <nav>
                 <a href={gutUrl} >Access book for free at Project Gutenberg</a>
             </nav>
