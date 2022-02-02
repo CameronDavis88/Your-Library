@@ -37,12 +37,12 @@ const UsersLibrary = (props) => {
 
     //No need for next page and previous page etc etc
 
-    const getBooks = () => {
+    const getBooks = async () => {
         const userId = props.user.user_id;
-        axios.get(`/api/books/${userId}`)
+       await axios.get(`/api/books/${userId}`)
             .then(({ data }) => {
-                setBooks({ books: data });
-                showMeTheData();
+                setBooks(data);
+                // showMeTheData(data);
             })
             .catch(err => console.log(err));
     };
@@ -53,8 +53,10 @@ const UsersLibrary = (props) => {
     // }, [props.user.user_id])
 
     useEffect(() => {
+        getBooks()
         // console.log(user)
         console.log(userId)
+        console.log(props.user)
         
         }, [])
     
@@ -74,7 +76,7 @@ const UsersLibrary = (props) => {
         // You will need to make this component like a merger of the Dashboard and PubLibrary but for the user
         <div>
             This is the User's Library
-            {/* {mappedBooks} */}
+            {mappedBooks}
             {/* {
             // props.user.usersBook
              ? 
