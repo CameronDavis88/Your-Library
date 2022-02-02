@@ -3,7 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const { getUsersBooks, addBook, updateBook, deleteBook, updateUsersInfo } = require('./controllers/mainControllers');
-const { register, login, logout } = require('./controllers/authControllers')
+// const { register, login, logout } = require('./controllers/authControllers')
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
@@ -27,12 +27,17 @@ massive({
 });
 
 //--------Auth Endpoints
-app.post('/api/register', register);
-app.post('/api/login', login);
-app.get('/api/logout', logout);
+// app.post('/api/register', register);
+
+app.post('/api/register', () => {
+    console.log(req.body)
+});
+
+// app.post('/api/login', login);
+// app.get('/api/logout', logout);
 
 //---------User Endpoints
-app.put('/api/user/:id', updateUsersInfo);
+// app.put('/api/user/:id', updateUsersInfo);
 
 //--------Book endpoints
 app.get(`/api/books:id`, getUsersBooks);
