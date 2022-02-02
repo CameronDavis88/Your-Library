@@ -5,7 +5,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const { getUsersBooks, addBook, updateBook, deleteBook, updateUsersInfo } = require('./controllers/mainControllers');
-// const { register, login, logout } = require('./controllers/authControllers')
+const { register, login, logout } = require('./controllers/authControllers')
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
@@ -29,21 +29,21 @@ massive({
 });
 
 //--------Auth Endpoints
-// app.post('/api/register', register);
+app.post('/api/register', register);
 
-app.post('/api/register', async (req, res) => {
-    console.log(req.body)
-        const { username, email, password } = req.body;
-        const db = req.app.get('db');
-        let salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(password, salt);
-        // const hash = bcrypt.hashSync(password);
-
-        const [newUser] = await db.usersInfo.add_user([username, hash, email]);
-                req.session.user = newUser;
-                res.status(201).send(req.session.user);
-
-});
+// app.post('/api/register', async (req, res) => {
+//         const { username, email, password } = req.body;
+//         const db = req.app.get('db');
+//             const [foundUser] = await db.usersInfo.get_user([email]);
+//         if (foundUser) {
+//             return res.status(400).send('Email already in use');
+//         };
+//         let salt = bcrypt.genSaltSync(10);
+//         const hash = bcrypt.hashSync(password, salt);
+//         const [newUser] = await db.usersInfo.add_user([username, hash, email]);
+//                 req.session.user = newUser;
+//                 res.status(201).send(req.session.user);
+// });
 
     // register: async (req, res) => {
     //     const { username, email, password } = req.body;

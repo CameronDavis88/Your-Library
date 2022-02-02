@@ -33,7 +33,10 @@ const Authentication = (props) => {
           console.log(props)
           alert("Congratulations, you're all registered!");
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          alert('Sorry, there was an error. The email you submitted may already have an account with us.')
+          console.log(err)
+        });
     } else {
       alert("Passwords don't match");
     }
