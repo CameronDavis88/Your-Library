@@ -1,6 +1,4 @@
 require('dotenv').config();
-const bcrypt = require('bcryptjs');
-
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
@@ -30,41 +28,11 @@ massive({
 
 //--------Auth Endpoints
 app.post('/api/register', register);
-
-// app.post('/api/register', async (req, res) => {
-//         const { username, email, password } = req.body;
-//         const db = req.app.get('db');
-//             const [foundUser] = await db.usersInfo.get_user([email]);
-//         if (foundUser) {
-//             return res.status(400).send('Email already in use');
-//         };
-//         let salt = bcrypt.genSaltSync(10);
-//         const hash = bcrypt.hashSync(password, salt);
-//         const [newUser] = await db.usersInfo.add_user([username, hash, email]);
-//                 req.session.user = newUser;
-//                 res.status(201).send(req.session.user);
-// });
-
-    // register: async (req, res) => {
-    //     const { username, email, password } = req.body;
-    //     const db = req.app.get('db');
-    //     const [foundUser] = await db.usersInfo.get_user(email);
-    //     if (foundUser) {
-    //         return res.status(400).send('Email already in use');
-    //     };
-    //     let salt = bcrypt.genSaltSync(10);
-    //     const hash = bcrypt.hashSync(password, salt);
-    //     const [newUser] = await db.usersInfo.add_user([username, hash, email]);
-    //     req.session.user = newUser;
-    //     res.status(201).send(req.session.user);
-    // },
-
-
 // app.post('/api/login', login);
-// app.get('/api/logout', logout);
+app.get('/api/logout', logout);
 
 //---------User Endpoints
-// app.put('/api/user/:id', updateUsersInfo);
+app.put('/api/user/:id', updateUsersInfo);
 
 //--------Book endpoints
 app.get(`/api/books:id`, getUsersBooks);
