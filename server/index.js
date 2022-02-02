@@ -29,9 +29,25 @@ massive({
 //--------Auth Endpoints
 // app.post('/api/register', register);
 
-app.post('/api/register', () => {
+app.post('/api/register', async (req, res) => {
     console.log(req.body)
+        const { username, email, password } = req.body;
+
+        const db = req.app.get('db');
+        const [newUser] = await db.usersInfo.add_user(username, password, email);
+        //         req.session.user = newUser;
+                res.status(201).send(newUser);
+
 });
+
+//     register: async (req, res) => {
+//         const { username, email, password } = req.body;
+//         const db = req.app.get('db');
+//         const newUser = await db.usersInfo.add_user(username, password, email);
+//         req.session.user = newUser;
+//         res.status(201).send(req.session.user);
+//     },
+
 
 // app.post('/api/login', login);
 // app.get('/api/logout', logout);
