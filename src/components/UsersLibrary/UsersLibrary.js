@@ -12,8 +12,7 @@ import { getUser } from '../../redux/reducer';
 
 const UsersLibrary = (props) => {
     const userId = props.user.user_id;
-    // const user = getUser()
-    // const user = useSelector()
+  
     const [books, setBooks] = useState([]);
     const [authorSearch, setAuthorSearch] = useState('');
     const [titleSearch, setTitleSearch] = useState('');
@@ -23,7 +22,7 @@ const UsersLibrary = (props) => {
         setSearchView({ searchView: true });
         await axios.get(`/api/books=search?=title{}--etc etc----------I dont know something like this`)
             .then(({ data }) => {
-                setBooks({ books: data.results });
+                setBooks( data );
                 showMeTheData(data);
             })
             .catch((err) => console.log(err));
@@ -43,42 +42,44 @@ const UsersLibrary = (props) => {
             .then(({ data }) => {
                 setBooks(data);
                 // showMeTheData(data);
+                console.log(data)
             })
             .catch(err => console.log(err));
     };
 
-    // useEffect(() => {
-    // //   getBooks();
+    useEffect(() => {
+        getBooks()
+    }, [])
 
-    // }, [props.user.user_id])
 
     useEffect(() => {
         getBooks()
         // console.log(user)
         console.log(userId)
-        console.log(props.user)
+        // console.log(props.user)
+        console.log(books)
         
-        }, [])
+        }, [userId])
     
+  
 
 
-
-    const mappedBooks = books.map((book) => {
-        const { id, title, authors, formats, users_book_id } = book;
-        const gutUrl = formats["text/html"];
-        const imageUrl = formats["image/jpeg"];
-        const author = authors[0].name;
-        const usersBookId = users_book_id;
-        return <UsersBook key={id} id={id} usersBookId={usersBookId} title={title} author={author} imageUrl={imageUrl} gutUrl={gutUrl} getBooks={getBooks} />
-    })
+    // const mappedBooks = books.map((book) => {
+    //     const { id, title, authors, formats, users_book_id } = book;
+    //     const gutUrl = formats["text/html"];
+    //     const imageUrl = formats["image/jpeg"];
+    //     const author = authors[0].name;
+    //     const usersBookId = users_book_id;
+    //     return <UsersBook key={id} id={id} usersBookId={usersBookId} title={title} author={author} imageUrl={imageUrl} gutUrl={gutUrl} getBooks={getBooks} />
+    // })
 
     return (
         // You will need to make this component like a merger of the Dashboard and PubLibrary but for the user
         <div>
             This is the User's Library
-            {mappedBooks}
-            {/* {
-            // props.user.usersBook
+            {/* {mappedBooks} */}
+            {
+            !books[0]
              ? 
                 
                 <div>
@@ -86,8 +87,14 @@ const UsersLibrary = (props) => {
                         would like to add some from the public library</h2>
                         <button onClick={() => props.history.push('/')} >Go to Public Library</button>
                 </div>
-                : mappedBooks
-            } */}
+                :
+                //  <h1>This is where it will map</h1>
+                 books.map((book) => {
+                     //remember these properties are coming from the database keys and values, not gutenberg!
+                const { users_book_id, title, author, image_url, gut_url } = book;
+                    return <UsersBook key={users_book_id} id={users_book_id} title={title} author={author} gutUrl={gut_url} imageUrl={image_url}  />
+                })
+            }
 
         </div>
     )

@@ -17,7 +17,7 @@ module.exports = {
         const userId = req.params.id;
         console.log(userId)
         const db = req.app.get('db');
-        const [books] = await db.usersBooks.get_books(userId);
+        const books = await db.usersBooks.get_books(userId);
         // console.log(books)
         res.status(200).json(books);
     },
