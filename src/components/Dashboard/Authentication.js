@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../redux/reducer';
+import Navbar from '../Navbar/Navbar';
 
 //    This component will be rendered instead of the Dashboard when the user clicks login or register 
 //-- and will conditionally render depending on if the user is registering or logging in
@@ -76,7 +77,7 @@ const Authentication = (props) => {
   return (
     <div>
 
-
+<Navbar props={props} />
       This is the Authentication component
       <button onClick={() => setRegisterView(true)} >Register View</button>
       <button onClick={() => setRegisterView(false)} >Login View</button>
@@ -95,6 +96,7 @@ const Authentication = (props) => {
 This is the login page
 <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
     <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+    <button onClick={handleLogin} >Login</button>
       </main>
   }
      

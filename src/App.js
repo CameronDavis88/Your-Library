@@ -10,7 +10,7 @@ const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRout
 const App = () => {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       {/* <Authentication/> */}
       <Router>
         <Switch>

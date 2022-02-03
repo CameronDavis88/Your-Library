@@ -7,6 +7,7 @@ import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import './Dashboard.css';
 import Authentication from './Authentication';
+import Navbar from '../Navbar/Navbar';
 
 //--------------I AM THINKING OF HAVING THE DASHBOARD ONLY BEING THE THING WITH LANDING STUFF AND IT RENDERS THE PUBlIBRARY 
 //SO i WOULD WANT TO MOVE ALL THE DATA TO THE PUBlIBRARY -- DOING SO WOULD ESSENTIALLY MAKE THE PUBLIBRARY AND USERSLIBRARY 
@@ -166,6 +167,7 @@ class Dashboard extends Component {
     componentDidMount() {
         this.getPubBooks();
         // this.getPubBooks();
+        // console.log(this.props)
     };
 
     componentDidUpdate() {
@@ -183,6 +185,7 @@ class Dashboard extends Component {
     render() {
         return (
             <main>
+                 <Navbar props={this.props} />
                 You need to set up a search bar for the user and allow them to create their own library
                 of at least the titles and link that to the actual book-- so it's not just loading all
                 their books but only the user's books!

@@ -3,6 +3,7 @@ import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser } from '../../redux/reducer'; 
+import Navbar from '../Navbar/Navbar';
 
 
 
@@ -49,6 +50,7 @@ const UsersLibrary = (props) => {
 
     useEffect(() => {
         getBooks()
+        console.log(props)
     }, [])
 
 
@@ -76,7 +78,9 @@ const UsersLibrary = (props) => {
     return (
         // You will need to make this component like a merger of the Dashboard and PubLibrary but for the user
         <div>
+            <Navbar props={props} />
             This is the User's Library
+
             {/* {mappedBooks} */}
             {
             !books[0]
