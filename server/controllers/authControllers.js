@@ -17,7 +17,6 @@ module.exports = {
     login: async (req, res) => {
         const { email, password } = req.body;
         const db = req.app.get('db');
-
         const [foundUser] = await db.usersInfo.get_user([email]);
         if (!foundUser) {
             return res.status(400).send('Email not found');

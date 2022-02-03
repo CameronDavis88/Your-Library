@@ -28,7 +28,7 @@ massive({
 
 //--------Auth Endpoints
 app.post('/api/register', register);
-// app.post('/api/login', login);
+app.post('/api/login', login);
 app.get('/api/logout', logout);
 
 //---------User Endpoints
