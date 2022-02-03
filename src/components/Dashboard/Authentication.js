@@ -75,21 +75,31 @@ const Authentication = (props) => {
 
   return (
     <div>
+
+
       This is the Authentication component
-      <button onClick={() => setRegisterView(true)} >registerView</button>
-      <button onClick={() => setRegisterView(false)} >LoginViw</button>
-      <main className='registering'>
-      <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
-      <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
-      <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-      <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
-
-
-      <button onClick={handleRegister} >Submit</button>
+      <button onClick={() => setRegisterView(true)} >Register View</button>
+      <button onClick={() => setRegisterView(false)} >Login View</button>
+    { registerView === true 
+    ?
+    <main className='registering'>
+      This is the register page
+    <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
+    <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+    <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+    <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+    <button onClick={handleRegister} >Submit</button>
+    </main>
+  :
+  <main className='loggingIn' >
+This is the login page
+<input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+    <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
       </main>
-      <main className='loggingIn' >
+  }
+     
+
       
-      </main>
 
     </div>
   )
