@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 // import { updateBook } from '../../../server/controllers/mainControllers';
 
-const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook, setEditMode, editMode }) => {
+const EditBook = ({ id, title, author, imageUrl, usersBookId, deleteBook, setEditMode, editMode, getBooks }) => {
    const [newTitle, setNewTitle] = useState('');
    const [newAuthor, setNewAuthor] = useState('');
    const [newImageUrl, setNewImageUrl] = useState('');
@@ -25,8 +25,11 @@ const EditBook = ({ title, author, imageUrl, usersBookId, deleteBook, setEditMod
             author: newAuthor === '' ? author : newAuthor,
             imageUrl: newImageUrl === '' ? imageUrl : newImageUrl,
         };
-       await axios.put(`/api/book/${usersBookId}`, updatedBook)
-            .then(res => console.log(res))
+       await axios.put(`/api/book/${id}`, updatedBook)
+            .then(({ data }) => {
+                getBooks(data);
+                setEditMode(false);
+            })
             .catch(err => console.log(err))
     };
 

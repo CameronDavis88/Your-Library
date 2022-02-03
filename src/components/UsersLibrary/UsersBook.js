@@ -7,7 +7,7 @@ import EditBook from './EditBook';
 
 
 const UsersBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, getBooks, } = props
+    const { id, title, author, gutUrl, imageUrl, getBooks, setBooks } = props
     const [editMode, setEditMode] = useState(false);
 
     const deleteBook = () => {
@@ -18,25 +18,28 @@ const UsersBook = (props) => {
 
     return (
         <section key={id}>
-            {editMode === false ?  <>
-            <div>
-                <h3 >Title: {title}</h3>
-                <h3 >Author: {author}</h3>
-                <img alt='cover' src={imageUrl} />
-            </div>
+            {editMode === false ? <>
+                <div>
+                    <h3 >Title: {title}</h3>
+                    <h3 >Author: {author}</h3>
+                    <img alt='cover' src={imageUrl} />
+                </div>
 
-            {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
-            <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
-            <button onClick={() => deleteBook()} >Delete Book</button>
+                {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
+                <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
+                <button onClick={() => deleteBook()} >Delete Book</button>
 
-            <nav>
-                <a href={gutUrl} >Access book for free at Project Gutenberg</a>
-            </nav>
+                <nav>
+                    <a href={gutUrl} >Access book for free at Project Gutenberg</a>
+                </nav>
             </>
-            :
-            <EditBook title={title} author={author} imageUrl={imageUrl} id={id} editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook} /> 
+                :
+                <EditBook
+                    getBooks={() => getBooks()} title={title} author={author} imageUrl={imageUrl} id={id}
+                    editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook}
+                />
             }
-               
+
         </section>
     )
 };

@@ -96,7 +96,7 @@ const UsersLibrary = (props) => {
                  books.map((book) => {
                      //remember these properties are coming from the database keys and values, not gutenberg!
                 const { users_book_id, title, author, image_url, gut_url } = book;
-                    return <UsersBook key={users_book_id} id={users_book_id} title={title} author={author} gutUrl={gut_url} imageUrl={image_url}  />
+                    return <UsersBook key={users_book_id} id={users_book_id} title={title} author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} />
                 })
             }
 
