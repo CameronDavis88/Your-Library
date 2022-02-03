@@ -12,7 +12,7 @@ const UsersBook = (props) => {
 
     const deleteBook = () => {
         axios.delete(`/api/book/${id}`)
-            .then(() => getBooks())
+            .then()
             .catch(err => console.log(err))
     };
 
@@ -26,7 +26,7 @@ const UsersBook = (props) => {
             </div>
 
             {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
-            <button onClick={() => setEditMode(true)} >Update Book</button>
+            <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
             <button onClick={() => deleteBook()} >Delete Book</button>
 
             <nav>
@@ -34,7 +34,7 @@ const UsersBook = (props) => {
             </nav>
             </>
             :
-            <EditBook id={id} editMode={editMode} setEditMode={setEditMode}/> 
+            <EditBook title={title} author={author} imageUrl={imageUrl} id={id} editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook} /> 
             }
                
         </section>

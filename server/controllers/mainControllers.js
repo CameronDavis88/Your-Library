@@ -33,13 +33,13 @@ module.exports = {
         const usersBookId  = req.params.id;
         const { title, author, imageUrl } = req.body;
         const db = req.app.get('db');
-        const books = await db.usersBooks.edit_book(title, author, imageUrl, usersBookId);
+        const books = await db.usersBooks.edit_book([title, author, imageUrl, usersBookId]);
         res.status(200).json(books);
     },
     deleteBook: async (req, res) => {
         const usersBookId  = req.params.id;
         const db = req.app.get('db');
-        const books = await db.usersBooks.delete_book(usersBookId);
+        const books = await db.usersBooks.delete_book([usersBookId]);
         res.status(200).json(books);
     },
 };
