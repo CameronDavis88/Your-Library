@@ -1,6 +1,7 @@
 //codingMuse();
 import React from 'react';
 import {  HashRouter, BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Authentication from './components/Dashboard/Authentication';
 import UsersLibrary from './components/UsersLibrary/UsersLibrary';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -29,4 +30,7 @@ const App = () => {
   )
 };
 
-export default App;
+
+const mapStateToProps = (reduxState) => reduxState;
+
+  export default connect(mapStateToProps)(App);

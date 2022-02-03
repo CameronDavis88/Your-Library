@@ -1,22 +1,93 @@
-import React, {useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser } from '../../redux/reducer'; 
 
 
 
 
 const Navbar = ({ props }) => {
 
-  // useEffect(() => {
 
-  // }, [])
+  useEffect(() => {
+
+console.log(props)
+
+  }, [])
+
+
+const handleLogout = async () => {
+  props.history.push('/');
+await axios.get(`/api/logout`)
+.then(() => {
+  props.clearUser();
+ 
+})
+.catch(err => console.log(err))
+};
+
+
+
 
   return (
     <div>
 ---------This is the navbar---------
-{/* Obviously conditionally render this according to what page is aldreay being displayed */}
-<button onClick={() => props.history.push('/authentication')} >To Authentication</button>
+{/* START of outermost bracket */}
+{ props.location.pathname === '/' ?
+<div>
+{ props.user.user_id ?
+<>
+<button onClick={handleLogout} >Logout</button>
+<button onClick={() => props.history.push('/users_library')} >Your Library</button>
+</>
+:
+<>
+<button onClick={() => props.history.push('/authentication')} >Login/Register</button>
+</>
+}
+</div>
+
+:    
+// Below here is either Authentication of UsersLibrary
+<div>
+
+{ props.location.pathname === '/authentication' ?
+<div>
 <button onClick={() => props.history.push('/')} >Back to Public Library</button>
+</div>
+// Below here is usersLibrary
+:
+<div>
+<button onClick={handleLogout} >Logout</button>
+<button onClick={() => props.history.push('/')} >Back to Public Library</button>
+</div>
+}
+
+</div>
+}
+{/* END of outermost bracket */} 
+
+
+
+
+
+
+
+
+
+
+
+
+{/* {!props.user.user_id ? <>
+ <button onClick={() => props.history.push('/authentication')} >Login/Register</button>
+<button onClick={() => props.history.push('/')} >Back to Public Library</button>
+ </>
+ : 
+ <>
+  <button onClick={handleLogout} >Logout</button>
+ </>
+} */}
+
+
 
     </div>
   )
@@ -24,4 +95,4 @@ const Navbar = ({ props }) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-  export default connect(mapStateToProps, { getUser })(Navbar);
+  export default connect(mapStateToProps)(Navbar);

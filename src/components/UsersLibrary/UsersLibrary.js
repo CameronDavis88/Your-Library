@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser } from '../../redux/reducer'; 
+import { getUser, clearUser } from '../../redux/reducer'; 
 import Navbar from '../Navbar/Navbar';
 
 
@@ -107,4 +107,4 @@ const UsersLibrary = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, {getUser})(UsersLibrary);
+export default connect(mapStateToProps, { getUser, clearUser })(UsersLibrary);

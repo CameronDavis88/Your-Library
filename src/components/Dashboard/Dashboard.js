@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
+import { connect } from 'react-redux';
+import { clearUser } from '../../redux/reducer';
 import './Dashboard.css';
 import Authentication from './Authentication';
 import Navbar from '../Navbar/Navbar';
@@ -205,4 +207,6 @@ class Dashboard extends Component {
 };
 
 
-export default Dashboard;
+const mapStateToProps = (reduxState) => reduxState;
+
+  export default connect(mapStateToProps, { clearUser })(Dashboard);
