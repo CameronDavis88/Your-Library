@@ -7,12 +7,14 @@ import EditBook from './EditBook';
 
 
 const UsersBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, getBooks, setBooks } = props
+    const { id, title, author, gutUrl, imageUrl, getBooks} = props
     const [editMode, setEditMode] = useState(false);
 
     const deleteBook = () => {
         axios.delete(`/api/book/${id}`)
-            .then()
+            .then(({ data }) => {
+                getBooks(data);
+            })
             .catch(err => console.log(err))
     };
 

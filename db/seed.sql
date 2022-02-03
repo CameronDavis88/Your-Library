@@ -9,6 +9,6 @@ CREATE TABLE books
 gut_book_id INT,
 title VARCHAR(200),
 author VARCHAR(200),
-image_url VARCHAR(200),
+image_url VARCHAR(500),
 gut_url VARCHAR(500),
 user_id INT REFERENCES users(user_id));
