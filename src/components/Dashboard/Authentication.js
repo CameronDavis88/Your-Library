@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser, registerView } from '../../redux/reducer';
+import { getUser } from '../../redux/reducer';
 
 //    This component will be rendered instead of the Dashboard when the user clicks login or register 
 //-- and will conditionally render depending on if the user is registering or logging in
@@ -12,6 +12,7 @@ const Authentication = (props) => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
+  const [registerView, setRegisterView] = useState(false);
   
 
     
@@ -20,11 +21,17 @@ const Authentication = (props) => {
   useEffect(() => {
     
     console.log(props)
+    console.log(registerView)
+
   }, [])
+
   useEffect(() => {
-    // registerView(false)
+    
     console.log(props)
-  }, [props])
+    console.log(registerView)
+
+  }, [registerView])
+ 
 
   const handleRegister = async () => {
     const newUser = {
@@ -69,8 +76,8 @@ const Authentication = (props) => {
   return (
     <div>
       This is the Authentication component
-      <button onClick={() => props.registerView(true)} >registerView</button>
-      <button onClick={() => props.registerView(false)} >LoginViw</button>
+      <button onClick={() => setRegisterView(true)} >registerView</button>
+      <button onClick={() => setRegisterView(false)} >LoginViw</button>
       <main className='registering'>
       <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
       <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
@@ -88,6 +95,6 @@ const Authentication = (props) => {
   )
 };
 
-const mapStateToProps = (reduxState) => reduxState
+const mapStateToProps = (reduxState) => reduxState;
 
-  export default connect(mapStateToProps, { getUser, registerView })(Authentication);
+  export default connect(mapStateToProps, { getUser })(Authentication);
