@@ -1,6 +1,6 @@
 UPDATE users
-SET password = ${hash}, email = ${email}, username = ${username}
-WHERE user_id = ${userId};
+SET password = $1, email = $2, username = $3
+WHERE user_id = $4;
 
-SELECT user_id, username, email FROM users
-WHERE user_id = ${userId};
+SELECT user_id, username, email, password FROM users
+WHERE user_id = $4;

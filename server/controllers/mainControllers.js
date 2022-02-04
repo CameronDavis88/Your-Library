@@ -3,15 +3,27 @@ module.exports = {
     // ------------User Controller--------------------
     updateUsersInfo: async (req, res) => {
         const userId = req.params.id;
-        const { username, email, password } = req.body;
+        const { username, email, password, oldPassword, oldEmail } = req.body;
         const db = req.app.get('db');
+        const [checkEmail] = await db.usersInfo.get_user([email]);
+        if (checkEmail) {
+            return res.status(400).send('Email already in use');
+        } else {
+            const [foundUser] = await db.usersInfo.get_user([oldEmail]);
+            const authenticated = bcrypt.compareSync(oldPassword, foundUser.password);
+            if (!authenticated) {
+                return res.status(401).send('Old password is incorrect');
+            };
+        }
         let salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-      const [updatedUser] = await db.usersInfo.edit_users_info({ userId, hash, email, username })
-            // .then(([user]) => res.status(200).send(user))
-            // .catch(err => res.status(500).send(err));
-            res.status(200).send(updatedUser)
+        const [updatedUser] = await db.usersInfo.edit_users_info([hash, email, username, userId])
+        delete updatedUser.password;
+
+        res.status(202).send(updatedUser);
+
     },
+
     //-------------Book Controllers--------------
     getUsersBooks: async (req, res) => {
         const userId = req.params.id;
@@ -30,14 +42,14 @@ module.exports = {
         res.status(200).json(book);
     },
     updateBook: async (req, res) => {
-        const usersBookId  = req.params.id;
+        const usersBookId = req.params.id;
         const { title, author, imageUrl } = req.body;
         const db = req.app.get('db');
         const books = await db.usersBooks.edit_book([title, author, imageUrl, usersBookId]);
         res.status(200).json(books);
     },
     deleteBook: async (req, res) => {
-        const usersBookId  = req.params.id;
+        const usersBookId = req.params.id;
         const db = req.app.get('db');
         const books = await db.usersBooks.delete_book([usersBookId]);
         res.status(200).json(books);
