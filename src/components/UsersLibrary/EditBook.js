@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
@@ -22,9 +22,6 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
             .catch(err => console.log(err))
     };
 
-    // useEffect(() => {
-    // })
-   
         return (
             <div>
                         <h3>Go ahead and customize how your book will appear in your library</h3>
@@ -32,15 +29,12 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
                             <h4> Current Title: {title}</h4>
                         <input onChange={(e) => setNewTitle(e.target.value)} placeholder='New Title' value={newTitle} />
                         </div>
-                       
                         <div>
                         <h4>Current Author's name: {author}</h4>
                         <input onChange={(e) => setNewAuthor(e.target.value)} placeholder='Edit Author(s)' value={newAuthor} />
                         </div>
                         <br/>
-                       
                         <div>
-                           
                         <img alt='cover sample' src={imageUrl} />
                         <h4>Current Image Url: {imageUrl}</h4>
                         <input onChange={(e) => setNewImageUrl(e.target.value)} placeholder='New Cover Image Url' value={newImageUrl} />
