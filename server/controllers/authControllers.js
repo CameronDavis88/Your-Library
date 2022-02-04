@@ -70,7 +70,5 @@ module.exports = {
         db.usersInfo.delete_user([userId]);
         res.sendStatus(200);
         }
-        
-
     }
 };

@@ -3,7 +3,6 @@ module.exports = {
     //-------------Book Controllers--------------
     getUsersBooks: async (req, res) => {
         const userId = req.params.id;
-        console.log(userId)
         const db = req.app.get('db');
         const books = await db.usersBooks.get_books(userId);
         res.status(200).json(books);

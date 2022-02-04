@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-
 const Navbar = ({ props }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    console.log(props)
-    if (props.user.user_id) {
-      setLoggedIn(true)
-    }
-  }, [])
 
   const handleLogout = async () => {
     props.history.push('/');
@@ -23,46 +14,50 @@ const Navbar = ({ props }) => {
       .catch(err => console.log(err))
   };
 
-  return (
-    <div>
-      ---------This is the navbar---------
-      {/* START of outermost bracket */}
-      {props.location.pathname === '/' ?
-        <div>
-          {loggedIn === true ?
+  const LoggedInNavbar = () => {
+      if(props.location.pathname === '/'){
+          return( 
             <>
-              <button onClick={handleLogout} >Logout</button>
               <button onClick={() => props.history.push('/users_library')} >Your Library</button>
               <button onClick={() => props.history.push('/authentication')} >Your Account</button>
-            </>
-            :
-            <>
-              <button onClick={() => props.history.push('/authentication')} >Login/Register</button>
-            </>
-          }
-        </div>
-
-        :
-        // Below here is either Authentication of UsersLibrary
-        <div>
-
-          {props.location.pathname === '/authentication' ?
-            <div>
-              <button onClick={() => props.history.push('/')} >Back to Public Library</button>
-            </div>
-            // Below here is usersLibrary
-            :
-            <div>
               <button onClick={handleLogout} >Logout</button>
-              <button onClick={() => props.history.push('/')} >Back to Public Library</button>
-              <button onClick={() => props.history.push('/authentication')} >Your Account</button>
-            </div>
-          }
+            </>
+          );
+    } else if (props.location.pathname === '/authentication'){
+      return(
+        <>
+              <button onClick={() => props.history.push('/users_library')} >Your Library</button>
+              <button onClick={() => props.history.push('/')} >Public Library</button>
+              <button onClick={handleLogout} >Logout</button>
+        </>
+      );
+    } else if (props.location.pathname === '/users_library'){
+      return(
+        <>
+        <button onClick={() => props.history.push('/')} >Public Library</button>
+        <button onClick={() => props.history.push('/authentication')} >Your Account</button>
+              <button onClick={handleLogout} >Logout</button>
+        </>
+      );
+    };
+  };
 
-        </div>
-      }
-      {/* END of outermost bracket */}
-    </div>
+  const LoggedOutNavbar = () => {
+    if(props.location.pathname === '/'){
+      return(
+        <button onClick={() => props.history.push('/authentication')}>Login/Register</button>
+      );
+    } else if(props.location.pathname === '/authentication'){
+      return (
+        <button onClick={() => props.history.push('/')} >Public Library</button>
+      );
+    };
+  };
+
+  return (
+   <div className='navbar' >
+      {props.user.user_id ? <LoggedInNavbar/> : <LoggedOutNavbar/> }
+   </div>
   )
 };
 
