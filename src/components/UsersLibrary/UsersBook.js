@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import EditBook from './EditBook';
 
-
-
-
-
 const UsersBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, getBooks} = props
+    const { id, title, author, gutUrl, imageUrl, getBooks } = props
     const [editMode, setEditMode] = useState(false);
 
     const deleteBook = () => {
@@ -18,30 +14,28 @@ const UsersBook = (props) => {
             .catch(err => console.log(err))
     };
 
-    return (
-        <section key={id}>
-            {editMode === false ? <>
-                <div>
+    const BookDisplay = () => {
+        return (
+            <div>
                     <h3 >Title: {title}</h3>
                     <h3 >Author: {author}</h3>
                     <img alt='cover' src={imageUrl} />
-                </div>
-
-                {/* <button onClick={() => this.deleteBook(id)} >Delete Book</button> ----- which is not for here but in UsersBook! */}
                 <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
                 <button onClick={() => deleteBook()} >Delete Book</button>
-
+                <br />
                 <nav>
                     <a href={gutUrl} >Access book for free at Project Gutenberg</a>
                 </nav>
-            </>
-                :
-                <EditBook
-                    getBooks={() => getBooks()} title={title} author={author} imageUrl={imageUrl} id={id}
-                    editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook}
-                />
-            }
+            </div>
+        )
+    };
 
+    return (
+        <section key={id}>
+            {editMode === false ? <BookDisplay/> : <EditBook
+                    getBooks={() => getBooks()} title={title} author={author} imageUrl={imageUrl} id={id}
+                    editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook}/>
+            }
         </section>
     )
 };

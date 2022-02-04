@@ -123,6 +123,8 @@ const Authentication = (props) => {
       <main className='registering'>
         <h2>Create an account Below</h2>
         <br/>
+        <button onClick={() => setRegisterView(false)} >Back to Login</button>
+        <br/>
         <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
         <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
         <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
@@ -140,6 +142,7 @@ const Authentication = (props) => {
         <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
         <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
         <button onClick={handleLogin} >Login</button>
+        <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create One Here</button>
       </main>
     )
   };
@@ -201,13 +204,8 @@ const Authentication = (props) => {
   return (
     <div>
       <Navbar props={props} />
-      This is the Authentication component
-      <br />
-      <button onClick={() => setRegisterView(true)} >Register View</button>
-      <button onClick={() => setRegisterView(false)} >Login View</button>
       {props.user.user_id
         ?
-
         <>
           {deletingView === false && updatingView === false ? <Profile />
             :
