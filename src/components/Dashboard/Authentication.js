@@ -15,29 +15,31 @@ const Authentication = (props) => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
   const [registerView, setRegisterView] = useState(false);
- const [oldPasswordInput, setOldPasswordInput] = useState('');
- const [newAccountView, setNewAccountView] = useState(false);
+  const [oldPasswordInput, setOldPasswordInput] = useState('');
+  const [newAccountView, setNewAccountView] = useState(false);
+  const [deletingView, setDeletingView] = useState(false);
+  const [checkingView, setCheckingView] = useState(false);
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    console.log(props)
-    console.log(registerView)
+  //   console.log(props)
+  //   console.log(registerView)
 
-  }, [])
+  // }, [])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    console.log(props)
-    console.log(registerView)
+  //   console.log(props)
+  //   console.log(registerView)
 
-  }, [registerView])
+  // }, [registerView])
 
 
   const handleRegister = async () => {
-     if(props.user.user_id){
+    if (props.user.user_id) {
       props.clearUser();
-     };
+    };
     const newUser = {
       username: usernameInput,
       password: passwordInput,
@@ -49,7 +51,6 @@ const Authentication = (props) => {
         .then(({ data }) => {
           props.getUser(data);
           props.history.push('/users_library');
-          // console.log(props)
           alert("Congratulations, you're all registered!");
         })
         .catch(err => {
@@ -80,7 +81,6 @@ const Authentication = (props) => {
   const createNewAccount = async () => {
     await axios.get(`/api/logout`)
       .then(() => {
-        // props.clearUser();
         setNewAccountView(true)
         setRegisterView(true);
       })
@@ -88,7 +88,7 @@ const Authentication = (props) => {
   };
 
   const updateUsersInfo = async () => {
-    const {  username, user_id, email} = props.user
+    const { username, user_id, email } = props.user
     const updatedUser = {
       username: usernameInput === '' ? username : usernameInput,
       password: passwordInput,
@@ -103,7 +103,6 @@ const Authentication = (props) => {
         .then(({ data }) => {
           props.getUser(data);
           props.history.push('/users_library');
-          // console.log(props)
           alert("Congratulations, your info is all updated!");
         })
         .catch(err => {
@@ -115,69 +114,134 @@ const Authentication = (props) => {
     }
   };
 
+  const deleteUsersAccount = async () => {
+    const { user_id, email } = props.user
+    const user = {
+      password: passwordInput,
+      email: email,
+    }
+    if (passwordInput === passwordConfirmationInput) {
+      await axios.put(`/api/user/${user_id}`, user)
+        .then(() => {
+          props.clearUser();
+          setCheckingView(false);
+          setDeletingView(false);
+          props.history.push('/');
+          alert(`You account has been deleted`);
+        })
+        .catch(err => {
+          alert('Sorry, something went wrong... Make sure you current password is correct and the new email is not already connected to another account.')
+          console.log(err)
+        });
+    } else {
+      alert("Passwords don't match");
+    }
+  };
+
+  const Registering = () => {
+    return (
+      <main className='registering'>
+        <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
+        <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+        <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+        <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+        <button onClick={handleRegister} >Create Account</button>
+      </main>
+    )
+  };
+
+  const NewAccount = () => {
+    return (
+      <>
+        <Registering />
+        <button onClick={() => setNewAccountView(false)} >Cancel/Back</button>
+      </>
+    )
+  };
+
+  const LoggingIn = () => {
+    return (
+      <main className='loggingIn' >
+        This is the login page
+        <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+        <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+        <button onClick={handleLogin} >Login</button>
+      </main>
+    )
+  };
+
+  const UpdatingUser = () => {
+    return (
+      <>
+        <h2>Update your information</h2>
+        <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
+        <input onChange={(e) => setEmailInput(e.target.value)} placeholder='New Email' value={emailInput} />
+        <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='New Password' value={passwordInput} />
+        <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm New Password' value={passwordConfirmationInput} />
+        <br />
+        <input onChange={(e) => setOldPasswordInput(e.target.value)} placeholder='Confirm CURRENT Password' value={oldPasswordInput} />
+        <button onClick={updateUsersInfo} >Submit Edits</button>
+        <br />
+        <button onClick={createNewAccount} >Create a new account</button>
+      </>
+    )
+  };
+
+  const CheckingView = () => {
+    return (
+      <>
+        <h2>Are you sure you want to delete your account?</h2>
+        <button onClick={deleteUsersAccount} >Yes, delete my account</button>
+        <button onClick={() => setCheckingView(false)} >No, cancel</button>
+      </>
+    )
+  }
+
+  const DeletingUser = () => {
+    return (
+      <div className='deleting-account'>
+        <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+        <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+        {checkingView === true
+          ?
+          <>
+            <button onClick={() => setCheckingView(true)}>Delete Account</button>
+            <button onClick={() => {
+              setCheckingView(false)
+              setDeletingView(false)
+            }} >Cancel/Back</button>
+          </>
+          :
+          <checkingView />
+        }
+      </div>
+    )
+  };
+
+
+
   return (
     <div>
-
       <Navbar props={props} />
       This is the Authentication component
-      <br/>
+      <br />
       <button onClick={() => setRegisterView(true)} >Register View</button>
       <button onClick={() => setRegisterView(false)} >Login View</button>
-
-      {props.user.user_id ?
+      {props.user.user_id
+        ?
         <>
-          
-          {newAccountView === true ?
-          
-               <main className='registering'>
-              
-              <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
-              <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
-              <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-              <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
-              <button onClick={handleRegister} >Submit</button>
-              <button onClick={() => setNewAccountView(false)} >Cancel/Back</button>
-            </main>
-          :
-          <>
-          <h2>Update your information</h2>
-          <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
-          <input onChange={(e) => setEmailInput(e.target.value)} placeholder='New Email' value={emailInput} />
-          <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='New Password' value={passwordInput} />
-          <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm New Password' value={passwordConfirmationInput} />
-          <br/>
-          <input onChange={(e) => setOldPasswordInput(e.target.value)} placeholder='Confirm CURRENT Password' value={oldPasswordInput} />
-          <button onClick={updateUsersInfo} >Submit Edits</button>
-
-          <br />
-          <button onClick={createNewAccount} >Create a new account</button></>
-          }
-          
+          {newAccountView === true  ? <NewAccount />
+           : 
+           <>
+{deletingView === true ? <DeletingUser/> : <UpdatingUser />}
+           </>
+           }
         </>
         :
         <>
-          {registerView === true
-            ?
-            <main className='registering'>
-              This is the register page
-              <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
-              <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
-              <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-              <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
-              <button onClick={handleRegister} >Submit</button>
-            </main>
-            :
-            <main className='loggingIn' >
-              This is the login page
-              <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
-              <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-              <button onClick={handleLogin} >Login</button>
-            </main>
-          }
+          {registerView === true ? <Registering /> : <LoggingIn />}
         </>
-
       }
-
     </div>
   )
 };

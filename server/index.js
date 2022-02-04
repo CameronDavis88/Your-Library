@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const { getUsersBooks, addBook, updateBook, deleteBook, updateUsersInfo } = require('./controllers/mainControllers');
-const { register, login, logout } = require('./controllers/authControllers')
+const { getUsersBooks, addBook, updateBook, deleteBook } = require('./controllers/mainControllers');
+const { register, login, logout, deleteUser, updateUsersInfo } = require('./controllers/authControllers')
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
@@ -26,13 +26,12 @@ massive({
     app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
 });
 
-//--------Auth Endpoints
+//--------User/Auth Endpoints
 app.post('/api/register', register);
 app.post('/api/login', login);
 app.get('/api/logout', logout);
-
-//---------User Endpoints
 app.put('/api/user/:id', updateUsersInfo);
+app.delete(`/api/user/:id`, deleteUser)
 
 //--------Book endpoints
 app.get(`/api/books/:id`, getUsersBooks);
