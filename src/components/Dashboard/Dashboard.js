@@ -1,6 +1,3 @@
-//The homepage/Dashboard -- The Public Library  --- conditionally renders the buttons for adding to the UsersLibrary if a user is signed in 
-//path '/' for not logged in and '/id' if signed in
-
 //codingMuse();
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -8,26 +5,13 @@ import PubLibrary from '../PubLibrary/PubLibrary'
 import { connect } from 'react-redux';
 import { clearUser } from '../../redux/reducer';
 import './Dashboard.css';
-import Authentication from './Authentication';
 import Navbar from '../Navbar/Navbar';
-
-//--------------I AM THINKING OF HAVING THE DASHBOARD ONLY BEING THE THING WITH LANDING STUFF AND IT RENDERS THE PUBlIBRARY 
-//SO i WOULD WANT TO MOVE ALL THE DATA TO THE PUBlIBRARY -- DOING SO WOULD ESSENTIALLY MAKE THE PUBLIBRARY AND USERSLIBRARY 
-//THE SAME THINGS ONLY GETTING THEIR DATA FROM DIFFERENT PLACES , ONE FROM GUTENBERG THE OTHER FROM THE DATABASE
-
-
-  //For the editing of the user's info see how it was done in sql query for edit_book
-    //and how I set up the editing book function in the front end
-
-
-
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             books: [],
-            addMode: true,
             page: 1,
             authorSearch: '',
             titleSearch: '',
@@ -174,14 +158,6 @@ class Dashboard extends Component {
 
     componentDidUpdate() {
         // this.getPubBooks();
-    };
-
-    displayAddMode = () => {
-        this.setState({ addMode: false });
-    };
-
-    hideAddMode = () => {
-        this.setState({ addMode: true });
     };
 
     render() {
