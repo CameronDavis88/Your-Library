@@ -6,12 +6,15 @@ import { connect } from 'react-redux';
 
 
 const Navbar = ({ props }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
 
 
   useEffect(() => {
 
 console.log(props)
-
+if(props.user.user_id){
+  setLoggedIn(true)
+}
   }, [])
 
 
@@ -34,10 +37,11 @@ await axios.get(`/api/logout`)
 {/* START of outermost bracket */}
 { props.location.pathname === '/' ?
 <div>
-{ props.user.user_id ?
+{ loggedIn === true ?
 <>
 <button onClick={handleLogout} >Logout</button>
 <button onClick={() => props.history.push('/users_library')} >Your Library</button>
+<button onClick={() => props.history.push('/authentication')} >Your Account</button>
 </>
 :
 <>

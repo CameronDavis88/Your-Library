@@ -23,6 +23,7 @@ const PubBook = (props) => {
                 // --userId here is coming from redux!
         axios.post(`/api/book/${userId}`, newBook)
             .then(({ data }) => {
+                alert(`${title} has been added to you library!`)
                 //probably dont need to do this because the book added goes to another view,
                 // the usersLibrary and when that component is updated it will have that added book
                 // getBooks();

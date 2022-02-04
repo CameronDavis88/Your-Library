@@ -31,7 +31,7 @@ app.post('/api/register', register);
 app.post('/api/login', login);
 app.get('/api/logout', logout);
 app.put('/api/user/:id', updateUsersInfo);
-app.delete(`/api/user/:id`, deleteUser)
+app.put(`/api/delete_user/:id`, deleteUser)
 
 //--------Book endpoints
 app.get(`/api/books/:id`, getUsersBooks);

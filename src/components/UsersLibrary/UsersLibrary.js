@@ -18,6 +18,7 @@ const UsersLibrary = (props) => {
     const [authorSearch, setAuthorSearch] = useState('');
     const [titleSearch, setTitleSearch] = useState('');
     const [searchView, setSearchView] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const searchFn = async () => {
         setSearchView({ searchView: true });
@@ -51,6 +52,7 @@ const UsersLibrary = (props) => {
     useEffect(() => {
         getBooks()
         console.log(props)
+        setLoggedIn(true)
     }, [])
 
 

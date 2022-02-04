@@ -67,7 +67,7 @@ module.exports = {
         } else {
             delete foundUser.password;
         req.session.destroy();
-        await db.usersInfo.delete_user([userId]);
+        db.usersInfo.delete_user([userId]);
         res.sendStatus(200);
         }
         
