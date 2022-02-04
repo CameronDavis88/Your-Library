@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
 import Navbar from '../Navbar/Navbar';
 
-//    This component will be rendered instead of the Dashboard when the user clicks login or register 
-//-- and will conditionally render depending on if the user is registering or logging in
-// ---- it will be router through routes 
-
 const Authentication = (props) => {
   const { username, email } = props.user
   const [usernameInput, setUsernameInput] = useState('');
@@ -16,27 +12,9 @@ const Authentication = (props) => {
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
   const [registerView, setRegisterView] = useState(false);
   const [oldPasswordInput, setOldPasswordInput] = useState('');
-  // const [newAccountView, setNewAccountView] = useState(false);
   const [deletingView, setDeletingView] = useState(false);
   const [checkingView, setCheckingView] = useState(false);
   const [updatingView, setUpdatingView] = useState(false);
-
-
-  useEffect(() => {
-
-    // console.log("deletingView", deletingView)
-    // console.log("registerView", registerView)
-    // console.log("registerView", checkingView)
-
-  }, [])
-
-  // useEffect(() => {
-
-  //   console.log(props)
-  //   console.log(registerView)
-
-  // }, [registerView])
-
 
   const handleRegister = async () => {
     if (props.user.user_id) {
@@ -85,15 +63,6 @@ const Authentication = (props) => {
         console.log(err)
       })
   };
-
-  // const createNewAccount = async () => {
-  //   await axios.get(`/api/logout`)
-  //     .then(() => {
-  //       setNewAccountView(true)
-  //       setRegisterView(true);
-  //     })
-  //     .catch(err => console.log(err))
-  // };
 
   const updateUsersInfo = async () => {
     const { username, user_id, email } = props.user
@@ -152,6 +121,8 @@ const Authentication = (props) => {
   const Registering = () => {
     return (
       <main className='registering'>
+        <h2>Create an account Below</h2>
+        <br/>
         <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
         <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
         <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
@@ -161,19 +132,11 @@ const Authentication = (props) => {
     )
   };
 
-  // const NewAccount = () => {
-  //   return (
-  //     <>
-  //       <Registering />
-  //       <button onClick={() => setNewAccountView(false)} >Cancel/Back</button>
-  //     </>
-  //   )
-  // };
-
   const LoggingIn = () => {
     return (
       <main className='loggingIn' >
-        This is the login page
+        <h2>Login Below</h2>
+        <br/>
         <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
         <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
         <button onClick={handleLogin} >Login</button>
@@ -206,39 +169,34 @@ const Authentication = (props) => {
         <h3> Your Username : {username}</h3>
         <h3>Your Email: {email}</h3>
         <button onClick={() => setUpdatingView(true)} >Edit Your Account Information</button>
-        {/* <button onClick={() => setNewAccountView(true)} >Create a new account</button> */}
         <button onClick={() => setDeletingView(true)} >Delete Account</button>
       </>
     )
   }
 
-
-
   const DeletingUser = () => {
     return (
       <div className='deleting-account'>
-          <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-          <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
-          {checkingView === false ?
-            <>
-              <button onClick={() => setCheckingView(true)}>Delete Account</button>
-              <button onClick={() => {
-                setCheckingView(false)
-                setDeletingView(false)
-              }} >Cancel/Back</button>
-            </>
-            :
-            <>
-              <h2>Are you sure you want to delete your account?</h2>
-              <button onClick={deleteUsersAccount} >Yes, delete my account</button>
-              <button onClick={() => setCheckingView(false)} >No, cancel</button>
-            </>
-          }
+        <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+        <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+        {checkingView === false ?
+          <>
+            <button onClick={() => setCheckingView(true)}>Delete Account</button>
+            <button onClick={() => {
+              setCheckingView(false)
+              setDeletingView(false)
+            }} >Cancel/Back</button>
+          </>
+          :
+          <>
+            <h2>Are you sure you want to delete your account?</h2>
+            <button onClick={deleteUsersAccount} >Yes, delete my account</button>
+            <button onClick={() => setCheckingView(false)} >No, cancel</button>
+          </>
+        }
       </div>
     )
   };
-
-
 
   return (
     <div>
@@ -249,20 +207,18 @@ const Authentication = (props) => {
       <button onClick={() => setRegisterView(false)} >Login View</button>
       {props.user.user_id
         ?
+
         <>
           {deletingView === false && updatingView === false ? <Profile />
             :
             <>
               {deletingView === true && updatingView === false ? <DeletingUser /> : <UpdatingUser />}
-              {/* {updatingView === true ? <UpdatingUser /> : <Profile />} */}
             </>
           }
-
-
-
-          {/* {newAccountView === true ? <NewAccount /> : <Profile />} */}
         </>
+
         :
+
         <>
           {registerView === true ? <Registering /> : <LoggingIn />}
         </>
