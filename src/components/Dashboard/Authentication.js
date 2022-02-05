@@ -142,7 +142,7 @@ const Authentication = (props) => {
         <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
         <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
         <button onClick={handleLogin} >Login</button>
-        <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create One Here</button>
+        <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button>
       </main>
     )
   };

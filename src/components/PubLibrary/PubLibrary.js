@@ -2,7 +2,6 @@ import React from 'react';
 import PubBook from './PubBook';
 
 const PubLibrary = ({ books }) => {
-
     return (
         <div>
             {books.map((book) => {
