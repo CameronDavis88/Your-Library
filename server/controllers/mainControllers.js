@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 module.exports = {
     //-------------Book Controllers--------------
     getUsersBooks: async (req, res) => {
@@ -27,40 +26,22 @@ module.exports = {
         const books = await db.usersBooks.delete_book([usersBookId]);
         res.status(200).json(books);
     },
-
-    // searchBooks: async (req, res) => {
-    //     const { id, title, author } = req.params;
-    //     const db = req.app.get('db');
-    //     const books = await db.usersBooks.get_books([id, `%${title}%`, `%${author}%`])
-    //     //now it need to search all the books and ----- wait this could be a query?
-
-    // },
-
     searchBoth: async (req, res) => {
         const { id, title, author } = req.params;
         const db = req.app.get('db');
-        const books = await db.usersBooks.search_both([id, `%${title}%`, `%${author}%`])
+        const books = await db.usersBooks.search_both([id, `%${title}%`, `%${author}%`]);
         res.status(200).json(books);
-        console.log(books)
     },
-
-
     searchTitle: async (req, res) => {
         const { id, title } = req.params;
         const db = req.app.get('db');
-        const books = await db.usersBooks.search_title([id, `%${title}%`])
+        const books = await db.usersBooks.search_title([id, `%${title}%`]);
         res.status(200).json(books);
-        console.log(books)
     },
-
     searchAuthor: async (req, res) => {
         const { id, author } = req.params;
-        console.log(author)
         const db = req.app.get('db');
-        const books = await db.usersBooks.search_author([id, `%${author}%`])
+        const books = await db.usersBooks.search_author([id, `%${author}%`]);
         res.status(200).json(books);
-        console.log(books)
     },
-
 };
-// console.log('Go')

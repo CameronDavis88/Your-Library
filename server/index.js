@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
-const { getUsersBooks, addBook, updateBook, deleteBook, searchBooks, searchBoth, searchAuthor, searchTitle } = require('./controllers/mainControllers');
+const { getUsersBooks, addBook, updateBook, deleteBook, searchBoth, searchAuthor, searchTitle } = require('./controllers/mainControllers');
 const { register, login, logout, deleteUser, updateUsersInfo } = require('./controllers/authControllers')
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
@@ -35,7 +35,6 @@ app.put(`/api/delete_user/:id`, deleteUser)
 
 //--------Book endpoints
 app.get(`/api/books/:id`, getUsersBooks);
-// app.get(`/api/books/:id?search_title=:title%search_author=:author`, searchBooks)
 app.get(`/api/books/:id/search_title/:title/search_author/:author`, searchBoth)
 app.get(`/api/books/:id/search_title/:title`, searchTitle)
 app.get(`/api/books/:id/search_author/:author`, searchAuthor)
