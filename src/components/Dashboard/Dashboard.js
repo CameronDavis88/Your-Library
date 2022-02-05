@@ -27,11 +27,11 @@ class Dashboard extends Component {
                     this.setState({ books: [...pageOne] });
                 } else {
                     await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
-                    .then(async ({ data }) => {
-                        let pageTwo = data.results;
-                        this.setState({ books: [...pageOne, ...pageTwo] });
-                    })
-                    .catch(err => console.log(err));
+                        .then(async ({ data }) => {
+                            let pageTwo = data.results;
+                            this.setState({ books: [...pageOne, ...pageTwo] });
+                        })
+                        .catch(err => console.log(err));
                 };
             })
             .catch(err => console.log(err));

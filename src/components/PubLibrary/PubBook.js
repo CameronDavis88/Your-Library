@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 
 const PubBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, user } = props
+    const { id, title, author, gutUrl, imageUrl, user } = props;
     const userId = user.user_id;
 
     const addBook = () => {
@@ -18,7 +18,7 @@ const PubBook = (props) => {
 
         axios.post(`/api/book/${userId}`, newBook)
             .then(() => alert(`${title} has been added to you library!`))
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     };
 
     return (
@@ -33,9 +33,9 @@ const PubBook = (props) => {
                 <a href={gutUrl} >Read this for free at Project Gutenberg</a>
             </nav>
         </section>
-    )
+    );
 };
 
 const mapStateToProps = (reduxState) => reduxState;
 
-    export default connect(mapStateToProps)(PubBook);
+export default connect(mapStateToProps)(PubBook);
