@@ -59,7 +59,7 @@ module.exports = {
         const db = req.app.get('db');
         const books = await db.usersBooks.search_author([id, `%${author}%`])
         res.status(200).json(books);
-        console.log(author)
+        console.log(books)
     },
 
 };
