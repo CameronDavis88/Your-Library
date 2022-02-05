@@ -20,6 +20,7 @@ const UsersBook = (props) => {
                     <h3 >Title: {title}</h3>
                     <h3 >Author: {author}</h3>
                     <img alt='cover' src={imageUrl} />
+                    <br/>
                 <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
                 <button onClick={() => deleteBook()} >Delete Book</button>
                 <br />

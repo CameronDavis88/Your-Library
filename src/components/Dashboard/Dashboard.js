@@ -13,12 +13,10 @@ class Dashboard extends Component {
             books: [],
             authorSearch: '',
             titleSearch: '',
-            searchView: false,
         };
     };
 
     searchFn = async () => {
-        this.setState({ searchView: true });
         const { authorSearch, titleSearch } = this.state;
         await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
             .then(async ({ data }) => {
