@@ -13,28 +13,9 @@ class Dashboard extends Component {
             books: [],
             authorSearch: '',
             titleSearch: '',
+            searchView: false,
         };
     };
-
-    searchFn = async () => {
-        const { authorSearch, titleSearch } = this.state;
-        await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
-            .then(async ({ data }) => {
-                let pageOne = data.results;
-                if (data.next === null) {
-                    this.setState({ books: [...pageOne] });
-                } else {
-                    await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
-                        .then(async ({ data }) => {
-                            let pageTwo = data.results;
-                            this.setState({ books: [...pageOne, ...pageTwo] });
-                        })
-                        .catch(err => console.log(err));
-                };
-            })
-            .catch(err => console.log(err));
-    };
-
 
     getPubBooks = () => {
         axios.get(`http://gutendex.com/books`)
@@ -54,6 +35,32 @@ class Dashboard extends Component {
         this.getPubBooks();
     };
 
+    searchFn = async () => {
+        this.setState({ searchView: true })
+        const { authorSearch, titleSearch } = this.state;
+        await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
+            .then(async ({ data }) => {
+                let pageOne = data.results;
+                if (data.next === null) {
+                    this.setState({ books: [...pageOne] });
+                } else {
+                    await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
+                        .then(async ({ data }) => {
+                            let pageTwo = data.results;
+                            this.setState({ books: [...pageOne, ...pageTwo] });
+                        })
+                        .catch(err => console.log(err));
+                };
+            })
+            .catch(err => console.log(err));
+    };
+
+
+    exitSearch = () => {
+        this.getPubBooks();
+        this.setState({ searchView: false });
+    };
+
     render() {
         return (
             <main>
@@ -62,6 +69,7 @@ class Dashboard extends Component {
                 <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                 <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
                 <button onClick={this.searchFn}> Search </button>
+                {this.state.searchView === true ? <button onClick={() => this.exitSearch()} >Exit Search</button> : <></>}
                 <PubLibrary books={this.state.books} />
             </main>
         );
