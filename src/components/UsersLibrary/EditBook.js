@@ -24,7 +24,7 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
     };
 
     return (
-        <Grid>
+        <Grid  >
             <h3>Go ahead and customize how your book will appear in your library</h3>
             <div>
                 <h4> Current Title: {title}</h4>

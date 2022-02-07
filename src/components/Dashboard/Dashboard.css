@@ -1,5 +1,6 @@
-.Dashboard {
-    text-align: center;
+.dashboard {
+    /* text-align: center; */
+    /* display: flex; */
   }
   h1 {
     text-align: center;
@@ -26,4 +27,21 @@
     text-align: center;
     margin-top: 5vh;
     margin-bottom: 10vh;
+  }
+
+  .message-box{
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: solid thin black;
+    width: 50Vh;
+   
+  }
+
+  .dash-box{
+    /* display: flex; */
+    box-sizing: border-box;
+    margin-top: 5vh;
+    justify-content: center;
+
   }

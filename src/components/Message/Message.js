@@ -1,61 +1,17 @@
-// import React, {useState, useEffect} from 'react';
-// import './Message.css';
+import { Typography } from '@material-ui/core';
+import React from 'react';
 
-// const Message = () => {
-//   return <div className='message'>
-//       Lets see if this freaking thing works
-//   </div>;
-// };
-
-// export default Message;
-
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-
-export default function SimpleSnackbar() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const action = (
-    <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
-
+const Message = () => {
   return (
-    <div>
-      <Button onClick={handleClick}>Open simple snackbar</Button>
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message="Note archived"
-        action={action}
-      />
+    <div className='message' >
+<main className='message-box' >
+
+</main>
+<Typography variant='h4' >To search please entry something into at least one of the search boxes</Typography>
+
+
     </div>
-  );
-}
+  )
+};
+
+export default Message;
