@@ -72,7 +72,7 @@ const UsersLibrary = (props) => {
     return (
         <div>
             <Navbar props={props} />
-            <h1>Welcome to {username}'s Library!</h1>
+            <h1>Welcome to Your Library, {username}!</h1>
             {!books[0]
                 ?
                 <>

@@ -3,8 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Typography, Button, Grid } from '@material-ui/core';
 
-
-
 const PubBook = (props) => {
     const { id, title, author, gutUrl, imageUrl, user } = props;
     const userId = user.user_id;
@@ -22,11 +20,10 @@ const PubBook = (props) => {
 
         axios.post(`/api/book/${userId}`, newBook)
             .then(() => {
-                // alert(`${title} has been added to you library!`)
                 setAdded(true);
                 setTimeout(() => {
                     setAdded(false);
-                }, 2000)
+                }, 2000);
             })
             .catch(err => console.log(err));
     };

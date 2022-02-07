@@ -1,6 +1,47 @@
 .navbar {
     display: flex;
     box-sizing: border-box;
-    position: sticky;
+    position: fixed top;
     width: 100%;
+    margin-bottom: 0vh;
+    background-color: aquamarine;
+    height: 7vh;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
 }
+
+
+
+.nav-link-box {
+    width: 60%;
+    display: flex;
+    justify-content: right;
+    /* margin-right: 0px; */
+}
+
+
+
+.nav-links {
+    display: flex;
+    justify-content: space-evenly;
+
+    justify-content: right;
+    margin-right: 0px;
+}
+
+.nav-link {
+    margin-left: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.nav-title {
+    width: 30%;
+    position: relative;
+}
+
+/* .spacer {
+    width: 0%;
+} */
