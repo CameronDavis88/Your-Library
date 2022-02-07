@@ -24,17 +24,17 @@ const PubBook = (props) => {
     };
 
     return (
-        <section key={id}>
+        <Grid key={id} heigh='sm' >
             <div>
                 <h3 >Title: {title}</h3>
                 <h3 >Author: {author}</h3>
-                <img alt='cover' src={imageUrl} />
+                <img alt='cover' src={imageUrl} className='cover-image'/>
             </div>
-            {userId ? <button onClick={() => addBook()} >Add Book to Your Library</button> : <></>}
+            {userId ? <Button onClick={() => addBook()} >Add Book to Your Library</Button> : <></>}
             <nav>
                 <a href={gutUrl} >Read this for free at Project Gutenberg</a>
             </nav>
-        </section>
+        </Grid>
     );
 };
 

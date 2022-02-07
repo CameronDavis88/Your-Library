@@ -20,25 +20,25 @@ const Navbar = ({ props }) => {
       if(props.location.pathname === '/'){
           return( 
             <>
-              <button onClick={() => props.history.push('/users_library')} >Your Library</button>
-              <button onClick={() => props.history.push('/authentication')} >Your Account</button>
-              <button onClick={handleLogout} >Logout</button>
+              <Button onClick={() => props.history.push('/users_library')} >Your Library</Button>
+              <Button onClick={() => props.history.push('/authentication')} >Your Account</Button>
+              <Button onClick={handleLogout} >Logout</Button>
             </>
           );
     } else if (props.location.pathname === '/authentication'){
       return(
         <>
-              <button onClick={() => props.history.push('/users_library')} >Your Library</button>
-              <button onClick={() => props.history.push('/')} >Public Library</button>
-              <button onClick={handleLogout} >Logout</button>
+              <Button onClick={() => props.history.push('/users_library')} >Your Library</Button>
+              <Button onClick={() => props.history.push('/')} >Public Library</Button>
+              <Button onClick={handleLogout} >Logout</Button>
         </>
       );
     } else if (props.location.pathname === '/users_library'){
       return(
         <>
-        <button onClick={() => props.history.push('/')} >Public Library</button>
-        <button onClick={() => props.history.push('/authentication')} >Your Account</button>
-              <button onClick={handleLogout} >Logout</button>
+        <Button onClick={() => props.history.push('/')} >Public Library</Button>
+        <Button onClick={() => props.history.push('/authentication')} >Your Account</Button>
+              <Button onClick={handleLogout} >Logout</Button>
         </>
       );
     };
@@ -47,17 +47,18 @@ const Navbar = ({ props }) => {
   const LoggedOutNavbar = () => {
     if(props.location.pathname === '/'){
       return(
-        <button onClick={() => props.history.push('/authentication')}>Login/Register</button>
+        <Button onClick={() => props.history.push('/authentication')}>Login/Register</Button>
       );
     } else if(props.location.pathname === '/authentication'){
       return (
-        <button onClick={() => props.history.push('/')} >Public Library</button>
+        <Button onClick={() => props.history.push('/')} >Public Library</Button>
       );
     };
   };
 
   return (
    <div className='navbar' >
+     <Typography>Your Library</Typography>
       {props.user.user_id ? <LoggedInNavbar/> : <LoggedOutNavbar/> }
    </div>
   )

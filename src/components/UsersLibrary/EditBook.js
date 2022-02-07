@@ -24,7 +24,7 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
     };
 
     return (
-        <div>
+        <Grid>
             <h3>Go ahead and customize how your book will appear in your library</h3>
             <div>
                 <h4> Current Title: {title}</h4>
@@ -36,7 +36,7 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
             </div>
             <br />
             <div>
-                <img alt='cover sample' src={imageUrl} />
+                <img alt='cover sample' src={imageUrl} className='cover-image'/>
                 <h4>Current Image Url: {imageUrl}</h4>
                 <input onChange={(e) => setNewImageUrl(e.target.value)} placeholder='New Cover Image Url' value={newImageUrl} />
             </div>
@@ -45,7 +45,7 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
             <br />
             <button onClick={() => deleteBook()} >Delete Book</button>
             <button onClick={() => setEditMode(false)}>Cancel/Go back</button>
-        </div>
+        </Grid>
     );
 };
 

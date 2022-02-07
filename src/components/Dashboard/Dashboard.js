@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import { connect } from 'react-redux';
-import { Typography, Button, Grid, CircularProgress, TextField, Snackbar,  } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
+import { Typography, Button, Grid, CircularProgress, TextField, Snackbar, IconButton,  } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+// import Alert from '@material-ui/lab/Alert';
+// import AlertTitle from '@material-ui/lab/AlertTitle';
 import Navbar from '../Navbar/Navbar';
 import './Dashboard.css';
 
@@ -17,7 +18,8 @@ class Dashboard extends Component {
             authorSearch: '',
             titleSearch: '',
             searchView: false,
-            emptyFieldMessage: false,
+            openEmptyInputMes: false,
+            emptyInputMes: '',
         };
     };
 
@@ -38,12 +40,13 @@ class Dashboard extends Component {
     componentDidMount() {
         this.getPubBooks();
     };
-    
+
 
     searchFn = async () => {
         if (this.state.authorSearch === '' && this.state.titleSearch === '') {
-            this.setState({ emptyFieldMessage: true });
-            alert('There was nothing in the either search box for us to search.')
+            this.setState({ openEmptyInputMes: true });
+            // alert('There was nothing in the either search box for us to search.')
+       
         } else {
             this.setState({ searchView: true })
             const { authorSearch, titleSearch } = this.state;
@@ -71,20 +74,29 @@ class Dashboard extends Component {
         this.setState({ searchView: false });
     };
 
+
     render() {
         return (
             <main>
                 <Navbar props={this.props} />
-                <Grid>
-                    <Typography variant='h2' >The Public Library</Typography>
-                    <TextField onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
-                    <TextField onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
-                    {/* <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
-                <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" /> */}
-                    <Button onClick={this.searchFn}> Search </Button>
-                    {this.state.searchView === true ? <Button onClick={() => this.exitSearch()} >Exit Search</Button> : <></>}
-                    {!this.state.books[0] ? <div  ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} />}
-                </Grid>
+    
+               
+                    {/* {this.state.openEmptyInputMes === true 
+                    ?
+                        <Message/>
+                        : */}
+                        <Grid>
+                        <Typography variant='h2' >The Public Library</Typography>
+                        <TextField onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
+                        <TextField onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
+                        {/* <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
+                    <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" /> */}
+                        <Button onClick={this.searchFn}> Search </Button>
+                        {this.state.searchView === true ? <Button onClick={() => this.exitSearch()} >Exit Search</Button> : <></>}
+                        {!this.state.books[0] ? <div  ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} />}
+                    </Grid>
+                {/*  } */}
+                
 
             </main>
         );

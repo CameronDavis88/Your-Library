@@ -92,7 +92,7 @@ const UsersLibrary = (props) => {
                     }
                 </>
                 :
-                <div>
+                <Grid>
                     <h4>--Search for books in your library by title or author--</h4>
                     <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
                     <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
@@ -103,7 +103,7 @@ const UsersLibrary = (props) => {
                     <h3>Your Books</h3>
                     <br />
                     {mappedBooks}
-                </div>}
+                </Grid>}
         </div>
     );
 };

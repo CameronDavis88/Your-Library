@@ -20,7 +20,7 @@ const UsersBook = (props) => {
             <div>
                 <h3 >Title: {title}</h3>
                 <h3 >Author: {author}</h3>
-                <img alt='cover' src={imageUrl} />
+                <img alt='cover' src={imageUrl} className='cover-image'/>
                 <br />
                 <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
                 <button onClick={() => deleteBook()} >Delete Book</button>
@@ -33,12 +33,12 @@ const UsersBook = (props) => {
     };
 
     return (
-        <section key={id}>
+        <Grid key={id}>
             {editMode === false ? <BookDisplay /> : <EditBook
                 getBooks={() => getBooks()} title={title} author={author} imageUrl={imageUrl} id={id}
                 editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook} />
             }
-        </section>
+        </Grid>
     );
 };
 

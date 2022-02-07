@@ -5,7 +5,7 @@ import { Typography, Button, Grid } from '@material-ui/core';
 
 const PubLibrary = ({ books }) => {
     return (
-        <div>
+        <Grid>
             {books[0]
                 ?
                 <>
@@ -20,7 +20,7 @@ const PubLibrary = ({ books }) => {
                 </>
                 : <> Loading symbol will go here... </>
             }
-        </div>
+        </Grid>
     );
 };
 
