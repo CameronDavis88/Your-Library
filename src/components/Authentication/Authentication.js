@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
+import { Typography, Button, Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 
 const Authentication = (props) => {
@@ -130,38 +131,40 @@ const Authentication = (props) => {
         <>
           {deletingView === false && updatingView === false
             ?
-            <div className='profile' >
-              <h1>Your Account</h1>
+            <Grid className='profile' >
+              <Typography variant='h1' >Your Account</Typography>
               <br />
-              <h3> Your Username : {username}</h3>
-              <h3>Your Email: {email}</h3>
-              <button onClick={() => setUpdatingView(true)} >Edit Your Account Information</button>
-              <button onClick={() => setDeletingView(true)} >Delete Account</button>
-            </div>
+              <Typography variant='h3' > Your Username : {username}</Typography>
+              <Typography variant='h3' >Your Email: {email}</Typography>
+              <Button onClick={() => setUpdatingView(true)} >Edit Your Account Information</Button>
+              <Button onClick={() => setDeletingView(true)} >Delete Account</Button>
+            </Grid>
             :
             <>
-              {deletingView === true && updatingView === false ? <div className='deleting-account'>
+              {deletingView === true && updatingView === false 
+              ?
+               <Grid className='deleting-account'>
                 <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
                 <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
 
                 {checkingView === false ?
-                  <>
-                    <button onClick={() => setCheckingView(true)}>Delete Account</button>
-                    <button onClick={() => {
+                  <Grid>
+                    <Button onClick={() => setCheckingView(true)}>Delete Account</Button>
+                    <Button onClick={() => {
                       setCheckingView(false)
                       setDeletingView(false)
-                    }} >Cancel/Back</button>
-                  </>
+                    }} >Cancel/Back</Button>
+                  </Grid>
                   :
-                  <>
+                  <Grid>
                     <h2>Are you sure you want to delete your account?</h2>
-                    <button onClick={deleteUsersAccount} >Yes, delete my account</button>
-                    <button onClick={() => setCheckingView(false)} >No, cancel</button>
-                  </>
+                    <Button onClick={deleteUsersAccount} >Yes, delete my account</Button>
+                    <Button onClick={() => setCheckingView(false)} >No, cancel</Button>
+                  </Grid>
                 }
-              </div>
+              </Grid>
                 :
-                <div className='updating-user' >
+                <Grid className='updating-user' >
                   <h2>Update your information</h2>
                   <h4>Whatever value you leave blank will remain the same as before</h4>
                   <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
@@ -170,9 +173,9 @@ const Authentication = (props) => {
                   <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm New Password' value={passwordConfirmationInput} />
                   <br />
                   <input onChange={(e) => setOldPasswordInput(e.target.value)} placeholder='Confirm CURRENT Password' value={oldPasswordInput} />
-                  <button onClick={updateUsersInfo} >Submit Edits</button>
+                  <Button onClick={updateUsersInfo} >Submit Edits</Button>
                   <button onClick={() => setUpdatingView(false)} >Cancel/back</button>
-                </div>}
+                </Grid>}
             </>
           }
         </>
@@ -182,7 +185,7 @@ const Authentication = (props) => {
         <>
           {registerView === true
             ?
-            <main className='registering'>
+            <Grid className='registering'>
               <h2>Create an account Below</h2>
               <br />
               <button onClick={() => setRegisterView(false)} >Back to Login</button>
@@ -192,16 +195,16 @@ const Authentication = (props) => {
               <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
               <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
               <button onClick={handleRegister} >Create Account</button>
-            </main>
+            </Grid>
             :
-            <main className='loggingIn' >
+            <Grid className='loggingIn' >
               <h2>Login Below</h2>
               <br />
               <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
               <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
               <button onClick={handleLogin} >Login</button>
               <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button>
-            </main>}
+            </Grid>}
         </>
       }
     </div>

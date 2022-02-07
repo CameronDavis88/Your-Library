@@ -3,6 +3,8 @@ import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
+import { Typography, Button, Grid } from '@material-ui/core';
+
 import Navbar from '../Navbar/Navbar';
 
 const UsersLibrary = (props) => {

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Typography, Button, Grid } from '@material-ui/core';
+
 
 const Navbar = ({ props }) => {
 
