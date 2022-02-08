@@ -70,16 +70,20 @@ class Dashboard extends Component {
     };
 
     exitSearch = () => {
-        this.getPubBooks();
+        this.setState({ books: '' })
         this.setState({ searchView: false });
+        this.getPubBooks();
     };
 
     render() {
         return (
             <main className='dashboard' >
-                <Navbar props={this.props} />
+                {/* <div className='navbar-div' > */}
+                <Navbar className='navbar' props={this.props} />
+                {/* </div> */}
+                
                 <Grid className='dash-box' >
-                    <Typography variant='h2' >The Public Library</Typography>
+                    <Typography variant='h2' className='page-title' >The Public Library</Typography>
                     {this.state.openEmptyInputMes === true
                         ?
                         <div className='message-box' >
@@ -88,14 +92,14 @@ class Dashboard extends Component {
                         </div>
                         :
                         <div>
-                            <TextField className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
-                            <TextField className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
+                            <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
+                            <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
                             {/* <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                     <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" /> */}
-                            <Button onClick={this.searchFn}> Search </Button>
+                            <button className='search-button' onClick={this.searchFn}> Search </button>
                         </div>
                     }
-                    {this.state.searchView === true ? <Button onClick={() => this.exitSearch()} >Exit Search</Button> : <></>}
+                    {this.state.searchView === true ? <button className='exit-button' onClick={() => this.exitSearch()} >Exit Search</button> : <></>}
                     <div className='library-content' >
                         {!this.state.books[0] ? <div ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} />}
                     </div>

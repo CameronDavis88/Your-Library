@@ -4,13 +4,16 @@
     position: fixed top;
     width: 100%;
     margin-bottom: 0vh;
-    background-color: aquamarine;
-    height: 7vh;
+    background-color:  #A2EB90;
+    height: 8vh;
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
     align-items: center;
+    border: solid #86A469  ;
+   z-index: 100;
 }
+
 
 
 
@@ -32,9 +35,12 @@
 }
 
 .nav-link {
+    
     margin-left: 5px;
     margin-left: 5px;
     cursor: pointer;
+}.nav-link:hover{
+    color: #60695C;
 }
 
 .nav-title {

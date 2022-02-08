@@ -32,8 +32,8 @@ const PubBook = (props) => {
     return (
         <Grid key={id} className='book-box' >
             <div className='book' >
-                <h3 >Title: {title}</h3>
-                <h3 >Author: {author}</h3>
+                <Typography variant='h5' >{title}</Typography>
+                <Typography >By: {author}</Typography>
                 <div className='image-box' >
                 <img alt='cover' src={imageUrl} className='cover-image' />
                 </div>
@@ -49,7 +49,7 @@ const PubBook = (props) => {
                 :
                 <></>}
             <nav>
-                <a href={gutUrl} >Read this for free at Project Gutenberg</a>
+                <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6' >Click here to read for free at Project Gutenberg</Typography></a>
             </nav>
         </Grid>
     );

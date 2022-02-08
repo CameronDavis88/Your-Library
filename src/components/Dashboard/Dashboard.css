@@ -18,8 +18,8 @@
   }
   
   .input{
-    /* height: 5vh;
-    width: 15vw; */
+    height: 4vh;
+    width: 15vw;
     /* border: solid thin aquamarine; */
   }
   #addBtn{
@@ -46,6 +46,8 @@
     box-sizing: border-box;
     margin-top: 0vh;
     justify-content: center;
+    position: relative;
+    top: 10vh
 
   }
   .library-content{
@@ -56,3 +58,39 @@
     width: 100%;
     margin: 0%;
   }
+
+  .search-button{
+    background-color:   #A2EB90;
+    border: solid  #86A469 ;
+  }.search-button:hover{
+    background-color: #86A469;
+    border: solid  #A2EB90;
+  }
+
+  .exit-button{
+    background-color:   #A2EB90;
+    border: solid  #86A469 ;
+  }.exit-button:hover{
+    background-color: #86A469;
+    border: solid  #A2EB90;
+  }
+
+  /* .navbar-div{
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10vh;
+  } */
+  .navbar{
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20vh;
+  }
+
+  /* .page-title{
+    box-sizing: border-box;
+    margin-top: 10vh;
+    position: relative ;
+    top: 10vh;
+  } */
