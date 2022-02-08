@@ -1,11 +1,12 @@
 import React from 'react';
 import PubBook from './PubBook';
 import { Typography, Button, Grid } from '@material-ui/core';
+import './PubLibrary.css'
 
 
 const PubLibrary = ({ books }) => {
     return (
-        <Grid>
+        <Grid className='library-grid' >
             {books[0]
                 ?
                 <>

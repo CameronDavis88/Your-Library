@@ -39,7 +39,6 @@ class Dashboard extends Component {
         this.getPubBooks();
     };
 
-
     searchFn = async () => {
         if (this.state.authorSearch === '' && this.state.titleSearch === '') {
             this.setState({ openEmptyInputMes: true });
@@ -50,6 +49,7 @@ class Dashboard extends Component {
 
         } else {
             this.setState({ searchView: true })
+            this.setState({ books: '' })
             const { authorSearch, titleSearch } = this.state;
             await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
                 .then(async ({ data }) => {
@@ -69,45 +69,37 @@ class Dashboard extends Component {
         };
     };
 
-
     exitSearch = () => {
         this.getPubBooks();
         this.setState({ searchView: false });
     };
 
-
     render() {
         return (
             <main className='dashboard' >
                 <Navbar props={this.props} />
-                {/* <Message/> */}
-
                 <Grid className='dash-box' >
                     <Typography variant='h2' >The Public Library</Typography>
                     {this.state.openEmptyInputMes === true
                         ?
                         <div className='message-box' >
-                            {/* <Message />  */}
                             <Typography variant='h5' >To search please enter something into at least one of the search boxes</Typography>
-                            <Button onClick={() => this.setState({ openEmptyInputMes: false})} >Close Message</Button>
-                            </div>
+                            <Button onClick={() => this.setState({ openEmptyInputMes: false })} >Close Message</Button>
+                        </div>
                         :
-                        <>
-                            <TextField onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
-                            <TextField onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
+                        <div>
+                            <TextField className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
+                            <TextField className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
                             {/* <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                     <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" /> */}
                             <Button onClick={this.searchFn}> Search </Button>
-                        </>
-                        
-                        }
-
+                        </div>
+                    }
                     {this.state.searchView === true ? <Button onClick={() => this.exitSearch()} >Exit Search</Button> : <></>}
-                    {!this.state.books[0] ? <div  ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} />}
+                    <div className='library-content' >
+                        {!this.state.books[0] ? <div ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} />}
+                    </div>
                 </Grid>
-
-
-
             </main>
         );
     };

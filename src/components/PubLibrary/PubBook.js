@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Typography, Button, Grid } from '@material-ui/core';
+import './PubBook.css';
 
 const PubBook = (props) => {
     const { id, title, author, gutUrl, imageUrl, user } = props;
@@ -29,20 +30,22 @@ const PubBook = (props) => {
     };
 
     return (
-        <Grid key={id} heigh='sm' >
-            <div>
+        <Grid key={id} className='book-box' >
+            <div className='book' >
                 <h3 >Title: {title}</h3>
                 <h3 >Author: {author}</h3>
+                <div className='image-box' >
                 <img alt='cover' src={imageUrl} className='cover-image' />
+                </div>
             </div>
             {userId
                 ?
-                <>
+                <div>
                     {added === true ? 
                     <Typography variant='h6' color='secondary' className='added'>* Book Added *</Typography> 
                     : 
                     <Button onClick={() => addBook()} >Add Book to Your Library</Button>}
-                </>
+                </div>
                 :
                 <></>}
             <nav>

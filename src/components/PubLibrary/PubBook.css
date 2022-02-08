@@ -1,0 +1,52 @@
+.book-box{
+    display: flex;
+    flex-direction: column;
+box-sizing: border-box;
+    border: solid ;
+    border-color: aquamarine;
+    margin: 7px 7px;
+    padding: 7px 7px;
+    width: 45vw;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+
+img{
+    height: auto;
+    /* width: 9vw; */
+    margin-bottom: 3vh;
+    /* margin-right: 25%;
+    margin-left: 25%; */
+
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+
+.image-box{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+h3{
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.book{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}

@@ -1,7 +1,8 @@
 
   h1 {
     text-align: center;
-    margin-bottom: 5vh;
+    margin-bottom: 7vh;
+    box-sizing: border-box;
   }
   
   section {
@@ -16,9 +17,10 @@
     width: 15vw;
   }
   
-  input{
-    height: 5vh;
-    width: 15vw;
+  .input{
+    /* height: 5vh;
+    width: 15vw; */
+    /* border: solid thin aquamarine; */
   }
   #addBtn{
     text-align: center;
@@ -36,9 +38,21 @@
   }
 
   .dash-box{
-    /* display: flex; */
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+    justify-content: center;
     box-sizing: border-box;
     margin-top: 0vh;
     justify-content: center;
 
+  }
+  .library-content{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0%;
   }
