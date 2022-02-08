@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button, Grid, TextField } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 
 const Authentication = (props) => {
@@ -144,8 +144,8 @@ const Authentication = (props) => {
               {deletingView === true && updatingView === false 
               ?
                <Grid className='deleting-account'>
-                <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-                <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+                <TextField onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+                <TextField onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
 
                 {checkingView === false ?
                   <Grid>
@@ -167,12 +167,12 @@ const Authentication = (props) => {
                 <Grid className='updating-user' >
                   <h2>Update your information</h2>
                   <h4>Whatever value you leave blank will remain the same as before</h4>
-                  <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
-                  <input onChange={(e) => setEmailInput(e.target.value)} placeholder='New Email' value={emailInput} />
-                  <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='New Password' value={passwordInput} />
-                  <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm New Password' value={passwordConfirmationInput} />
+                  <TextField onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
+                  <TextField onChange={(e) => setEmailInput(e.target.value)} placeholder='New Email' value={emailInput} />
+                  <TextField onChange={(e) => setPasswordInput(e.target.value)} placeholder='New Password' value={passwordInput} />
+                  <TextField onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm New Password' value={passwordConfirmationInput} />
                   <br />
-                  <input onChange={(e) => setOldPasswordInput(e.target.value)} placeholder='Confirm CURRENT Password' value={oldPasswordInput} />
+                  <TextField onChange={(e) => setOldPasswordInput(e.target.value)} placeholder='Confirm CURRENT Password' value={oldPasswordInput} />
                   <Button onClick={updateUsersInfo} >Submit Edits</Button>
                   <button onClick={() => setUpdatingView(false)} >Cancel/back</button>
                 </Grid>}
@@ -190,18 +190,18 @@ const Authentication = (props) => {
               <br />
               <button onClick={() => setRegisterView(false)} >Back to Login</button>
               <br />
-              <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
-              <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
-              <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
-              <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+              <TextField onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
+              <TextField onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+              <TextField onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+              <TextField onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
               <button onClick={handleRegister} >Create Account</button>
             </Grid>
             :
             <Grid className='loggingIn' >
               <h2>Login Below</h2>
               <br />
-              <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
-              <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+              <TextField onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+              <TextField onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
               <button onClick={handleLogin} >Login</button>
               <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button>
             </Grid>}

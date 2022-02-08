@@ -24,9 +24,12 @@ const UsersLibrary = (props) => {
             .catch(err => console.log(err));
     };
 
-    useEffect(() => {
-        getBooks()
-    }, []);
+    // useEffect(() => {
+    //     if(!props.user.user_id) {
+    //         props.history.push('/');
+    //     }
+    //     // getBooks()
+    // }, []);
 
     useEffect(() => {
         getBooks()

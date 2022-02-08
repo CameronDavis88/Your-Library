@@ -46,7 +46,12 @@ const Navbar = ({ props }) => {
   };
 
   const LoggedOutNavbar = () => {
-    if (props.location.pathname === '/') {
+    if (props.location.pathname === '/users_library'){
+      props.history.push('/');
+      return(
+        <></>
+      );
+    } else if (props.location.pathname === '/') {
       return (
         <Typography className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
       );
@@ -54,8 +59,9 @@ const Navbar = ({ props }) => {
       return (
         <Typography className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
       );
-    };
+    }; 
   };
+
 
   return (
     <div className='navbar' >
@@ -66,9 +72,8 @@ const Navbar = ({ props }) => {
       {props.user.user_id ? <LoggedInNavbar /> : <LoggedOutNavbar />}
       </div>
       </div>
-     
     </div>
-  )
+  );
 };
 
 const mapStateToProps = (reduxState) => reduxState;
