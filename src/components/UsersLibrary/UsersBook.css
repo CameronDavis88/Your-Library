@@ -22,8 +22,8 @@ img{
     margin-bottom: 3vh;
     /* margin-right: 25%;
     margin-left: 25%; */
-
 }
+
 .nav-a{
     text-decoration: none;
     color: black;
@@ -34,7 +34,6 @@ img{
     border: solid thin #6e6a6f;
 }
 
-
 nav{
     text-decoration: none;
     display: flex;
@@ -43,9 +42,6 @@ nav{
     width: 100%;
     color: black
 }
-/* .nav-text{
-    color: #60695C;
-} */
 
 .image-box{
     display: flex;
@@ -65,7 +61,6 @@ h3{
     align-items: center;
     justify-content: center;
 }
-
 
 .book-btn {
     min-height: 5vh;

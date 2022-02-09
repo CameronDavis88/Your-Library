@@ -3,7 +3,6 @@
     flex-direction: column;
 box-sizing: border-box;
     border: solid thick;
-    /* border-color: #86A469; */
     border-color: #6E6A6F;
     margin: 7px 7px;
     padding: 7px 7px;
@@ -11,7 +10,6 @@ box-sizing: border-box;
     height: 80vh;
     align-items: center;
     justify-content: center;
-    /* background-color: #A2EB90; */
     background-color: #BFAFA6;
     box-shadow: 0px 0px 0px 3px #C5D6D8;
 }
@@ -26,7 +24,6 @@ box-sizing: border-box;
     border: solid thin #6e6a6f;
 }
 
-
 img{
     height: auto;
     max-height: 35vh;
@@ -35,9 +32,7 @@ img{
     margin-bottom: 3vh;
     /* margin-right: 25%;
     margin-left: 25%; */
-
 }
-
 
 nav{
     text-decoration: none;
@@ -47,9 +42,6 @@ nav{
     width: 100%;
     color: black
 }
-/* .nav-text{
-    color: #60695C;
-} */
 
 .image-box{
     display: flex;
@@ -68,7 +60,6 @@ h3{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .book-btn {

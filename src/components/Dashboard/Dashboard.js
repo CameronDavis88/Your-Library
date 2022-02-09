@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import { connect } from 'react-redux';
-import { Typography, Button, Grid, CircularProgress, TextField, Snackbar, IconButton, } from '@material-ui/core';
-import Message from '../Message/Message';
+import { Typography, Button, Grid, CircularProgress } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import './Dashboard.css';
 
