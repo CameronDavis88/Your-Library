@@ -1,6 +1,6 @@
 import React from 'react';
 import PubBook from './PubBook';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Grid, CircularProgress } from '@material-ui/core';
 import './PubLibrary.css'
 
 
@@ -19,7 +19,7 @@ const PubLibrary = ({ books }) => {
                             formats={formats} imageUrl={imageUrl} gutUrl={gutUrl} />
                     })}
                 </>
-                : <> Loading symbol will go here... </>
+                : <div className='library-grid' > Loading...<div ><CircularProgress></CircularProgress></div> </div>
             }
         </Grid>
     );

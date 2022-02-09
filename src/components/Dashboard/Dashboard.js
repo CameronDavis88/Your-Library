@@ -21,15 +21,24 @@ class Dashboard extends Component {
     };
 
     getPubBooks = () => {
+        const { books } = this.state
         axios.get(`http://gutendex.com/books`)
             .then(async ({ data }) => {
                 let pageOne = data.results;
-                await axios.get(`http://gutendex.com/books?page=2`)
-                    .then(async ({ data }) => {
-                        let pageTwo = data.results;
-                        this.setState({ books: [...pageOne, ...pageTwo] });
-                    })
-                    .catch(err => console.log(err));
+                this.setState({ books: [...pageOne] });
+            //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
+            //  await  axios.get(`http://gutendex.com/books?page=2`)
+                    // .then(async ({ data }) => {
+                    //     let pageTwo = data.results;
+                    // await this.setState({ books: [...pageOne, ...pageTwo] });
+                    // })
+                    // .catch(err => console.log(err));
+                    if(!pageOne[0]){
+                        setTimeout(() => {
+                            this.getPubBooks();
+                            alert('Sorry, something is wrong. We can try again');
+                        }, 7000)
+                    };
             })
             .catch(err => console.log(err));
     };
@@ -39,6 +48,7 @@ class Dashboard extends Component {
     };
 
     searchFn = async () => {
+        this.setState({ books: '' })
         if (this.state.authorSearch === '' && this.state.titleSearch === '') {
             this.setState({ openEmptyInputMes: true });
             // alert('There was nothing in the either search box for us to search.')
@@ -52,16 +62,24 @@ class Dashboard extends Component {
             const { authorSearch, titleSearch } = this.state;
             await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
                 .then(async ({ data }) => {
-                    let pageOne = data.results;
-                    if (data.next === null) {
-                        this.setState({ books: [...pageOne] });
-                    } else {
-                        await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
-                            .then(async ({ data }) => {
-                                let pageTwo = data.results;
-                                this.setState({ books: [...pageOne, ...pageTwo] });
-                            })
-                            .catch(err => console.log(err));
+                    let searchPageOne = data.results;
+                    this.setState({ books: [...searchPageOne] });
+                    // if (data.next === null) {
+                    //     this.setState({ books: [...searchPageOne] });
+                    // } else {
+                    //    //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
+                    //     await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
+                    //         .then(async ({ data }) => {
+                    //             let pageTwo = data.results;
+                    //             this.setState({ books: [...searchPageOne, ...pageTwo] });
+                    //         })
+                    //         .catch(err => console.log(err));
+                    // };
+                    if(!searchPageOne[0]){
+                        setTimeout(() => {
+                            this.getPubBooks();
+                            alert('Sorry, something went wrong with your search');
+                        }, 7000)
                     };
                 })
                 .catch(err => console.log(err));
