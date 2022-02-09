@@ -21,25 +21,46 @@ const Navbar = ({ props }) => {
     if (props.location.pathname === '/') {
       return (
         <>
-          <Typography className='nav-link' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
-          <Typography className='nav-link' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
-          <Typography className='nav-link' onClick={handleLogout} >Logout</Typography>
+          <div className='nav-link'>
+          <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
+          </div>
+          <div className='nav-link'>
+          <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
+          </div>
+          <div className='nav-link'>
+          <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+          </div>
+          
+          
+          
         </>
       );
     } else if (props.location.pathname === '/authentication') {
       return (
         <>
-          <Typography className='nav-link' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
-          <Typography className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
-          <Typography className='nav-link' onClick={handleLogout} >Logout</Typography>
+          <div className='nav-link'>
+          <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
+          </div>
+          <div className='nav-link'> 
+          <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+          </div>
+          <div className='nav-link'>
+          <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+          </div>
         </>
       );
     } else if (props.location.pathname === '/users_library') {
       return (
         <>
-          <Typography className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
-          <Typography className='nav-link' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
-          <Typography className='nav-link' onClick={handleLogout} >Logout</Typography>
+          <div className='nav-link' >
+          <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+          </div>
+          <div  className='nav-link'>
+          <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
+          </div>
+          <div className='nav-link'>
+          <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+          </div>        
         </>
       );
     };
@@ -53,11 +74,11 @@ const Navbar = ({ props }) => {
       );
     } else if (props.location.pathname === '/') {
       return (
-        <Typography className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
+        <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
       );
     } else if (props.location.pathname === '/authentication') {
       return (
-        <Typography className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
+        <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
       );
     }; 
   };
@@ -65,7 +86,7 @@ const Navbar = ({ props }) => {
 
   return (
     <div className='navbar' >
-      <Typography className='nav-title' >Your Library</Typography>
+      <Typography variant='h4' className='nav-title' >Your Library</Typography>
       <div className='spacer' ></div>
       <div className='nav-link-box'>
       <div className='nav-links' >

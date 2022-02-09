@@ -1,0 +1,49 @@
+.page{
+    background-color: #D6F9DD;
+   min-height:  90vh;
+    box-sizing: border-box;
+    margin-top: 10vh;
+    padding-top: 1vh;
+    
+}
+.lib-box{
+  background-color: #D6F9DD;
+  height: auto;
+}
+
+.navbar{
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20vh;
+  }
+
+  .users-library{
+    background-color: #D6F9DD;
+  }
+
+  button{
+    min-height: 4vh;
+    min-width: 15vw;
+    background-color:   #A2EB90;
+    border: solid  #86A469 ;
+    box-shadow: 0px 0px 0px 1px #C5D6D8;
+  }button:hover{
+    background-color: #86A469;
+    border: solid  #A2EB90;
+  } 
+
+   input{
+    height: 4vh;
+    width: 15vw;
+    
+    border: solid  #A2EB90;
+    background-color: #D6F9DD;
+  }input:hover{
+    border: solid #86A469;
+    }
+  
+    .lib-title{
+      font-size: xx-large;
+      margin-top: 5vh;
+    }

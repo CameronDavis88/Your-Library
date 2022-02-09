@@ -1,4 +1,6 @@
-
+.dashboard{
+  background-color: #D6F9DD;
+}
   h1 {
     text-align: center;
     margin-bottom: 7vh;
@@ -17,11 +19,19 @@
     width: 15vw;
   }
   
-  .input{
+  input{
     height: 4vh;
     width: 15vw;
-    /* border: solid thin aquamarine; */
-  }
+    
+    border: solid  #A2EB90;
+    background-color: #D6F9DD;
+  }input:hover{
+    border: solid #86A469;
+    }
+  
+ /* border: solid #A2EB90; */
+    /* background-color: #CADFDA; */
+
   #addBtn{
     text-align: center;
     margin-top: 5vh;
@@ -38,7 +48,8 @@
   }
 
   .dash-box{
-    /* display: inline-block; */
+   
+    padding-top: 2vh;
     display: flex;
     flex-direction: column;
   align-items: center;
@@ -47,8 +58,11 @@
     margin-top: 0vh;
     justify-content: center;
     position: relative;
-    top: 10vh
-
+    top: 10vh;
+    background-color: #D6F9DD
+  
+    /* background-color: #D6F9DD; */
+ /* display: inline-block; */
   }
   .library-content{
     box-sizing: border-box;
@@ -57,17 +71,23 @@
     flex-direction: column;
     width: 100%;
     margin: 0%;
+    background-color: #D6F9DD
   }
 
   .search-button{
+    min-height: 4vh;
+    min-width: 15vw;
     background-color:   #A2EB90;
     border: solid  #86A469 ;
+    box-shadow: 0px 0px 0px 1px #C5D6D8;
   }.search-button:hover{
     background-color: #86A469;
     border: solid  #A2EB90;
   }
 
   .exit-button{
+    min-height: 4vh;
+    min-width: 15vw;
     background-color:   #A2EB90;
     border: solid  #86A469 ;
   }.exit-button:hover{

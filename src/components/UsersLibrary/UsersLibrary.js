@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
 import { Typography, Button, Grid } from '@material-ui/core';
+import './UsersLibrary.css';
 
 import Navbar from '../Navbar/Navbar';
 
@@ -73,12 +74,17 @@ const UsersLibrary = (props) => {
     };
 
     return (
-        <div>
-            <Navbar props={props} />
-            <h1>Welcome to Your Library, {username}!</h1>
-            {!books[0]
+        <main className='users-library'>
+            <Navbar props={props} className='navbar' />
+           <Grid className='page' >
+           {/* <h1  className='lib-title'>Welcome to Your Library, {username}!</h1> */}
+           <div>
+           <Typography variant='h2' >Welcome to Your Library, {username}!</Typography>
+           </div>
+           {/* <Typography variant='h2' >Welcome to Your Library, {username}!</Typography> */}
+           {!books[0]
                 ?
-                <>
+                <Grid className='lib-box' >
                     {searchView === true
                         ?
                         <div>
@@ -93,10 +99,10 @@ const UsersLibrary = (props) => {
                             <button onClick={() => props.history.push('/')} >Go to Public Library</button>
                         </div>
                     }
-                </>
+                </Grid>
                 :
-                <Grid>
-                    <h4>--Search for books in your library by title or author--</h4>
+                <Grid className='lib-box' >
+                    <h4>Search for books in your library by title or author</h4>
                     <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
                     <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
                     <br />
@@ -107,7 +113,8 @@ const UsersLibrary = (props) => {
                     <br />
                     {mappedBooks}
                 </Grid>}
-        </div>
+           </Grid>
+        </main>
     );
 };
 
