@@ -5,7 +5,7 @@ import EditBook from './EditBook';
 import './UsersBook.css';
 
 const UsersBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, getBooks } = props;
+    const { id, title, author, gutUrl, imageUrl, getBooks, displayTitle } = props;
     const [editMode, setEditMode] = useState(false);
 
     const deleteBook = () => {
@@ -19,7 +19,7 @@ const UsersBook = (props) => {
     const BookDisplay = () => {
         return (
             <Grid className='book-box' >
-                <h3 >Title: {title}</h3>
+                <h3 >Title: {displayTitle}</h3>
                 <h3 >Author: {author}</h3>
                 <div className='image-box' >
                 <img alt='cover' src={imageUrl} className='cover-image'/>

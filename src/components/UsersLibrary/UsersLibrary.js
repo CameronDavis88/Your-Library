@@ -38,7 +38,19 @@ const UsersLibrary = (props) => {
 
     const mappedBooks = books.map((book) => {
         const { users_book_id, title, author, image_url, gut_url } = book;
-        return <UsersBook key={users_book_id} id={users_book_id} title={title}
+        let finalTitle = ``
+                        if (title[51]) {
+                            let newTitle = title.slice(0, 50)
+                            let titleArr = Array.from(newTitle)
+                            titleArr.push('.')
+                            titleArr.push('.')
+                            titleArr.push('.')
+                            titleArr.forEach((character) => {
+                                finalTitle = finalTitle + `${character}`
+                                return finalTitle
+                            });
+                        };
+        return <UsersBook key={users_book_id} id={users_book_id} title={title} displayTitle={finalTitle}
             author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} />
     });
 

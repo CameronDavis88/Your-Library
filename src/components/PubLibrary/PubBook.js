@@ -5,7 +5,7 @@ import { Typography, Button, Grid } from '@material-ui/core';
 import './PubBook.css';
 
 const PubBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, user } = props;
+    const { id, title, author, gutUrl, imageUrl, user, displayTitle } = props;
     const userId = user.user_id;
 
     const [added, setAdded] = useState(false);
@@ -32,7 +32,7 @@ const PubBook = (props) => {
     return (
         <Grid key={id} className='book-box' >
             <div className='book' >
-                <Typography variant='h5' >{title}</Typography>
+                <Typography variant='h5' >{displayTitle}</Typography>
                 <Typography >By: {author}</Typography>
                 <div className='image-box' >
                 <img alt='cover' src={imageUrl} className='cover-image' />
