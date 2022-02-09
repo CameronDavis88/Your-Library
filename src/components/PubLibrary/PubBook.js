@@ -6,10 +6,9 @@ import { getSelectedBook } from '../../redux/reducer';
 import './PubBook.css';
 
 const PubBook = (props) => {
+    const [added, setAdded] = useState(false);
     const { id, author, gutUrl, imageUrl, user, displayTitle, fullTitle, toSelectedPubBook } = props;
     const userId = user.user_id;
-
-    const [added, setAdded] = useState(false);
 
     const newBook = {
         gutBookId: id,
@@ -30,12 +29,11 @@ const PubBook = (props) => {
             .catch(err => console.log(err));
     };
 
-    
-const goToSelectedBook = () => {
-    props.getSelectedBook(newBook);
-    toSelectedPubBook();
-    console.log(newBook)
-    }
+    const goToSelectedBook = () => {
+        props.getSelectedBook(newBook);
+        toSelectedPubBook();
+        console.log(newBook)
+    };
 
     return (
         <Grid key={id} className='book-box' onClick={goToSelectedBook} >
@@ -43,16 +41,16 @@ const goToSelectedBook = () => {
                 <Typography variant='h5' >{displayTitle}</Typography>
                 <Typography >By: {author}</Typography>
                 <div className='image-box' >
-                <img alt='cover' src={imageUrl} className='cover-image' />
+                    <img alt='cover' src={imageUrl} className='cover-image' />
                 </div>
             </div>
             {userId
                 ?
                 <div>
-                    {added === true ? 
-                    <Typography variant='h6' color='secondary' className='added'>* Book Added *</Typography> 
-                    : 
-                    <button className='book-btn' onClick={() => addBook()} >Add Book to Your Library</button>}
+                    {added === true ?
+                        <Typography variant='h6' color='secondary' className='added'>* Book Added *</Typography>
+                        :
+                        <button className='book-btn' onClick={() => addBook()} >Add Book to Your Library</button>}
                 </div>
                 :
                 <></>}
@@ -65,4 +63,4 @@ const goToSelectedBook = () => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, {getSelectedBook})(PubBook);
+export default connect(mapStateToProps, { getSelectedBook })(PubBook);

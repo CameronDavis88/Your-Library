@@ -18,17 +18,17 @@ const PubLibrary = ({ books, toSelectedPubBook }) => {
                         const author = authors[0].name;
 
                         if (displayTitle[51]) {
-                            let newTitle = displayTitle.slice(0, 50)
-                            let titleArr = Array.from(newTitle)
-                            titleArr.push('...')
-                            let finalTitle = ``
+                            let newTitle = displayTitle.slice(0, 50);
+                            let titleArr = Array.from(newTitle);
+                            titleArr.push('...');
+                            let finalTitle = ``;
 
                             titleArr.forEach((ele, ind, arr) => {
                                 finalTitle = finalTitle + `${ele}`
                                 return finalTitle
                             })
-                            displayTitle = finalTitle
-                        }
+                            displayTitle = finalTitle;
+                        };
 
                         return <PubBook key={id} id={id} displayTitle={displayTitle} fullTitle={title} author={author}
                             formats={formats} imageUrl={imageUrl} gutUrl={gutUrl} toSelectedPubBook={toSelectedPubBook} />

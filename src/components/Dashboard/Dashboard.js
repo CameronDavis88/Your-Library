@@ -20,29 +20,25 @@ class Dashboard extends Component {
         };
     };
 
-    toSelectedPubBook = () => {
-this.props.history.push('/selected_pub_book');
-    }
-
     getPubBooks = () => {
         const { books } = this.state
         axios.get(`http://gutendex.com/books`)
             .then(async ({ data }) => {
                 let pageOne = data.results;
                 this.setState({ books: [...pageOne] });
-            //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
-            //  await  axios.get(`http://gutendex.com/books?page=2`)
-                    // .then(async ({ data }) => {
-                    //     let pageTwo = data.results;
-                    // await this.setState({ books: [...pageOne, ...pageTwo] });
-                    // })
-                    // .catch(err => console.log(err));
-                    if(!pageOne[0]){
-                        setTimeout(() => {
-                            this.getPubBooks();
-                            alert('Sorry, something is wrong. We can try again');
-                        }, 7000)
-                    };
+                //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
+                //  await  axios.get(`http://gutendex.com/books?page=2`)
+                // .then(async ({ data }) => {
+                //     let pageTwo = data.results;
+                // await this.setState({ books: [...pageOne, ...pageTwo] });
+                // })
+                // .catch(err => console.log(err));
+                if (!pageOne[0]) {
+                    setTimeout(() => {
+                        this.getPubBooks();
+                        alert('Sorry, something is wrong. We can try again');
+                    }, 7000)
+                };
             })
             .catch(err => console.log(err));
     };
@@ -59,7 +55,6 @@ this.props.history.push('/selected_pub_book');
             setTimeout(() => {
                 this.setState({ openEmptyInputMes: false })
             }, 2500)
-
         } else {
             this.setState({ searchView: true })
             this.setState({ books: '' })
@@ -79,7 +74,7 @@ this.props.history.push('/selected_pub_book');
                     //         })
                     //         .catch(err => console.log(err));
                     // };
-                    if(!searchPageOne[0]){
+                    if (!searchPageOne[0]) {
                         setTimeout(() => {
                             this.getPubBooks();
                             alert('Sorry, something went wrong with your search');
@@ -96,13 +91,16 @@ this.props.history.push('/selected_pub_book');
         this.getPubBooks();
     };
 
+    toSelectedPubBook = () => {
+        this.props.history.push('/selected_pub_book');
+    };
+
     render() {
         return (
             <main className='dashboard' >
                 {/* <div className='navbar-div' > */}
                 <Navbar className='navbar' props={this.props} />
                 {/* </div> */}
-                
                 <Grid className='dash-box' >
                     <Typography variant='h2' className='page-title' >The Public Library</Typography>
                     {this.state.openEmptyInputMes === true
@@ -115,8 +113,6 @@ this.props.history.push('/selected_pub_book');
                         <div>
                             <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                             <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
-                            {/* <input onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
-                    <input onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" /> */}
                             <button className='search-button' onClick={this.searchFn}> Search </button>
                         </div>
                     }

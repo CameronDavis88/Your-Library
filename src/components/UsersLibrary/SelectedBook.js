@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, clearUser, getSelectedBook } from '../../redux/reducer';
@@ -7,36 +7,16 @@ import EditBook from './EditBook';
 
 
 const SelectedBook = ({ selectedBook }, props) => {
-// const [book, setBook] = useState([]);
 const [editMode, setEditMode] = useState(false);
-// const [] = useState();
-// const [] = useState();
-// const [] = useState();
-// const [] = useState();
 const { users_book_id, title, author, image_url, gut_url } = selectedBook;
-
-
 
     const deleteBook = () => {
         axios.delete(`/api/book/${users_book_id}`)
             .then(() => {
-                props.history.push('/users_library')
+                props.history.push('/users_library');
             })
             .catch(err => console.log(err));
     };
-  // let displayTitle = title;
-  // if (displayTitle[51]) {
-  //     let newTitle = displayTitle.slice(0, 50)
-  //     let titleArr = Array.from(newTitle)
-  //     titleArr.push('...')
-  //     let finalTitle = ``
-
-  //     titleArr.forEach((ele, ind, arr) => {
-  //         finalTitle = finalTitle + `${ele}`
-  //         return finalTitle
-  //     })
-  //     displayTitle = finalTitle
-  // };
 
    const BookDisplay = () => {
         return (

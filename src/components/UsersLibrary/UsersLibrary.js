@@ -3,10 +3,9 @@ import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
-import { Typography, Button, Grid } from '@material-ui/core';
-import './UsersLibrary.css';
-
+import { Typography, Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
+import './UsersLibrary.css';
 
 const UsersLibrary = (props) => {
     const userId = props.user.user_id;
@@ -26,35 +25,28 @@ const UsersLibrary = (props) => {
     };
 
     const routeToSelectedBook = () => props.history.push('/selected_book');
-    const routeToUsersLibrary = () => props.history.push('/users_library')
-
-    // useEffect(() => {
-    //     if(!props.user.user_id) {
-    //         props.history.push('/');
-    //     }
-    //     // getBooks()
-    // }, []);
+    const routeToUsersLibrary = () => props.history.push('/users_library');
 
     useEffect(() => {
-        getBooks()
+        getBooks();
     }, [userId]);
 
     const mappedBooks = books.map((book) => {
         const { users_book_id, title, author, image_url, gut_url } = book;
         let displayTitle = title;
         if (displayTitle[51]) {
-            let newTitle = displayTitle.slice(0, 50)
-            let titleArr = Array.from(newTitle)
-            titleArr.push('...')
-            let finalTitle = ``
+            let newTitle = displayTitle.slice(0, 50);
+            let titleArr = Array.from(newTitle);
+            titleArr.push('...');
+            let finalTitle = ``;
             titleArr.forEach((ele, ind, arr) => {
                 finalTitle = finalTitle + `${ele}`
                 return finalTitle
-            })
+            });
             displayTitle = finalTitle
         };
         return <UsersBook key={users_book_id} id={users_book_id} displayTitle={displayTitle} fullTitle={title} routeToSelectedBook={routeToSelectedBook}
-        routeToUsersLibrary={routeToUsersLibrary} author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} book={book} />
+            routeToUsersLibrary={routeToUsersLibrary} author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} book={book} />
     });
 
     const searchFn = async () => {
@@ -92,11 +84,9 @@ const UsersLibrary = (props) => {
         <main className='users-library'>
             <Navbar props={props} className='navbar' />
             <Grid className='page' >
-                {/* <h1  className='lib-title'>Welcome to Your Library, {username}!</h1> */}
                 <div>
                     <Typography variant='h2' >Welcome to Your Library, {username}!</Typography>
                 </div>
-                {/* <Typography variant='h2' >Welcome to Your Library, {username}!</Typography> */}
                 {!books[0]
                     ?
                     <Grid className='lib-box' >
