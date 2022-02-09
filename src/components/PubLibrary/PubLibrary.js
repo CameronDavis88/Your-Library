@@ -11,24 +11,26 @@ const PubLibrary = ({ books }) => {
                 ?
                 <>
                     {books.map((book) => {
-                        const { id, authors, title, formats } = book;
+                        const { id, authors, formats, title } = book;
+                        let displayTitle = title;
                         const imageUrl = formats["image/jpeg"];
                         const gutUrl = formats["text/html"];
                         const author = authors[0].name;
-                        let finalTitle = ``
-                        if (title[51]) {
-                            let newTitle = title.slice(0, 50)
-                            let titleArr = Array.from(newTitle)
-                            titleArr.push('.')
-                            titleArr.push('.')
-                            titleArr.push('.')
-                            titleArr.forEach((character) => {
-                                finalTitle = finalTitle + `${character}`
-                                return finalTitle
-                            });
-                        };
 
-                        return <PubBook key={id} id={id} title={title} displayTitle={finalTitle} author={author}
+                        if (displayTitle[51]) {
+                            let newTitle = displayTitle.slice(0, 50)
+                            let titleArr = Array.from(newTitle)
+                            titleArr.push('...')
+                            let finalTitle = ``
+
+                            titleArr.forEach((ele, ind, arr) => {
+                                finalTitle = finalTitle + `${ele}`
+                                return finalTitle
+                            })
+                            displayTitle = finalTitle
+                        }
+
+                        return <PubBook key={id} id={id} displayTitle={displayTitle} fullTitle={title} author={author}
                             formats={formats} imageUrl={imageUrl} gutUrl={gutUrl} />
                     })}
                 </>

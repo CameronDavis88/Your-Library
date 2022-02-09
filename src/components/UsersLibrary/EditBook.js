@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
-const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBooks }) => {
+const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBooks }, props) => {
     const [newTitle, setNewTitle] = useState('');
     const [newAuthor, setNewAuthor] = useState('');
     const [newImageUrl, setNewImageUrl] = useState('');

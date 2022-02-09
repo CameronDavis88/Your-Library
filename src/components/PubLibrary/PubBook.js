@@ -5,7 +5,7 @@ import { Typography, Button, Grid } from '@material-ui/core';
 import './PubBook.css';
 
 const PubBook = (props) => {
-    const { id, title, author, gutUrl, imageUrl, user, displayTitle } = props;
+    const { id, author, gutUrl, imageUrl, user, displayTitle, fullTitle } = props;
     const userId = user.user_id;
 
     const [added, setAdded] = useState(false);
@@ -13,7 +13,7 @@ const PubBook = (props) => {
     const addBook = () => {
         const newBook = {
             gutBookId: id,
-            title: title,
+            title: fullTitle,
             author: author,
             imageUrl: imageUrl,
             gutUrl: gutUrl,
@@ -49,7 +49,7 @@ const PubBook = (props) => {
                 :
                 <></>}
             <nav>
-                <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6' >Click here to read for free at Project Gutenberg</Typography></a>
+                <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6'>Read Book Here</Typography></a>
             </nav>
         </Grid>
     );

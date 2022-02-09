@@ -25,6 +25,9 @@ const UsersLibrary = (props) => {
             .catch(err => console.log(err));
     };
 
+    const routeToSelectedBook = () => props.history.push('/selected_book');
+    const routeToUsersLibrary = () => props.history.push('/users_library')
+
     // useEffect(() => {
     //     if(!props.user.user_id) {
     //         props.history.push('/');
@@ -38,20 +41,20 @@ const UsersLibrary = (props) => {
 
     const mappedBooks = books.map((book) => {
         const { users_book_id, title, author, image_url, gut_url } = book;
-        let finalTitle = ``
-                        if (title[51]) {
-                            let newTitle = title.slice(0, 50)
-                            let titleArr = Array.from(newTitle)
-                            titleArr.push('.')
-                            titleArr.push('.')
-                            titleArr.push('.')
-                            titleArr.forEach((character) => {
-                                finalTitle = finalTitle + `${character}`
-                                return finalTitle
-                            });
-                        };
-        return <UsersBook key={users_book_id} id={users_book_id} title={title} displayTitle={finalTitle}
-            author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} />
+        let displayTitle = title;
+        if (displayTitle[51]) {
+            let newTitle = displayTitle.slice(0, 50)
+            let titleArr = Array.from(newTitle)
+            titleArr.push('...')
+            let finalTitle = ``
+            titleArr.forEach((ele, ind, arr) => {
+                finalTitle = finalTitle + `${ele}`
+                return finalTitle
+            })
+            displayTitle = finalTitle
+        };
+        return <UsersBook key={users_book_id} id={users_book_id} displayTitle={displayTitle} fullTitle={title} routeToSelectedBook={routeToSelectedBook}
+        routeToUsersLibrary={routeToUsersLibrary} author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} book={book} />
     });
 
     const searchFn = async () => {
@@ -88,44 +91,44 @@ const UsersLibrary = (props) => {
     return (
         <main className='users-library'>
             <Navbar props={props} className='navbar' />
-           <Grid className='page' >
-           {/* <h1  className='lib-title'>Welcome to Your Library, {username}!</h1> */}
-           <div>
-           <Typography variant='h2' >Welcome to Your Library, {username}!</Typography>
-           </div>
-           {/* <Typography variant='h2' >Welcome to Your Library, {username}!</Typography> */}
-           {!books[0]
-                ?
-                <Grid className='lib-box' >
-                    {searchView === true
-                        ?
-                        <div>
-                            <h2>There seems to be no books in your library that match that search</h2>
-                            <br />
-                            <button onClick={exitSearch} >Exit Search</button>
-                        </div>
-                        :
-                        <div>
-                            <h2>Your Library is currently empty, to add some visit the Public Library</h2>
-                            <br />
-                            <button onClick={() => props.history.push('/')} >Go to Public Library</button>
-                        </div>
-                    }
-                </Grid>
-                :
-                <Grid className='lib-box' >
-                    <h4>Search for books in your library by title or author</h4>
-                    <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
-                    <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
-                    <br />
-                    <button onClick={searchFn}> Search </button>
-                    {searchView === true ? <button onClick={exitSearch} >Exit Search</button> : <></>}
-                    <br />
-                    <h3>Your Books</h3>
-                    <br />
-                    {mappedBooks}
-                </Grid>}
-           </Grid>
+            <Grid className='page' >
+                {/* <h1  className='lib-title'>Welcome to Your Library, {username}!</h1> */}
+                <div>
+                    <Typography variant='h2' >Welcome to Your Library, {username}!</Typography>
+                </div>
+                {/* <Typography variant='h2' >Welcome to Your Library, {username}!</Typography> */}
+                {!books[0]
+                    ?
+                    <Grid className='lib-box' >
+                        {searchView === true
+                            ?
+                            <div>
+                                <h2>There seems to be no books in your library that match that search</h2>
+                                <br />
+                                <button onClick={exitSearch} >Exit Search</button>
+                            </div>
+                            :
+                            <div>
+                                <h2>Your Library is currently empty, to add some visit the Public Library</h2>
+                                <br />
+                                <button onClick={() => props.history.push('/')} >Go to Public Library</button>
+                            </div>
+                        }
+                    </Grid>
+                    :
+                    <Grid className='lib-box' >
+                        <h4>Search for books in your library by title or author</h4>
+                        <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
+                        <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
+                        <br />
+                        <button onClick={searchFn}> Search </button>
+                        {searchView === true ? <button onClick={exitSearch} >Exit Search</button> : <></>}
+                        <br />
+                        <h3>Your Books</h3>
+                        <br />
+                        {mappedBooks}
+                    </Grid>}
+            </Grid>
         </main>
     );
 };
