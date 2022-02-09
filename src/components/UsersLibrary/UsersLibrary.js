@@ -39,8 +39,8 @@ const UsersLibrary = (props) => {
             let titleArr = Array.from(newTitle);
             titleArr.push('...');
             let finalTitle = ``;
-            titleArr.forEach((ele, ind, arr) => {
-                finalTitle = finalTitle + `${ele}`
+            titleArr.forEach((character) => {
+                finalTitle = finalTitle + `${character}`
                 return finalTitle
             });
             displayTitle = finalTitle

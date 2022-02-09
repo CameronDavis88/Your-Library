@@ -12,10 +12,11 @@ box-sizing: border-box;
     justify-content: center;
     background-color: #BFAFA6;
     /* box-shadow: 0px 0px 0px 3px #C5D6D8; */
-}.book-box:hover{
+}
+/* .book-box:hover{
     border: solid thick   #d4d2d5;
     box-shadow: 0px 0px 0px 5px #6e6a6f;
-}
+} */
 
 img{
     height: auto;

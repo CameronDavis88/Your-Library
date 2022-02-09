@@ -16,7 +16,7 @@ const SelectedPubBook = (props) => {
         <img alt='cover' src={imageUrl} className='cover-image'/>
         </div>
         <br />
-        <button className='book-btn' onClick={() => props.history.push('/users_library')} >Back to Your Library</button>
+        <button className='book-btn' onClick={() => props.history.push('/')} >Back to Public Library</button>
         <br />
         <nav>
             <a className='nav-a' href={gutUrl} >Access book for free at Project Gutenberg</a>

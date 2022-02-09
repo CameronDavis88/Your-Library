@@ -22,11 +22,13 @@ const UsersBook = (props) => {
     };
 
     return (
-        <Grid className='book-box' onClick={goToSelectedBook} >
+        <Grid className='book-box'  >
+            <div className='book' onClick={goToSelectedBook} >
             <h3 >Title: {displayTitle}</h3>
             <h3 >Author: {author}</h3>
             <div className='image-box' >
-                <img alt='cover' src={imageUrl} className='cover-image' />
+                <img alt='cover' src={imageUrl} className='cover-image-small' />
+            </div>
             </div>
             <br/>
             <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
