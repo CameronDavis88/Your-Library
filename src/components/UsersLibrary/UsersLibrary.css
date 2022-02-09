@@ -1,5 +1,5 @@
 .page{
-    background-color: #D6F9DD;
+  background-color: #d4d2d5;
    min-height:  90vh;
     box-sizing: border-box;
     margin-top: 10vh;
@@ -7,7 +7,7 @@
     
 }
 .lib-box{
-  background-color: #D6F9DD;
+  background-color: #d4d2d5;
   height: auto;
 }
 
@@ -19,7 +19,7 @@
   }
 
   .users-library{
-    background-color: #D6F9DD;
+    background-color: #d4d2d5;
   }
 
   /* button{

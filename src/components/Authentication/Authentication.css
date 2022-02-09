@@ -1,15 +1,15 @@
 .profile{
-    background-color: #D6F9DD;
+  background-color: #d4d2d5;
     box-sizing: border-box;
 }
 
 .profile-content{
-    background-color: #D6F9DD;
+  background-color: #d4d2d5;
     box-sizing: border-box;
 }
 
 .page{
-    background-color: #D6F9DD;
+  background-color: #d4d2d5;
     height: 90vh;
     box-sizing: border-box;
     margin-top: 10vh;
@@ -21,17 +21,7 @@
     box-sizing: border-box;
     margin-bottom: 20vh;
   }
-/* 
-  button{
-   min-height: 5vh;
-    min-width: 15vw;
-    background-color:   #A2EB90;
-    border: solid  #86A469 ;
-    box-shadow: 0px 0px 0px 1px #C5D6D8;
-  }button:hover{
-    background-color: #86A469;
-    border: solid  #A2EB90;
-  } */
+
   button {
     min-height: 5vh;
     min-width: 15vw;
