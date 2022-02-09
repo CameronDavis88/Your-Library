@@ -21,7 +21,7 @@
     box-sizing: border-box;
     margin-bottom: 20vh;
   }
-
+/* 
   button{
    min-height: 5vh;
     min-width: 15vw;
@@ -31,15 +31,24 @@
   }button:hover{
     background-color: #86A469;
     border: solid  #A2EB90;
+  } */
+  button {
+    min-height: 5vh;
+    min-width: 15vw;
+    background-color: #bfafa6;
+    border: solid #6e6a6f;
   }
-
-  input{
+  button:hover {
+    background-color: #6e6a6f;
+  }
+  
+  input {
     height: 4vh;
     width: 15vw;
-    
-    border: solid  #A2EB90;
-    background-color: #D6F9DD;
-  }input:hover{
-    border: solid #86A469;
-    }
+    border: solid #6e6a6f;
+    background-color: #d4d2d5;
+  }
+  input:hover {
+    border: solid #bfafa6;
+  }
   

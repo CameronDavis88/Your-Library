@@ -30,11 +30,10 @@ img{
     border: solid thin black;
     padding: 2px 2px;
 }.nav-a:hover{
-    color: #86A469;
-    border: solid thin #86A469;
-
-
+    color: #6e6a6f;
+    border: solid thin #6e6a6f;
 }
+
 
 nav{
     text-decoration: none;
