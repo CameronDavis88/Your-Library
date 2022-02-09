@@ -70,3 +70,12 @@ h3{
     justify-content: center;
 
 }
+
+.book-btn {
+    min-height: 5vh;
+    min-width: 15vw;
+    background-color: #d4d2d5;
+    border: solid #6e6a6f;
+  }.book-btn:hover {
+    background-color: #BFAFA6;
+  }

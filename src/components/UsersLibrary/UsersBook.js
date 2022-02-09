@@ -25,8 +25,8 @@ const UsersBook = (props) => {
                 <img alt='cover' src={imageUrl} className='cover-image'/>
                 </div>
                 <br />
-                <button onClick={() => setEditMode(true)} >Customize or Edit Book</button>
-                <button onClick={() => deleteBook()} >Delete Book</button>
+                <button className='book-btn' onClick={() => setEditMode(true)} >Customize or Edit Book</button>
+                <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
                 <br />
                 <nav>
                     <a className='nav-a' href={gutUrl} >Access book for free at Project Gutenberg</a>

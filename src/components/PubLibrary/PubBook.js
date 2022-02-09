@@ -44,7 +44,7 @@ const PubBook = (props) => {
                     {added === true ? 
                     <Typography variant='h6' color='secondary' className='added'>* Book Added *</Typography> 
                     : 
-                    <Button onClick={() => addBook()} >Add Book to Your Library</Button>}
+                    <button className='book-btn' onClick={() => addBook()} >Add Book to Your Library</button>}
                 </div>
                 :
                 <></>}
