@@ -4,7 +4,7 @@ import { Grid, CircularProgress } from '@material-ui/core';
 import './PubLibrary.css'
 
 
-const PubLibrary = ({ books }) => {
+const PubLibrary = ({ books, toSelectedPubBook }) => {
     return (
         <Grid className='library-grid' >
             {books[0]
@@ -31,7 +31,7 @@ const PubLibrary = ({ books }) => {
                         }
 
                         return <PubBook key={id} id={id} displayTitle={displayTitle} fullTitle={title} author={author}
-                            formats={formats} imageUrl={imageUrl} gutUrl={gutUrl} />
+                            formats={formats} imageUrl={imageUrl} gutUrl={gutUrl} toSelectedPubBook={toSelectedPubBook} />
                     })}
                 </>
                 : <div className='library-grid' > Loading...<div ><CircularProgress></CircularProgress></div> </div>

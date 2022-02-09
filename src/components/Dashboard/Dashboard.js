@@ -20,6 +20,10 @@ class Dashboard extends Component {
         };
     };
 
+    toSelectedPubBook = () => {
+this.props.history.push('/selected_pub_book');
+    }
+
     getPubBooks = () => {
         const { books } = this.state
         axios.get(`http://gutendex.com/books`)
@@ -118,7 +122,7 @@ class Dashboard extends Component {
                     }
                     {this.state.searchView === true ? <button className='exit-button' onClick={() => this.exitSearch()} >Exit Search</button> : <></>}
                     <div className='library-content' >
-                        {!this.state.books[0] ? <div ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} />}
+                        {!this.state.books[0] ? <div ><CircularProgress></CircularProgress></div> : <PubLibrary books={this.state.books} toSelectedPubBook={this.toSelectedPubBook} />}
                     </div>
                 </Grid>
             </main>

@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
+import { getSelectedBook } from '../../redux/reducer';
 import './PubBook.css';
 
 const PubBook = (props) => {
-    const { id, author, gutUrl, imageUrl, user, displayTitle, fullTitle } = props;
+    const { id, author, gutUrl, imageUrl, user, displayTitle, fullTitle, toSelectedPubBook } = props;
     const userId = user.user_id;
 
     const [added, setAdded] = useState(false);
 
-    const addBook = () => {
-        const newBook = {
-            gutBookId: id,
-            title: fullTitle,
-            author: author,
-            imageUrl: imageUrl,
-            gutUrl: gutUrl,
-        };
+    const newBook = {
+        gutBookId: id,
+        title: fullTitle,
+        author: author,
+        imageUrl: imageUrl,
+        gutUrl: gutUrl,
+    };
 
+    const addBook = () => {
         axios.post(`/api/book/${userId}`, newBook)
             .then(() => {
                 setAdded(true);
@@ -29,8 +30,15 @@ const PubBook = (props) => {
             .catch(err => console.log(err));
     };
 
+    
+const goToSelectedBook = () => {
+    props.getSelectedBook(newBook);
+    toSelectedPubBook();
+    console.log(newBook)
+    }
+
     return (
-        <Grid key={id} className='book-box' >
+        <Grid key={id} className='book-box' onClick={goToSelectedBook} >
             <div className='book' >
                 <Typography variant='h5' >{displayTitle}</Typography>
                 <Typography >By: {author}</Typography>
@@ -57,4 +65,4 @@ const PubBook = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps)(PubBook);
+export default connect(mapStateToProps, {getSelectedBook})(PubBook);

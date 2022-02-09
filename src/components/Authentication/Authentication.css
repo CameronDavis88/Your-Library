@@ -34,7 +34,7 @@
   
   input {
     height: 4vh;
-    width: 15vw;
+    min-width: 15vw;
     border: solid #6e6a6f;
     background-color: #d4d2d5;
   }
