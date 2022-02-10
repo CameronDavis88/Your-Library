@@ -3,7 +3,6 @@
     flex-direction: column;
     box-sizing: border-box;
     border: solid thick #6e6a6f;
-    /* border: solid #6e6a6f; */
     margin: 7px 7px;
     padding: 7px 7px;
     width: 20vw;
@@ -21,8 +20,6 @@
     padding: 5px 5px;
 }
 .nav-a:hover {
-    /* color: #6e6a6f;
-    border: solid thin #6e6a6f; */
     border: solid thin #d4d2d5;
     box-shadow: 0px 0px 0px 3px #d4d2d5;
 }

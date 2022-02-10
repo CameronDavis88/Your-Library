@@ -32,7 +32,6 @@ const PubBook = (props) => {
     const goToSelectedBook = () => {
         props.getSelectedBook(newBook);
         toSelectedPubBook();
-        console.log(newBook)
     };
 
     return (
@@ -44,7 +43,7 @@ const PubBook = (props) => {
                     <img alt='cover' src={imageUrl} className='cover-image-small' />
                 </div>
             </div>
-            <br/>
+            <br />
             <nav>
                 <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6'>Read Book Here</Typography></a>
             </nav>

@@ -30,7 +30,7 @@ const UsersLibrary = (props) => {
     }, [userId]);
 
     const routeToSelectedBook = () => {
-        props.history.push('/selected_book')
+        props.history.push('/selected_book');
     };
 
     const mappedBooks = books.map((book) => {
@@ -78,8 +78,8 @@ const UsersLibrary = (props) => {
     };
 
     const exitSearch = () => {
-        setAuthorSearch('')
-        setTitleSearch('')
+        setAuthorSearch('');
+        setTitleSearch('');
         getBooks();
         setSearchView(false);
     };
@@ -112,15 +112,15 @@ const UsersLibrary = (props) => {
                     :
                     <Grid className='lib-box' >
                         <div className='upper-box' >
-                        <Typography >-Search for books-</Typography>
-                        <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
-                        <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
-                        <button onClick={searchFn}> Search </button>
-                        {searchView === true ? <button onClick={exitSearch} >Exit Search</button> : <></>}
-                        <br />
+                            <Typography >-Search for books-</Typography>
+                            <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
+                            <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
+                            <button onClick={searchFn}> Search </button>
+                            {searchView === true ? <button onClick={exitSearch} >Exit Search</button> : <></>}
+                            <br />
                         </div>
                         <div className='mapped-books' >
-                        {mappedBooks}
+                            {mappedBooks}
                         </div>
                     </Grid>}
             </Grid>

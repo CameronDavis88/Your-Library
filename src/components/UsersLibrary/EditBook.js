@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 
-const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBooks }, props) => {
+const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBooks }) => {
     const [newTitle, setNewTitle] = useState('');
     const [newAuthor, setNewAuthor] = useState('');
     const [newImageUrl, setNewImageUrl] = useState('');
@@ -36,7 +36,7 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
             </div>
             <br />
             <div>
-                <img alt='cover sample' src={imageUrl} className='cover-image'/>
+                <img alt='cover sample' src={imageUrl} className='cover-image' />
                 <h4>Current Image Url: {imageUrl}</h4>
                 <input onChange={(e) => setNewImageUrl(e.target.value)} placeholder='New Cover Image Url' value={newImageUrl} />
             </div>

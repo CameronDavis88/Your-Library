@@ -1,8 +1,7 @@
 import React from 'react';
 import PubBook from './PubBook';
 import { Grid, CircularProgress } from '@material-ui/core';
-import './PubLibrary.css'
-
+import './PubLibrary.css';
 
 const PubLibrary = ({ books, toSelectedPubBook }) => {
     return (
@@ -23,11 +22,11 @@ const PubLibrary = ({ books, toSelectedPubBook }) => {
                             titleArr.push('...');
                             let finalTitle = ``;
 
-                            titleArr.forEach((ele, ind, arr) => {
-                                finalTitle = finalTitle + `${ele}`
+                            titleArr.forEach((character) => {
+                                finalTitle = finalTitle + `${character}`
                                 return finalTitle
-                            })
-                            displayTitle = finalTitle;
+                            });
+                            displayTitle = finalTitle
                         };
 
                         return <PubBook key={id} id={id} displayTitle={displayTitle} fullTitle={title} author={author}

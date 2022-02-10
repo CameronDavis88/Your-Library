@@ -24,18 +24,18 @@ const SelectedBook = (props) => {
             <main className='selected-book' >
                 <Navbar props={props} className='navbar' />
                 <Grid className='selected-book-page' >
-                <div className='bottom' >
-                <Typography variant='h4' align="center" >{title}</Typography>
-                <br/>
-                <Typography variant='h5' align="center" >By: {author}</Typography>
-                <br/>
-                <div className='image-box' >
-                    <img alt='cover' src={image_url}/>
-                </div>
-                <nav>
-                    <a className='selected-nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
-                </nav>
-                </div>
+                    <div className='bottom' >
+                        <Typography variant='h4' align="center" >{title}</Typography>
+                        <br />
+                        <Typography variant='h5' align="center" >By: {author}</Typography>
+                        <br />
+                        <div className='image-box' >
+                            <img alt='cover' src={image_url} />
+                        </div>
+                        <nav>
+                            <a className='selected-nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
+                        </nav>
+                    </div>
                 </Grid>
             </main>
         );

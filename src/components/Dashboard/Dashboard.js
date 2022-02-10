@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import { connect } from 'react-redux';
-import { clearUser } from '../../redux/reducer'
+import { clearUser } from '../../redux/reducer';
 import { Typography, Grid, CircularProgress } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import './Dashboard.css';
@@ -89,8 +89,8 @@ class Dashboard extends Component {
     };
 
     exitSearch = () => {
-        this.setState({ books: '' })
-        this.setState({ authorSearch: '', titleSearch: '' })
+        this.setState({ books: '' });
+        this.setState({ authorSearch: '', titleSearch: '' });
         this.setState({ searchView: false });
         this.getPubBooks();
     };

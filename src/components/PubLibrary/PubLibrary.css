@@ -1,12 +1,11 @@
-.library-grid{
+.library-grid {
     box-sizing: border-box;
     display: flex;
-flex-wrap: wrap;
+    flex-wrap: wrap;
     padding-left: 1vw;
     padding-right: 1vw;
     margin-top: 5vh;
     align-items: center;
     justify-content: center;
     background-color: #d4d2d5;
-
 }

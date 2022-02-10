@@ -10,19 +10,19 @@ const SelectedPubBook = (props) => {
 
     return (
         <main className='selected-book' >
-             <Navbar props={props} className='navbar' />
+            <Navbar props={props} className='navbar' />
             <Grid className='selected-book-page' >
                 <div className='bottom' >
-                <Typography variant='h4' align="center" >{title}</Typography>
-                <br/>
-                <Typography variant='h5' align="center" >By: {author}</Typography>
-                <br/>
-                <div className='image-box' >
-                    <img alt='cover' src={imageUrl}/>
-                </div>
-                <nav>
-                    <a className='selected-nav-a' href={gutUrl} >Access book for free at Project Gutenberg</a>
-                </nav>
+                    <Typography variant='h4' align="center" >{title}</Typography>
+                    <br />
+                    <Typography variant='h5' align="center" >By: {author}</Typography>
+                    <br />
+                    <div className='image-box' >
+                        <img alt='cover' src={imageUrl} />
+                    </div>
+                    <nav>
+                        <a className='selected-nav-a' href={gutUrl} >Access book for free at Project Gutenberg</a>
+                    </nav>
                 </div>
             </Grid>
         </main>
