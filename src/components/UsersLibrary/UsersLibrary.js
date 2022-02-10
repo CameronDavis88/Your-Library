@@ -94,13 +94,13 @@ const UsersLibrary = (props) => {
                     <Grid className='lib-box' >
                         {searchView === true
                             ?
-                            <div>
+                            <div className='center' >
                                 <h2>There seems to be no books in your library that match that search</h2>
                                 <br />
                                 <button onClick={exitSearch} >Exit Search</button>
                             </div>
                             :
-                            <div>
+                            <div className='center' >
                                 <h2>Your Library is currently empty, to add some visit the Public Library</h2>
                                 <br />
                                 <button onClick={() => props.history.push('/')} >Go to Public Library</button>
@@ -110,7 +110,7 @@ const UsersLibrary = (props) => {
                     :
                     <Grid className='lib-box' >
                         <div className='upper-box' >
-                        {/* <h4>Search for books in your library by title or author</h4> */}
+                        <Typography >-Search for books-</Typography>
                         <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
                         <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
                         {/* <br /> */}

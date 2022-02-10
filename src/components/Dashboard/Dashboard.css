@@ -72,10 +72,13 @@ section {
     min-height: 5vh;
     min-width: 15.75vw;
     background-color: #bfafa6;
-    border: solid #6e6a6f;
+    /* border: solid #6e6a6f; */
+    border: solid #bfafa6;
   }
   button:hover {
-    background-color: #6e6a6f;
+    /* background-color: #6e6a6f; */
+    border: solid #6e6a6f;
+
   }
   
   input {

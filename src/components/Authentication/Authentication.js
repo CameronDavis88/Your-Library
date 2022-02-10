@@ -169,8 +169,10 @@ const Authentication = (props) => {
               </Grid>
                 :
                 <Grid className='updating-user' >
+                  <div className='bottom' >
                   <h2>Update your information</h2>
-                  <h4>-Whatever value you leave blank will remain the same as before-</h4>
+                  <p>-Whatever value you leave blank will remain the same as before-</p>
+                  </div>
                   <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
                   <input onChange={(e) => setEmailInput(e.target.value)} placeholder='New Email' value={emailInput} />
                   <br/>

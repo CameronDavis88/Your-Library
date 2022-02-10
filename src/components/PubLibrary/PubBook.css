@@ -19,7 +19,7 @@
     text-decoration: none;
     color: black;
     border: solid thin black;
-    padding: 2px 2px;
+    padding: 5px 5px;
 }
 .nav-a:hover {
     border: solid thin #d4d2d5;
@@ -76,9 +76,12 @@ h3 {
 .book-btn {
     min-height: 5vh;
     min-width: 15vw;
-    background-color: #d4d2d5;
+    /* background-color: #d4d2d5; */
+    background-color: #bfafa6;
     border: solid #6e6a6f;
 }
 .book-btn:hover {
-    background-color: #bfafa6;
+    /* background-color: #bfafa6; */
+    background-color: #d4d2d5;
+
 }

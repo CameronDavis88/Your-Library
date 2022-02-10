@@ -99,14 +99,15 @@ class Dashboard extends Component {
     };
 
     render() {
+        const space = ' '
         return (
             <main className='dashboard' >
-                {/* <div className='navbar-div' > */}
                 <Navbar className='navbar' props={this.props} />
-                {/* </div> */}
                 <Grid className='dash-box' >
                     <Typography variant='h2' className='page-title' >The Public Library</Typography>
-                    {/* <h4>Search for books in the public library by title or author</h4> */}
+                    <div className='register-title-box' >
+                    <Typography variant='h6'  >To save books to your own library make an account and login</Typography>
+                    </div>
                     <br/>
                     {this.state.openEmptyInputMes === true
                         ?
@@ -116,6 +117,7 @@ class Dashboard extends Component {
                         </div>
                         :
                         <div className='upper-box' >
+                            <Typography >-Search for books-</Typography>
                             <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                             <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
                             {/* <br/> */}

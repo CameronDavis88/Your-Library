@@ -44,6 +44,10 @@ const PubBook = (props) => {
                     <img alt='cover' src={imageUrl} className='cover-image-small' />
                 </div>
             </div>
+            <br/>
+            <nav>
+                <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6'>Read Book Here</Typography></a>
+            </nav>
             {userId
                 ?
                 <div>
@@ -54,9 +58,7 @@ const PubBook = (props) => {
                 </div>
                 :
                 <></>}
-            <nav>
-                <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6'>Read Book Here</Typography></a>
-            </nav>
+
         </Grid>
     );
 };

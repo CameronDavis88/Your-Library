@@ -54,3 +54,10 @@
   box-sizing: border-box;
   flex-wrap: wrap;
 }
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
