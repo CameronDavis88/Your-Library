@@ -1,7 +1,7 @@
-.book-box{
+.book-box {
     display: flex;
     flex-direction: column;
-box-sizing: border-box;
+    box-sizing: border-box;
     border: solid thick #6e6a6f;
     /* border: solid #6e6a6f; */
     margin: 7px 7px;
@@ -10,81 +10,52 @@ box-sizing: border-box;
     height: 55vh;
     align-items: center;
     justify-content: center;
-    background-color: #BFAFA6;
-    /* box-shadow: 0px 0px 0px 3px #C5D6D8; */
+    background-color: #bfafa6;
 }
-/* .book-box:hover{
-    border: solid thick   #d4d2d5;
-    box-shadow: 0px 0px 0px 5px #6e6a6f;
-} */
 
-/* img{
-    height: auto;
-    max-height: 35vh;
-    min-width: 7vw;
-    margin-bottom: 3vh;
-} */
-
-/* width: 9vw; */
-  /* margin-right: 25%;
-    margin-left: 25%; */
-
-.nav-a{
+.nav-a {
     margin-top: 2vh;
     text-decoration: none;
     color: black;
     border: solid thin black;
     padding: 2px 2px;
-}.nav-a:hover{
+}
+.nav-a:hover {
     /* color: #6e6a6f;
     border: solid thin #6e6a6f; */
     border: solid thin #d4d2d5;
     box-shadow: 0px 0px 0px 3px #d4d2d5;
 }
 
-nav{
+nav {
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    color: black
+    color: black;
 }
 
-.image-box{
+.image-box {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.cover-image-small{
-    /* height: auto; */
+.cover-image-small {
     max-height: 15vh;
-   height: auto;
+    height: auto;
     max-width: 15vw;
-    /* min-width: 7vw; */
-    /* width: 9vw; */
     margin-bottom: 3vh;
-    /* margin-right: 25%;
-    margin-left: 25%; */
 }
 
-
-h3{
+h3 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-/* .book{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
-
-.book{
-    /* max-width: 25vw; */
+.book {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -92,18 +63,18 @@ h3{
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
-   padding: 5px 5px;
-}.book:hover{
-    box-shadow: 0px 0px 0px 5px #d4d2d5;
-    /* border: solid #d4d2d5; */
+    padding: 5px 5px;
 }
-
+.book:hover {
+    box-shadow: 0px 0px 0px 5px #d4d2d5;
+}
 
 .book-btn {
     min-height: 5vh;
     min-width: 15vw;
     background-color: #d4d2d5;
     border: solid #6e6a6f;
-  }.book-btn:hover {
-    background-color: #BFAFA6;
-  }
+}
+.book-btn:hover {
+    background-color: #bfafa6;
+}
