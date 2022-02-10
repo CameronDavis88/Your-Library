@@ -41,3 +41,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.register-btn{
+  min-height: 8vh;
+  min-width: 20vw;
+  background-color: #bfafa6;
+  /* border: solid #6e6a6f; */
+  border: solid #bfafa6;
+}.register-btn:hover{
+  border: solid #6e6a6f;
+}

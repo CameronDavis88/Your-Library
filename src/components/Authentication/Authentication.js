@@ -217,20 +217,23 @@ const Authentication = (props) => {
             :
             <Grid className='loggingIn' >
               <div className='bottom' >
-              <h2>Login Below</h2>
+              <h2>Create an account or login below</h2>
+              {/* <br/> */}
+              <button className='register-btn' onClick={() => setRegisterView(true)} >Create Account Here</button>
               </div>
-              <br />
+              <br/>
+              <br/>
+              <br/>
               <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
               <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
               <br/>
               <div className='bottom'  >
               <button onClick={handleLogin} >Login</button>
               </div>
-              <br/>
+              {/* <br/>
               <div className='bottom' >
               <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button>
-              </div>
-              {/* <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button> */}
+              </div> */}
             </Grid>}
         </main>
       }
