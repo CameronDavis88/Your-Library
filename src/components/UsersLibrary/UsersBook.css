@@ -34,8 +34,10 @@ img{
     border: solid thin black;
     padding: 2px 2px;
 }.nav-a:hover{
-    color: #6e6a6f;
-    border: solid thin #6e6a6f;
+    /* color: #6e6a6f;
+    border: solid thin #6e6a6f; */
+    border: solid thin #d4d2d5;
+    box-shadow: 0px 0px 0px 3px #d4d2d5;
 }
 
 nav{
