@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 
-
-
 const SelectedPubBook = (props) => {
     const { title, author, gutUrl, imageUrl } = props.selectedBook;
 
@@ -29,5 +27,4 @@ const SelectedPubBook = (props) => {
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps)(SelectedPubBook);

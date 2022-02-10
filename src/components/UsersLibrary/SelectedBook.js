@@ -6,7 +6,6 @@ import { Grid } from '@material-ui/core';
 import EditBook from './EditBook';
 import Navbar from '../Navbar/Navbar';
 
-
 const SelectedBook = (props) => {
     const [editMode, setEditMode] = useState(false);
     const { users_book_id, title, author, image_url, gut_url } = props.selectedBook;
@@ -39,7 +38,6 @@ const SelectedBook = (props) => {
                     </nav>
                 </Grid>
             </main>
-
         );
     };
 
@@ -54,5 +52,4 @@ const SelectedBook = (props) => {
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps, { clearUser })(SelectedBook);

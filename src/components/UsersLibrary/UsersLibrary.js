@@ -125,5 +125,4 @@ const UsersLibrary = (props) => {
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps, { clearUser })(UsersLibrary);

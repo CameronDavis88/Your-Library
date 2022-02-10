@@ -50,5 +50,4 @@ const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBoo
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps)(EditBook);

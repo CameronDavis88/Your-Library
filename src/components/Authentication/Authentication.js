@@ -213,5 +213,4 @@ const Authentication = (props) => {
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps, { getUser, clearUser })(Authentication);

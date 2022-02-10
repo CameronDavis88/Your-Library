@@ -124,7 +124,6 @@ const Navbar = ({ props }) => {
     };
   };
 
-
   return (
     <div className='navbar' >
       <Typography variant='h4' className='nav-title' >Your Library</Typography>
@@ -139,5 +138,4 @@ const Navbar = ({ props }) => {
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps, { clearUser })(Navbar);

@@ -129,7 +129,6 @@ class Dashboard extends Component {
 
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps, { clearUser })(Dashboard);
 
 

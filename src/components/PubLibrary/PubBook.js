@@ -62,5 +62,4 @@ const PubBook = (props) => {
 };
 
 const mapStateToProps = (reduxState) => reduxState;
-
 export default connect(mapStateToProps, { getSelectedBook })(PubBook);
