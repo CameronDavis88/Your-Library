@@ -21,7 +21,6 @@ class Dashboard extends Component {
     };
 
     getPubBooks = () => {
-        const { books } = this.state
         axios.get(`http://gutendex.com/books`)
             .then(async ({ data }) => {
                 let pageOne = data.results;

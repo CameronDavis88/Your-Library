@@ -24,9 +24,6 @@ const UsersLibrary = (props) => {
             .catch(err => console.log(err));
     };
 
-    const routeToSelectedBook = () => props.history.push('/selected_book');
-    const routeToUsersLibrary = () => props.history.push('/users_library');
-
     useEffect(() => {
         getBooks();
     }, [userId]);
@@ -46,7 +43,7 @@ const UsersLibrary = (props) => {
             displayTitle = finalTitle
         };
         return <UsersBook key={users_book_id} id={users_book_id} displayTitle={displayTitle} fullTitle={title} routeToSelectedBook={routeToSelectedBook}
-            routeToUsersLibrary={routeToUsersLibrary} author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} book={book} />
+            author={author} gutUrl={gut_url} imageUrl={image_url} setBooks={setBooks} getBooks={getBooks} book={book} />
     });
 
     const searchFn = async () => {
@@ -78,6 +75,10 @@ const UsersLibrary = (props) => {
     const exitSearch = () => {
         getBooks();
         setSearchView(false);
+    };
+
+    const routeToSelectedBook = () => {
+        props.history.push('/selected_book')
     };
 
     return (

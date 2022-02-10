@@ -6,7 +6,7 @@ import { Grid } from '@material-ui/core';
 import './UsersBook.css';
 
 const UsersBook = (props) => {
-    const { id, author, gutUrl, imageUrl, getBooks, displayTitle, fullTitle, book, routeToSelectedBook, routeToUsersLibrary } = props;
+    const { id, author, gutUrl, imageUrl, getBooks, displayTitle, book, routeToSelectedBook } = props;
 
     const deleteBook = () => {
         axios.delete(`/api/book/${id}`)
