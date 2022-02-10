@@ -1,18 +1,31 @@
 .profile{
   background-color: #d4d2d5;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-content{
   background-color: #d4d2d5;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15vh;
 }
 
-.page{
+.auth-page{
   background-color: #d4d2d5;
     height: 90vh;
     box-sizing: border-box;
     margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .navbar{
     position: fixed;
@@ -22,3 +35,9 @@
     margin-bottom: 20vh;
   }
 
+.bottom{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -126,7 +126,7 @@ const Authentication = (props) => {
   };
 
   return (
-    <div className='page' >
+    <div className='auth-page' >
       <Navbar props={props} className='navbar' />
       {props.user.user_id
         ?
@@ -135,10 +135,12 @@ const Authentication = (props) => {
             ?
             <Grid className='profile' >
               <Typography variant='h2' >Your Account</Typography>
-              <br />
+              <br/>
               <Typography variant='h4' > Your Username : {username}</Typography>
               <Typography variant='h4' >Your Email: {email}</Typography>
+              <br/>
               <button onClick={() => setUpdatingView(true)} >Edit Your Account Information</button>
+              <br/>
               <button onClick={() => setDeletingView(true)} >Delete Account</button>
             </Grid>
             :
@@ -168,15 +170,21 @@ const Authentication = (props) => {
                 :
                 <Grid className='updating-user' >
                   <h2>Update your information</h2>
-                  <h4>Whatever value you leave blank will remain the same as before</h4>
+                  <h4>-Whatever value you leave blank will remain the same as before-</h4>
                   <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='New Username' value={usernameInput} />
                   <input onChange={(e) => setEmailInput(e.target.value)} placeholder='New Email' value={emailInput} />
+                  <br/>
                   <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='New Password' value={passwordInput} />
                   <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm New Password' value={passwordConfirmationInput} />
-                  <br />
+                  <br/>
+                  <div className='bottom' >
                   <input onChange={(e) => setOldPasswordInput(e.target.value)} placeholder='Confirm CURRENT Password' value={oldPasswordInput} />
+                  <br/>
                   <button onClick={updateUsersInfo} >Submit Edits</button>
+                  <br/>
                   <button onClick={() => setUpdatingView(false)} >Cancel/back</button>
+                  </div>
+                 
                 </Grid>}
             </>
           }
@@ -200,12 +208,21 @@ const Authentication = (props) => {
             </Grid>
             :
             <Grid className='loggingIn' >
+              <div className='bottom' >
               <h2>Login Below</h2>
+              </div>
               <br />
               <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
               <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
+              <br/>
+              <div className='bottom'  >
               <button onClick={handleLogin} >Login</button>
+              </div>
+              <br/>
+              <div className='bottom' >
               <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button>
+              </div>
+              {/* <h4>Don't have an account yet?</h4> <button onClick={() => setRegisterView(true)} >Create Account Here</button> */}
             </Grid>}
         </main>
       }
