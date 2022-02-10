@@ -111,9 +111,10 @@ class Dashboard extends Component {
                             <Button onClick={() => this.setState({ openEmptyInputMes: false })} >Close Message</Button>
                         </div>
                         :
-                        <div>
+                        <div className='upper-box' >
                             <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                             <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
+                            <br/>
                             <button className='search-button' onClick={this.searchFn}> Search </button>
                         </div>
                     }
@@ -126,7 +127,6 @@ class Dashboard extends Component {
         );
     };
 };
-
 
 const mapStateToProps = (reduxState) => reduxState;
 export default connect(mapStateToProps, { clearUser })(Dashboard);

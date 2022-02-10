@@ -50,3 +50,23 @@ input{
    border: solid  #A2EB90;
    }
   */
+
+  button {
+    min-height: 5vh;
+    min-width: 15vw;
+    background-color: #bfafa6;
+    border: solid #6e6a6f;
+  }
+  button:hover {
+    background-color: #6e6a6f;
+  }
+  
+  input {
+    height: 4vh;
+    min-width: 15vw;
+    border: solid #bfafa6;
+    background-color: #d4d2d5;
+  }
+  input:hover {
+    border: solid #6e6a6f;
+  }

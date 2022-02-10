@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getSelectedBook } from '../../redux/reducer';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import './UsersBook.css';
 
 const UsersBook = (props) => {
@@ -24,8 +24,8 @@ const UsersBook = (props) => {
     return (
         <Grid className='book-box'  >
             <div className='book' onClick={goToSelectedBook} >
-            <h3 >Title: {displayTitle}</h3>
-            <h3 >Author: {author}</h3>
+            <Typography variant='h6' >{displayTitle}</Typography>
+                <Typography >By: {author}</Typography>
             <div className='image-box' >
                 <img alt='cover' src={imageUrl} className='cover-image-small' />
             </div>

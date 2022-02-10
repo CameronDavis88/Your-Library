@@ -1,3 +1,4 @@
+//codingMuse();
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -91,7 +92,7 @@ const Authentication = (props) => {
         });
     } else {
       alert("Passwords don't match");
-    }
+    };
   };
 
   const deleteUsersAccount = async () => {

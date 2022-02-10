@@ -67,7 +67,7 @@ section {
     top: 10vh;
   } */
 
-button {
+/* button {
   min-height: 5vh;
   min-width: 15vw;
   background-color: #bfafa6;
@@ -80,9 +80,18 @@ button:hover {
 input {
   height: 4vh;
   min-width: 15vw;
-  border: solid #6e6a6f;
+  border: solid #bfafa6;
   background-color: #d4d2d5;
 }
 input:hover {
-  border: solid #bfafa6;
+  border: solid #6e6a6f;
+} */
+
+.upper-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
 }
