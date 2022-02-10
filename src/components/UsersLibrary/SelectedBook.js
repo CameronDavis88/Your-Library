@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { clearUser } from '../../redux/reducer';
 import { Grid } from '@material-ui/core';
 import EditBook from './EditBook';
+import Navbar from '../Navbar/Navbar';
 
 
-const SelectedBook = ({ selectedBook }, props) => {
+const SelectedBook = (props) => {
     const [editMode, setEditMode] = useState(false);
-    const { users_book_id, title, author, image_url, gut_url } = selectedBook;
+    const { users_book_id, title, author, image_url, gut_url } = props.selectedBook;
 
     const deleteBook = () => {
         axios.delete(`/api/book/${users_book_id}`)
@@ -19,21 +21,25 @@ const SelectedBook = ({ selectedBook }, props) => {
 
     const BookDisplay = () => {
         return (
-            <Grid className='book-page' >
-                <h3 >Title: {title}</h3>
-                <h3 >Author: {author}</h3>
-                <div className='image-box' >
-                    <img alt='cover' src={image_url} className='cover-image' />
-                </div>
-                <br />
-                <button className='book-btn' onClick={() => setEditMode(true)} >Customize or Edit Book</button>
-                <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
-                <button className='book-btn' onClick={() => props.history.push('/users_library')} >Back to Your Library</button>
-                <br />
-                <nav>
-                    <a className='nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
-                </nav>
-            </Grid>
+            <main className='selected-book' >
+                <Navbar props={props} className='navbar' />
+                <Grid className='book-page' >
+                    <h3 >Title: {title}</h3>
+                    <h3 >Author: {author}</h3>
+                    <div className='image-box' >
+                        <img alt='cover' src={image_url} className='cover-image' />
+                    </div>
+                    <br />
+                    <button className='book-btn' onClick={() => setEditMode(true)} >Customize or Edit Book</button>
+                    <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
+                    <button className='book-btn' onClick={() => props.history.push('/users_library')} >Back to Your Library</button>
+                    <br />
+                    <nav>
+                        <a className='nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
+                    </nav>
+                </Grid>
+            </main>
+
         );
     };
 
@@ -49,4 +55,4 @@ const SelectedBook = ({ selectedBook }, props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps)(SelectedBook);
+export default connect(mapStateToProps, { clearUser })(SelectedBook);

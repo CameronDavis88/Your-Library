@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import { connect } from 'react-redux';
+import { clearUser } from '../../redux/reducer'
 import { Typography, Button, Grid, CircularProgress } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import './Dashboard.css';
@@ -129,7 +130,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { clearUser })(Dashboard);
 
 
 

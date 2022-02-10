@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { clearUser } from '../../redux/reducer';
 import { Typography, Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import './UsersLibrary.css';
@@ -125,4 +126,4 @@ const UsersLibrary = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps)(UsersLibrary);
+export default connect(mapStateToProps, { clearUser })(UsersLibrary);
