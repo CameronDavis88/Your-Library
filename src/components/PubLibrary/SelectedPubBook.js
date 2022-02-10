@@ -17,15 +17,14 @@ const SelectedPubBook = (props) => {
                 <div className='image-box' >
                     <img alt='cover' src={imageUrl} className='cover-image' />
                 </div>
-                <br />
-                <button className='book-btn' onClick={() => props.history.push('/')} >Back to Public Library</button>
-                <br />
+                <br/>
+                <button className='book-btn' onClick={() => props.history.push('/')}>Back to Public Library</button>
+                <br/>
                 <nav>
                     <a className='nav-a' href={gutUrl} >Access book for free at Project Gutenberg</a>
                 </nav>
             </Grid>
         </main>
-
     );
 };
 

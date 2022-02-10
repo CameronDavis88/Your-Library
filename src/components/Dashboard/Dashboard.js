@@ -67,7 +67,7 @@ class Dashboard extends Component {
                     if (data.next === null) {
                         this.setState({ books: [...searchPageOne] });
                     } else {
-                       //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
+                        //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
                         await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
                             .then(async ({ data }) => {
                                 let pageTwo = data.results;
