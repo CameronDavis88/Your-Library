@@ -7,14 +7,14 @@
     margin: 7px 7px;
     padding: 7px 7px;
     width: 20vw;
-    height: 55vh;
+    height: 60vh;
     align-items: center;
     justify-content: center;
     background-color: #bfafa6;
 }
 
 .nav-a {
-    margin-top: 2vh;
+    margin-top: 0vh;
     text-decoration: none;
     color: black;
     border: solid thin black;

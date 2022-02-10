@@ -26,6 +26,7 @@ class Dashboard extends Component {
             .then(async ({ data }) => {
                 let pageOne = data.results;
                 this.setState({ books: [...pageOne] });
+                console.log(data)
                 //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
                 // and yet, the same thing (at least when I am writing this) still works in the search requests...
                 //  await  axios.get(`http://gutendex.com/books?page=2`)
@@ -54,6 +55,7 @@ class Dashboard extends Component {
             this.setState({ openEmptyInputMes: true });
             // alert('There was nothing in the either search box for us to search.')
             setTimeout(() => {
+                this.getPubBooks();
                 this.setState({ openEmptyInputMes: false })
             }, 2500)
         } else {
@@ -104,6 +106,8 @@ class Dashboard extends Component {
                 {/* </div> */}
                 <Grid className='dash-box' >
                     <Typography variant='h2' className='page-title' >The Public Library</Typography>
+                    {/* <h4>Search for books in the public library by title or author</h4> */}
+                    <br/>
                     {this.state.openEmptyInputMes === true
                         ?
                         <div className='message-box' >
@@ -114,7 +118,7 @@ class Dashboard extends Component {
                         <div className='upper-box' >
                             <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
                             <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
-                            <br/>
+                            {/* <br/> */}
                             <button className='search-button' onClick={this.searchFn}> Search </button>
                         </div>
                     }

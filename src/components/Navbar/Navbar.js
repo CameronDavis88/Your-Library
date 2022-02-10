@@ -64,9 +64,9 @@ const Navbar = ({ props }) => {
     } else if (props.location.pathname === '/selected_book') {
       return (
         <>
-          {/* <div className='nav-link'>
+          <div className='nav-link'>
           <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
-        </div> */}
+        </div>
           <div className='nav-link'>
             <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
           </div>
@@ -84,9 +84,9 @@ const Navbar = ({ props }) => {
           <div className='nav-link'>
             <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
           </div>
-          {/* <div className='nav-link'>
+          <div className='nav-link'>
           <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
-        </div> */}
+        </div>
           <div className='nav-link'>
             <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
           </div>
@@ -114,7 +114,14 @@ const Navbar = ({ props }) => {
       );
     } else if (props.location.pathname === '/selected_pub_book') {
       return (
-        <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
+        <>
+         <div className='nav-link'>
+        <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+      </div>
+      <div className='nav-link'>
+      <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
+      </div>
+        </>
       );
     } else if (props.location.pathname === '/selected_book') {
       props.history.push('/');

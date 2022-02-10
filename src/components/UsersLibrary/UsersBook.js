@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getSelectedBook } from '../../redux/reducer';
@@ -31,11 +31,10 @@ const UsersBook = (props) => {
             </div>
             </div>
             <br/>
-            <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
-            <br/>
             <nav>
                 <a className='nav-a' href={gutUrl} >Read Book Here</a>
             </nav>
+            <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
         </Grid>
     );
 };

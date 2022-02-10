@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { clearUser } from '../../redux/reducer';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import EditBook from './EditBook';
 import Navbar from '../Navbar/Navbar';
 
@@ -23,20 +23,19 @@ const SelectedBook = (props) => {
         return (
             <main className='selected-book' >
                 <Navbar props={props} className='navbar' />
-                <Grid className='book-page' >
-                    <h3 >Title: {title}</h3>
-                    <h3 >Author: {author}</h3>
-                    <div className='image-box' >
-                        <img alt='cover' src={image_url} className='cover-image' />
-                    </div>
-                    <br />
-                    <button className='book-btn' onClick={() => setEditMode(true)} >Customize or Edit Book</button>
-                    <button className='book-btn' onClick={() => deleteBook()} >Delete Book</button>
-                    <button className='book-btn' onClick={() => props.history.push('/users_library')} >Back to Your Library</button>
-                    <br />
-                    <nav>
-                        <a className='nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
-                    </nav>
+                <Grid className='selected-book-page' >
+                <div className='bottom' >
+                <Typography variant='h4' >{title}</Typography>
+                <br/>
+                <Typography variant='h5' >By: {author}</Typography>
+                <br/>
+                <div className='image-box' >
+                    <img alt='cover' src={image_url}/>
+                </div>
+                <nav>
+                    <a className='selected-nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
+                </nav>
+                </div>
                 </Grid>
             </main>
         );
