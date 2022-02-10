@@ -25,9 +25,9 @@ const SelectedBook = (props) => {
                 <Navbar props={props} className='navbar' />
                 <Grid className='selected-book-page' >
                 <div className='bottom' >
-                <Typography variant='h4' >{title}</Typography>
+                <Typography variant='h4' align="center" >{title}</Typography>
                 <br/>
-                <Typography variant='h5' >By: {author}</Typography>
+                <Typography variant='h5' align="center" >By: {author}</Typography>
                 <br/>
                 <div className='image-box' >
                     <img alt='cover' src={image_url}/>

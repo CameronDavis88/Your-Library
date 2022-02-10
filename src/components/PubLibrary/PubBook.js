@@ -38,8 +38,8 @@ const PubBook = (props) => {
     return (
         <Grid key={id} className='book-box'  >
             <div className='book' onClick={goToSelectedBook} >
-                <Typography variant='h6' >{displayTitle}</Typography>
-                <Typography >By: {author}</Typography>
+                <Typography className='title' align="center" variant='h6' >{displayTitle}</Typography>
+                <Typography align="center" >By: {author}</Typography>
                 <div className='image-box' >
                     <img alt='cover' src={imageUrl} className='cover-image-small' />
                 </div>
