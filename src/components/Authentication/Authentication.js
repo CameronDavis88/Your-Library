@@ -195,16 +195,22 @@ const Authentication = (props) => {
         <main className='profile-content' >
           {registerView === true
             ?
-            <Grid className='registering'>
+            <Grid className='bottom'>
               <h2>Create an account Below</h2>
               <br />
-              <button onClick={() => setRegisterView(false)} >Back to Login</button>
-              <br />
+              <div>
               <input onChange={(e) => setUsernameInput(e.target.value)} placeholder='Username' value={usernameInput} />
               <input onChange={(e) => setEmailInput(e.target.value)} placeholder='Email' value={emailInput} />
+              </div>
+              <div>
               <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
               <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
+                </div>
+             
+              <br/>
               <button onClick={handleRegister} >Create Account</button>
+              <br />
+              <button onClick={() => setRegisterView(false)} >Back to Login</button>
             </Grid>
             :
             <Grid className='loggingIn' >

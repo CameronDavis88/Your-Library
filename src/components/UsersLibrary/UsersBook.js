@@ -43,7 +43,6 @@ const UsersBook = (props) => {
                     <button className='book-btn' onClick={() => setDeletingView(false)}>Cancel Delete</button>
 
                 </>
-
                 :
                 <button className='book-btn' onClick={() => setDeletingView(true)} >Delete Book</button>
             }
