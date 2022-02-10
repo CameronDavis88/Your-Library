@@ -78,6 +78,8 @@ const UsersLibrary = (props) => {
     };
 
     const exitSearch = () => {
+        setAuthorSearch('')
+        setTitleSearch('')
         getBooks();
         setSearchView(false);
     };
@@ -113,11 +115,8 @@ const UsersLibrary = (props) => {
                         <Typography >-Search for books-</Typography>
                         <input onChange={(e) => setAuthorSearch(e.target.value)} placeholder="Author's name" value={authorSearch} type='text' />
                         <input onChange={(e) => setTitleSearch(e.target.value)} placeholder="Book Title" value={titleSearch} type='text' />
-                        {/* <br /> */}
                         <button onClick={searchFn}> Search </button>
                         {searchView === true ? <button onClick={exitSearch} >Exit Search</button> : <></>}
-                        {/* <br /> */}
-                        {/* <h3>Your Books</h3> */}
                         <br />
                         </div>
                         <div className='mapped-books' >

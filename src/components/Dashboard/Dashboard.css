@@ -22,11 +22,22 @@ section {
 }
 
 .message-box {
+  display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border: solid thin black;
+  background-color: #bfafa6;
+  border: solid #6e6a6f;
   width: 50vh;
+  flex-direction: column;
+}
+
+.close-mes-btn{
+  box-sizing: border-box;
+  margin: 0px 0px;
+  background-color: #d4d2d5;
+}.close-mes-btn:hover{
+background-color: #6e6a6f;
 }
 
 .dash-box {

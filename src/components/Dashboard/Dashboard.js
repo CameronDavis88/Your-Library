@@ -4,7 +4,7 @@ import axios from 'axios';
 import PubLibrary from '../PubLibrary/PubLibrary'
 import { connect } from 'react-redux';
 import { clearUser } from '../../redux/reducer'
-import { Typography, Button, Grid, CircularProgress } from '@material-ui/core';
+import { Typography, Grid, CircularProgress } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import './Dashboard.css';
 
@@ -90,6 +90,7 @@ class Dashboard extends Component {
 
     exitSearch = () => {
         this.setState({ books: '' })
+        this.setState({ authorSearch: '', titleSearch: '' })
         this.setState({ searchView: false });
         this.getPubBooks();
     };
@@ -99,28 +100,26 @@ class Dashboard extends Component {
     };
 
     render() {
-        const space = ' '
         return (
             <main className='dashboard' >
                 <Navbar className='navbar' props={this.props} />
                 <Grid className='dash-box' >
                     <Typography variant='h2' className='page-title' >The Public Library</Typography>
                     <div className='register-title-box' >
-                    <Typography variant='h6'  >To save books to your own library make an account and login</Typography>
+                        <Typography variant='h6'  >To save books to your own library make an account and login</Typography>
                     </div>
-                    <br/>
+                    <br />
                     {this.state.openEmptyInputMes === true
                         ?
                         <div className='message-box' >
                             <Typography variant='h5' >To search please enter something into at least one of the search boxes</Typography>
-                            <Button onClick={() => this.setState({ openEmptyInputMes: false })} >Close Message</Button>
+                            <button className='close-mes-btn' onClick={() => this.setState({ openEmptyInputMes: false })} >X Close Message</button>
                         </div>
                         :
                         <div className='upper-box' >
                             <Typography >-Search for books-</Typography>
-                            <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" />
-                            <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" />
-                            {/* <br/> */}
+                            <input className='input' onChange={(e) => this.setState({ authorSearch: e.target.value })} placeholder="Author's name" value={this.state.authorSearch} />
+                            <input className='input' onChange={(e) => this.setState({ titleSearch: e.target.value })} placeholder="Book Title" value={this.state.titleSearch} />
                             <button className='search-button' onClick={this.searchFn}> Search </button>
                         </div>
                     }
