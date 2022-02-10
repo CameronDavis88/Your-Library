@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import UsersBook from './UsersBook';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser, clearUser } from '../../redux/reducer';
 import { Typography, Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import './UsersLibrary.css';
@@ -27,6 +26,10 @@ const UsersLibrary = (props) => {
     useEffect(() => {
         getBooks();
     }, [userId]);
+
+    const routeToSelectedBook = () => {
+        props.history.push('/selected_book')
+    };
 
     const mappedBooks = books.map((book) => {
         const { users_book_id, title, author, image_url, gut_url } = book;
@@ -77,10 +80,6 @@ const UsersLibrary = (props) => {
         setSearchView(false);
     };
 
-    const routeToSelectedBook = () => {
-        props.history.push('/selected_book')
-    };
-
     return (
         <main className='users-library'>
             <Navbar props={props} className='navbar' />
@@ -126,4 +125,4 @@ const UsersLibrary = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, { getUser, clearUser })(UsersLibrary);
+export default connect(mapStateToProps)(UsersLibrary);

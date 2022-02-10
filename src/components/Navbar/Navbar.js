@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import './Navbar.css'
 
 
@@ -11,7 +11,7 @@ const Navbar = ({ props }) => {
     props.history.push('/');
     await axios.get(`/api/logout`)
       .then(() => {
-        props.clearUser();
+       props.clearUser();
 
       })
       .catch(err => console.log(err))

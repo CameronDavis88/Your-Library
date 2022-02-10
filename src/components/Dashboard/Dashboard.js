@@ -26,6 +26,7 @@ class Dashboard extends Component {
                 let pageOne = data.results;
                 this.setState({ books: [...pageOne] });
                 //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
+                // and yet, the same thing (at least when I am writing this) still works in the search requests...
                 //  await  axios.get(`http://gutendex.com/books?page=2`)
                 // .then(async ({ data }) => {
                 //     let pageTwo = data.results;
@@ -61,18 +62,18 @@ class Dashboard extends Component {
             await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
                 .then(async ({ data }) => {
                     let searchPageOne = data.results;
-                    this.setState({ books: [...searchPageOne] });
-                    // if (data.next === null) {
-                    //     this.setState({ books: [...searchPageOne] });
-                    // } else {
-                    //    //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
-                    //     await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
-                    //         .then(async ({ data }) => {
-                    //             let pageTwo = data.results;
-                    //             this.setState({ books: [...searchPageOne, ...pageTwo] });
-                    //         })
-                    //         .catch(err => console.log(err));
-                    // };
+                    // this.setState({ books: [...searchPageOne] });
+                    if (data.next === null) {
+                        this.setState({ books: [...searchPageOne] });
+                    } else {
+                       //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
+                        await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
+                            .then(async ({ data }) => {
+                                let pageTwo = data.results;
+                                this.setState({ books: [...searchPageOne, ...pageTwo] });
+                            })
+                            .catch(err => console.log(err));
+                    };
                     if (!searchPageOne[0]) {
                         setTimeout(() => {
                             this.getPubBooks();

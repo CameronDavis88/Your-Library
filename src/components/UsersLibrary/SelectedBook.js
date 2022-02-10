@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser, clearUser, getSelectedBook } from '../../redux/reducer';
 import { Grid } from '@material-ui/core';
 import EditBook from './EditBook';
 
 
 const SelectedBook = ({ selectedBook }, props) => {
-const [editMode, setEditMode] = useState(false);
-const { users_book_id, title, author, image_url, gut_url } = selectedBook;
+    const [editMode, setEditMode] = useState(false);
+    const { users_book_id, title, author, image_url, gut_url } = selectedBook;
 
     const deleteBook = () => {
         axios.delete(`/api/book/${users_book_id}`)
@@ -18,13 +17,13 @@ const { users_book_id, title, author, image_url, gut_url } = selectedBook;
             .catch(err => console.log(err));
     };
 
-   const BookDisplay = () => {
+    const BookDisplay = () => {
         return (
             <Grid className='book-page' >
                 <h3 >Title: {title}</h3>
                 <h3 >Author: {author}</h3>
                 <div className='image-box' >
-                <img alt='cover' src={image_url} className='cover-image'/>
+                    <img alt='cover' src={image_url} className='cover-image' />
                 </div>
                 <br />
                 <button className='book-btn' onClick={() => setEditMode(true)} >Customize or Edit Book</button>
@@ -41,7 +40,7 @@ const { users_book_id, title, author, image_url, gut_url } = selectedBook;
     return (
         <Grid key={users_book_id}>
             {editMode === false ? <BookDisplay /> : <EditBook
-                 title={title} author={author} imageUrl={image_url} id={users_book_id}
+                title={title} author={author} imageUrl={image_url} id={users_book_id}
                 editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook} />
             }
         </Grid>
@@ -50,4 +49,4 @@ const { users_book_id, title, author, image_url, gut_url } = selectedBook;
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, { getUser, clearUser, getSelectedBook })(SelectedBook);
+export default connect(mapStateToProps)(SelectedBook);

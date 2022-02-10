@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUser, clearUser, getSelectedBook } from '../../redux/reducer';
+import { getSelectedBook } from '../../redux/reducer';
 import { Grid } from '@material-ui/core';
 import './UsersBook.css';
 
@@ -42,6 +42,6 @@ const UsersBook = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, { getUser, clearUser, getSelectedBook })(UsersBook);
+export default connect(mapStateToProps, { getSelectedBook })(UsersBook);
 
 

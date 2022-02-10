@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUser, clearUser, getSelectedBook } from '../../redux/reducer';
 import { Grid } from '@material-ui/core';
 
 
@@ -27,4 +26,4 @@ const SelectedPubBook = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, { getUser, clearUser, getSelectedBook })(SelectedPubBook);
+export default connect(mapStateToProps)(SelectedPubBook);
