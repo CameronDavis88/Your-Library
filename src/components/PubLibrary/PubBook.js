@@ -9,7 +9,6 @@ const PubBook = (props) => {
     const [added, setAdded] = useState(false);
     const { id, author, gutUrl, imageUrl, user, displayTitle, fullTitle, toSelectedPubBook } = props;
     const userId = user.user_id;
-
     const newBook = {
         gutBookId: id,
         title: fullTitle,
@@ -17,7 +16,6 @@ const PubBook = (props) => {
         imageUrl: imageUrl,
         gutUrl: gutUrl,
     };
-
     const addBook = () => {
         axios.post(`/api/book/${userId}`, newBook)
             .then(() => {
@@ -28,7 +26,6 @@ const PubBook = (props) => {
             })
             .catch(err => console.log(err));
     };
-
     const goToSelectedBook = () => {
         props.getSelectedBook(newBook);
         toSelectedPubBook();
@@ -57,10 +54,10 @@ const PubBook = (props) => {
                 </div>
                 :
                 <></>}
-
         </Grid>
     );
 };
 
+//Exporting component and accessing redux material
 const mapStateToProps = (reduxState) => reduxState;
 export default connect(mapStateToProps, { getSelectedBook })(PubBook);

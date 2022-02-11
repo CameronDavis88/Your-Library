@@ -49,6 +49,7 @@ const UsersBook = (props) => {
     );
 };
 
+//Exporting component and accessing redux material
 const mapStateToProps = (reduxState) => reduxState;
 export default connect(mapStateToProps, { getSelectedBook })(UsersBook);
 
