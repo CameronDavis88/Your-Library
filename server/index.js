@@ -3,7 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 const { getUsersBooks, addBook, updateBook, deleteBook, searchBoth, searchAuthor, searchTitle } = require('./controllers/mainControllers');
-const { register, login, logout, deleteUser, updateUsersInfo } = require('./controllers/authControllers')
+const { register, login, logout, deleteUser, updateUsersInfo } = require('./controllers/authControllers');
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 
 const app = express();
