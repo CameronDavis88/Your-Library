@@ -3,11 +3,14 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
 
+//Destructuring properties from UsersBook component
 const EditBook = ({ id, title, author, imageUrl, deleteBook, setEditMode, getBooks }) => {
+    //React hooks from the values of the input fields
     const [newTitle, setNewTitle] = useState('');
     const [newAuthor, setNewAuthor] = useState('');
     const [newImageUrl, setNewImageUrl] = useState('');
 
+    //This update the user's book's information according to what they input and sends the data to backend to be updated in the database
     const editBook = async () => {
         const updatedBook = {
             //If the input is empty the value of the key is the original value

@@ -8,9 +8,13 @@ import EditBook from './EditBook';
 import Navbar from '../Navbar/Navbar';
 
 const SelectedBook = (props) => {
+    //React hook that determines the conditional rendering of the view for when the user is going to edit the book's info 
+    // which will be sent down through props to EditBook component
     const [editMode, setEditMode] = useState(false);
+    //Destructuring properties from data for specific book from redux state
     const { users_book_id, title, author, image_url, gut_url } = props.selectedBook;
 
+    //Deletes books from user's book in the database and sends the user back to their updated library
     const deleteBook = () => {
         axios.delete(`/api/book/${users_book_id}`)
             .then(() => {
@@ -19,6 +23,7 @@ const SelectedBook = (props) => {
             .catch(err => console.log(err));
     };
 
+    //Sub-component that displays the book's information which will be conditionally rendered below
     const BookDisplay = () => {
         return (
             <main className='selected-book' >
@@ -32,6 +37,7 @@ const SelectedBook = (props) => {
                         <div className='image-box' >
                             <img alt='cover' src={image_url} />
                         </div>
+                         {/* This link take the user to the page of Project Gutenberg where thy can read the full text for free */}
                         <nav>
                             <a className='selected-nav-a' href={gut_url} >Access book for free at Project Gutenberg</a>
                         </nav>
@@ -43,6 +49,7 @@ const SelectedBook = (props) => {
 
     return (
         <Grid key={users_book_id}>
+        {/* Conditionally renders view for viewing or editing the book's information */}
             {editMode === false ? <BookDisplay /> : <EditBook
                 title={title} author={author} imageUrl={image_url} id={users_book_id}
                 editMode={editMode} setEditMode={setEditMode} deleteBook={deleteBook} />

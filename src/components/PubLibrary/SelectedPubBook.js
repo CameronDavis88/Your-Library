@@ -6,8 +6,10 @@ import Navbar from '../Navbar/Navbar';
 import './SelectedPubBook.css';
 
 const SelectedPubBook = (props) => {
+    //Destructuring properties from data for specific book from redux state
     const { title, author, gutUrl, imageUrl } = props.selectedBook;
 
+    //Renders the information from the book's data
     return (
         <main className='selected-book' >
             <Navbar props={props} className='navbar' />
@@ -20,6 +22,7 @@ const SelectedPubBook = (props) => {
                     <div className='image-box' >
                         <img alt='cover' src={imageUrl} />
                     </div>
+                    {/* This link take the user to the page of Project Gutenberg where thy can read the full text for free */}
                     <nav>
                         <a className='selected-nav-a' href={gutUrl} >Access book for free at Project Gutenberg</a>
                     </nav>

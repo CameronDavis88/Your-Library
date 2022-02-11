@@ -51,6 +51,7 @@ const PubBook = (props) => {
                 </div>
             </div>
             <br />
+             {/* This link take the user to the page of Project Gutenberg where thy can read the full text for free */}
             <nav>
                 <a href={gutUrl} className='nav-a' ><Typography className='nav-text' variant='h6'>Read Book Here</Typography></a>
             </nav>

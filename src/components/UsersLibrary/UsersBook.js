@@ -6,9 +6,11 @@ import { Grid, Typography } from '@material-ui/core';
 import './UsersBook.css';
 
 const UsersBook = (props) => {
+    //React hook which determines the conditional rendering of the view when confirming a the deletion of a book
     const [deletingView, setDeletingView] = useState(false);
     const { id, author, gutUrl, imageUrl, getBooks, displayTitle, book, routeToSelectedBook } = props;
 
+    //Deletes book from users books in database and repopulates page with updated library
     const deleteBook = () => {
         axios.delete(`/api/book/${id}`)
             .then(({ data }) => {
@@ -18,6 +20,8 @@ const UsersBook = (props) => {
             .catch(err => console.log(err));
     };
 
+     //Sends user to the view of the page of a selected book from user's library 
+    //and sends that book's data to redux state to be used SelectedBook component
     const goToSelectedBook = () => {
         props.getSelectedBook(book);
         routeToSelectedBook();
@@ -33,9 +37,11 @@ const UsersBook = (props) => {
                 </div>
             </div>
             <br />
+             {/* This link take the user to the page of Project Gutenberg where thy can read the full text for free */}
             <nav>
                 <a className='nav-a' href={gutUrl} >Read Book Here</a>
             </nav>
+            {/* Conditional rendering of confirmation of deleting book */}
             {deletingView
                 ?
                 <>
