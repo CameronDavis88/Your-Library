@@ -7,9 +7,11 @@ import UsersLibrary from './components/UsersLibrary/UsersLibrary';
 import Dashboard from './components/Dashboard/Dashboard';
 import SelectedBook from './components/UsersLibrary/SelectedBook';
 import SelectedPubBook from './components/PubLibrary/SelectedPubBook';
+//Employs HashRouter when in development mode and BrowserRouter when not
 const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
 
 const App = () => {
+  //Renders the specific components according to pathway
   return (
     <div>
       <Router>

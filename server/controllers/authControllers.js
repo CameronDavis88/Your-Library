@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 module.exports = {
+     //-------------Controllers for Authentication and user's information--------------
     register: async (req, res) => {
         const { username, email, password } = req.body;
         const db = req.app.get('db');
@@ -13,7 +14,6 @@ module.exports = {
                 req.session.user = newUser;
                 res.status(201).send(req.session.user);
 },
-
     login: async (req, res) => {
         const { email, password } = req.body;
         const db = req.app.get('db');
@@ -29,12 +29,10 @@ module.exports = {
         req.session.user = foundUser;
         res.status(202).send(req.session.user);
     },
-
     logout: (req, res) => {
         req.session.destroy();
         res.sendStatus(200);
     },
-
     updateUsersInfo: async (req, res) => {
         const userId = req.params.id;
         const { username, email, password, oldPassword, oldEmail } = req.body;
@@ -48,14 +46,13 @@ module.exports = {
             if (!authenticated) {
                 return res.status(401).send('Old password is incorrect');
             };
-        }
+        };
         let salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const [updatedUser] = await db.usersInfo.edit_users_info([hash, email, username, userId])
+        const [updatedUser] = await db.usersInfo.edit_users_info([hash, email, username, userId]);
         delete updatedUser.password;
         res.status(202).send(updatedUser);
     },
-
     deleteUser: async (req, res) => {
         const userId = req.params.id;
         const { email, password } = req.body;
@@ -69,6 +66,6 @@ module.exports = {
         req.session.destroy();
         db.usersInfo.delete_user([userId]);
         res.sendStatus(200);
-        }
+        };
     }
 };
