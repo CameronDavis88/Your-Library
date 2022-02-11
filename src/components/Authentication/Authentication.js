@@ -8,28 +8,29 @@ import Navbar from '../Navbar/Navbar';
 import './Authentication.css';
 
 const Authentication = (props) => {
+  //React Hooks for input field values
   const { username, email } = props.user;
   const [usernameInput, setUsernameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordConfirmationInput, setPasswordConfirmationInput] = useState('');
-  const [registerView, setRegisterView] = useState(false);
   const [oldPasswordInput, setOldPasswordInput] = useState('');
+  //Hooks for conditional rendering the views depending on what the user is doing
+  const [registerView, setRegisterView] = useState(false);
   const [deletingView, setDeletingView] = useState(false);
   const [checkingView, setCheckingView] = useState(false);
   const [updatingView, setUpdatingView] = useState(false);
 
+  //Registers the user's information from the input fields and sends it to the backend
   const handleRegister = async () => {
     if (props.user.user_id) {
       props.clearUser();
     };
-
     const newUser = {
       username: usernameInput,
       password: passwordInput,
       email: emailInput
     };
-
     if (passwordInput === '' || passwordConfirmationInput === '') {
       alert('Must provide valid inputs to proceed');
     } else {
@@ -61,7 +62,9 @@ const Authentication = (props) => {
     } else { }
     await axios.post(`/api/login`, user)
       .then(({ data }) => {
+        //getUser is a function from redux store
         props.getUser(data);
+        //When the user logs in they are sent to their own library view
         props.history.push('/users_library');
       })
       .catch(err => {
@@ -70,6 +73,7 @@ const Authentication = (props) => {
       });
   };
 
+  //Sends the user's inputs to backend to update their information
   const updateUsersInfo = async () => {
     const { username, user_id, email } = props.user
     const updatedUser = {
@@ -79,6 +83,7 @@ const Authentication = (props) => {
       email: emailInput === '' ? email : emailInput,
       oldEmail: email,
     }
+    //Checks that their passwords are consistent 
     if (passwordInput === passwordConfirmationInput) {
       await axios.put(`/api/user/${user_id}`, updatedUser)
         .then(({ data }) => {
@@ -95,13 +100,13 @@ const Authentication = (props) => {
     };
   };
 
+  //Deletes user's account from database and ends user's session
   const deleteUsersAccount = async () => {
     const { user_id, email } = props.user
     const user = {
       password: passwordInput,
       email: email,
     };
-
     if (passwordInput === '' || passwordConfirmationInput === '') {
       alert('Must provide valid inputs to proceed');
       setCheckingView(false);
@@ -128,9 +133,12 @@ const Authentication = (props) => {
   return (
     <div className='auth-page' >
       <Navbar props={props} className='navbar' />
+      {/* conditionally renders the view depending of if the user is logged in or not */}
       {props.user.user_id
         ?
+        // This view displays the user's info and offers them the choice of updating their info or deleting account
         <main className='profile-content' >
+          {/* Conditionally renders depending on boolean of deletingView hook */}
           {deletingView === false && updatingView === false
             ?
             <Grid className='profile' >
@@ -147,6 +155,7 @@ const Authentication = (props) => {
             <>
               {deletingView === true && updatingView === false
                 ?
+                // This view is for deleting the users account and conditionally renders a confirmation of the desire to delete it
                 <Grid className='deleting-account'>
                   <input onChange={(e) => setPasswordInput(e.target.value)} placeholder='Password' value={passwordInput} />
                   <input onChange={(e) => setPasswordConfirmationInput(e.target.value)} placeholder='Confirm Password' value={passwordConfirmationInput} />
@@ -168,6 +177,7 @@ const Authentication = (props) => {
                   }
                 </Grid>
                 :
+                // This view is for updating the user's info
                 <Grid className='updating-user' >
                   <div className='bottom' >
                     <h2>Update your information</h2>
@@ -193,10 +203,11 @@ const Authentication = (props) => {
         </main>
 
         :
-
+          // Below here is rendered when user is not logged in
         <main className='profile-content' >
           {registerView === true
             ?
+            // This view is for creating an account
             <Grid className='bottom'>
               <h2>Create an account Below</h2>
               <br />
@@ -215,6 +226,7 @@ const Authentication = (props) => {
               <button onClick={() => setRegisterView(false)} >Back to Login</button>
             </Grid>
             :
+            // This view is for loggin in or to send the user to the registering view
             <Grid className='loggingIn' >
               <div className='bottom' >
                 <h2>Create an account or login below</h2>

@@ -22,10 +22,12 @@ class Dashboard extends Component {
     };
 
     getPubBooks = () => {
+        //Fetching book data from gutendex
         axios.get(`http://gutendex.com/books`)
             .then(async ({ data }) => {
                 let pageOne = data.results;
                 this.setState({ books: [...pageOne] });
+
                 //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
                 // and yet, the same thing (at least when I am writing this) still works in the search requests...
                 //  await  axios.get(`http://gutendex.com/books?page=2`)
@@ -34,10 +36,12 @@ class Dashboard extends Component {
                 // await this.setState({ books: [...pageOne, ...pageTwo] });
                 // })
                 // .catch(err => console.log(err));
+
+                //If it takes 7 seconds to load, something is wrong and it automatically tries it again--usually works
                 if (!pageOne[0]) {
                     setTimeout(() => {
                         this.getPubBooks();
-                        alert('Sorry, something is wrong. We can try again');
+                        alert('Sorry, something is wrong. We will try again');
                     }, 7000)
                 };
             })
@@ -48,11 +52,12 @@ class Dashboard extends Component {
         this.getPubBooks();
     };
 
+//This fetches the books from gutendex which match the search input values for author or title and sets the new data to the books array in state
     searchFn = async () => {
         this.setState({ books: '' })
         if (this.state.authorSearch === '' && this.state.titleSearch === '') {
             this.setState({ openEmptyInputMes: true });
-            // alert('There was nothing in the either search box for us to search.')
+            //If the user clicked search without anything in the search fields this message appears for 2.5 seconds
             setTimeout(() => {
                 this.getPubBooks();
                 this.setState({ openEmptyInputMes: false })
@@ -76,6 +81,7 @@ class Dashboard extends Component {
                             })
                             .catch(err => console.log(err));
                     };
+                    //If it takes 7 seconds to load, something is wrong and it automatically loads default books again
                     if (!searchPageOne[0]) {
                         setTimeout(() => {
                             this.getPubBooks();
@@ -87,6 +93,7 @@ class Dashboard extends Component {
         };
     };
 
+    //Resets the page to default books and ends the user's search
     exitSearch = () => {
         this.setState({ books: '' });
         this.setState({ authorSearch: '', titleSearch: '' });
@@ -108,6 +115,7 @@ class Dashboard extends Component {
                         <Typography variant='h6'  >To save books to your own library make an account and login</Typography>
                     </div>
                     <br />
+                    {/* Conditionally renders this message for 2.5 seconds if the user clicked search with both search fields empty */}
                     {this.state.openEmptyInputMes === true
                         ?
                         <div className='message-box' >
