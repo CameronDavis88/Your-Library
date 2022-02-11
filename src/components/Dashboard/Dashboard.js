@@ -26,7 +26,6 @@ class Dashboard extends Component {
             .then(async ({ data }) => {
                 let pageOne = data.results;
                 this.setState({ books: [...pageOne] });
-                console.log(data)
                 //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
                 // and yet, the same thing (at least when I am writing this) still works in the search requests...
                 //  await  axios.get(`http://gutendex.com/books?page=2`)

@@ -44,3 +44,8 @@ nav {
     align-items: center;
     background-color: #d4d2d5;
 }
+
+img{
+    height: auto;
+    width: auto;
+  }
