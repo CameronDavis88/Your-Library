@@ -6,7 +6,7 @@ import { clearUser } from '../../redux/reducer';
 import './Navbar.css';
 
 const Navbar = ({ props }) => {
-
+//Obviously, this logs the user out and ends their session
   const handleLogout = async () => {
     props.history.push('/');
     await axios.get(`/api/logout`)
@@ -17,7 +17,9 @@ const Navbar = ({ props }) => {
       .catch(err => console.log(err))
   };
 
+  //This is the conditional rendering for the Navbar when user is logged in
   const LoggedInNavbar = () => {
+    //Conditional rendering of Navbar when logged in and on Dashboard view
     if (props.location.pathname === '/') {
       return (
         <>
@@ -32,6 +34,7 @@ const Navbar = ({ props }) => {
           </div>
         </>
       );
+       //Conditional rendering of Navbar when logged in and on Authentication view
     } else if (props.location.pathname === '/authentication') {
       return (
         <>
@@ -46,6 +49,7 @@ const Navbar = ({ props }) => {
           </div>
         </>
       );
+       //Conditional rendering of Navbar when logged in and on UsersLibrary view
     } else if (props.location.pathname === '/users_library') {
       return (
         <>
@@ -60,6 +64,7 @@ const Navbar = ({ props }) => {
           </div>
         </>
       );
+       //Conditional rendering of Navbar when logged in and on view of a Selected Book from the User's Library
     } else if (props.location.pathname === '/selected_book') {
       return (
         <>
@@ -77,6 +82,7 @@ const Navbar = ({ props }) => {
           </div>
         </>
       );
+       //Conditional rendering of Navbar when logged in and on view of a Selected Book from the Public Library
     } else if (props.location.pathname === '/selected_pub_book') {
       return (
         <>
@@ -97,20 +103,25 @@ const Navbar = ({ props }) => {
     };
   };
 
+   //This is the conditional rendering for the Navbar when user is NOT logged in
   const LoggedOutNavbar = () => {
+    //When NOT logged in the user cannot access the UsersLibrary component
     if (props.location.pathname === '/users_library') {
       props.history.push('/');
       return (
         <></>
       );
+      //Conditional rendering of Navbar when NOT logged in and on Dashboard view
     } else if (props.location.pathname === '/') {
       return (
         <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
       );
+       //Conditional rendering of Navbar when NOT logged in and on Authentication view
     } else if (props.location.pathname === '/authentication') {
       return (
         <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
       );
+       //Conditional rendering of Navbar when NOT logged in and on view of a Selected Book from the Public Library
     } else if (props.location.pathname === '/selected_pub_book') {
       return (
         <>
@@ -122,6 +133,7 @@ const Navbar = ({ props }) => {
           </div>
         </>
       );
+      //When NOT logged in the user cannot access the view of a Selected Book from the Public Library
     } else if (props.location.pathname === '/selected_book') {
       props.history.push('/');
       return (
@@ -130,6 +142,7 @@ const Navbar = ({ props }) => {
     };
   };
 
+  //Navbar conditionally rendering the according to the logged in or logged out views from above
   return (
     <div className='navbar' >
       <Typography variant='h4' className='nav-title' >Your Library</Typography>
@@ -143,5 +156,6 @@ const Navbar = ({ props }) => {
   );
 };
 
+//Exporting component and accessing redux material
 const mapStateToProps = (reduxState) => reduxState;
 export default connect(mapStateToProps, { clearUser })(Navbar);

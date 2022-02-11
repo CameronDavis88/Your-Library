@@ -248,5 +248,6 @@ const Authentication = (props) => {
   );
 };
 
+//Exporting component and accessing redux material
 const mapStateToProps = (reduxState) => reduxState;
 export default connect(mapStateToProps, { getUser, clearUser })(Authentication);
