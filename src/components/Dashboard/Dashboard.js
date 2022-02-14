@@ -23,14 +23,14 @@ class Dashboard extends Component {
 
     getPubBooks = () => {
         //Fetching book data from gutendex
-        axios.get(`http://gutendex.com/books`)
+        axios.get(`https://gutendex.com/books`)
             .then(async ({ data }) => {
                 let pageOne = data.results;
                 this.setState({ books: [...pageOne] });
 
                 //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
                 // and yet, the same thing (at least when I am writing this) still works in the search requests...
-                //  await  axios.get(`http://gutendex.com/books?page=2`)
+                //  await  axios.get(`https://gutendex.com/books?page=2`)
                 // .then(async ({ data }) => {
                 //     let pageTwo = data.results;
                 // await this.setState({ books: [...pageOne, ...pageTwo] });
@@ -66,7 +66,7 @@ class Dashboard extends Component {
             this.setState({ searchView: true })
             this.setState({ books: '' })
             const { authorSearch, titleSearch } = this.state;
-            await axios.get(`http://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
+            await axios.get(`https://gutendex.com/books?search=${authorSearch}%20${titleSearch}`)
                 .then(async ({ data }) => {
                     let searchPageOne = data.results;
                     // this.setState({ books: [...searchPageOne] });
@@ -74,7 +74,7 @@ class Dashboard extends Component {
                         this.setState({ books: [...searchPageOne] });
                     } else {
                         //This is maddening, it works sometimes but not other times... Both this way and when manually loaded by Next button...
-                        await axios.get(`http://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
+                        await axios.get(`https://gutendex.com/books?page=2&search=${authorSearch}%20${titleSearch}`)
                             .then(async ({ data }) => {
                                 let pageTwo = data.results;
                                 this.setState({ books: [...searchPageOne, ...pageTwo] });
