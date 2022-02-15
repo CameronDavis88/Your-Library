@@ -5,7 +5,7 @@ const session = require('express-session');
 const { getUsersBooks, addBook, updateBook, deleteBook, searchBoth, searchAuthor, searchTitle } = require('./controllers/mainControllers');
 const { register, login, logout, deleteUser, updateUsersInfo } = require('./controllers/authControllers');
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
-const path = require('path');
+// const path = require('path');
 
 const app = express();
 
@@ -46,4 +46,4 @@ app.delete(`/api/book/:id`, deleteBook);
 
 
 app.use(express.static(`${__dirname}/../build`));
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')));
+// app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')));
