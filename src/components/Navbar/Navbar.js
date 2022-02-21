@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { clearUser } from '../../redux/reducer';
-import './Navbar.css';
+import '../../styles/Navbar.css';
 
 const Navbar = ({ props }) => {
 //Obviously, this logs the user out and ends their session

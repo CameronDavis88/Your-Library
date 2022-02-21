@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { clearUser } from '../../redux/reducer';
 import { Typography, Grid, CircularProgress } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
-import './Dashboard.css';
+import '../../styles/Dashboard.css';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class Dashboard extends Component {
     };
 
     getPubBooks = () => {
-        //Fetching book data from gutendex
+        //Fetching book data from Gutendex
         axios.get(`https://gutendex.com/books`)
             .then(async ({ data }) => {
                 let pageOne = data.results;

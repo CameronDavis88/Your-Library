@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getUser, clearUser } from '../../redux/reducer';
 import { Typography, Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
-import './Authentication.css';
+import '../../styles/Authentication.css';
 
 const Authentication = (props) => {
   //React Hooks for input field values

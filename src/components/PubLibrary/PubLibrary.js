@@ -1,7 +1,7 @@
 import React from 'react';
 import PubBook from './PubBook';
 import { Grid, CircularProgress } from '@material-ui/core';
-import './PubLibrary.css';
+import '../../styles/PubLibrary.css';
 
 //This component is enders in the Dashboard component
 const PubLibrary = ({ books, toSelectedPubBook }) => {

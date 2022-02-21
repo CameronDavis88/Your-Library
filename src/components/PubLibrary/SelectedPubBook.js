@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Grid, Typography } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
-import './SelectedPubBook.css';
+import '../../styles/SelectedPubBook.css';
 
 const SelectedPubBook = (props) => {
     //Destructuring properties from data for specific book from redux state

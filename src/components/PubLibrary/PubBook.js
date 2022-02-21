@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Typography, Grid } from '@material-ui/core';
 import { getSelectedBook } from '../../redux/reducer';
-import './PubBook.css';
+import '../../styles/PubBook.css';
 
 const PubBook = (props) => {
     //React hook for conditionally rendering a notice that a book has been added to the user's library

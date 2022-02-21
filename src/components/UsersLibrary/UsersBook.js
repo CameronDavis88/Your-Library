@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getSelectedBook } from '../../redux/reducer';
 import { Grid, Typography } from '@material-ui/core';
-import './UsersBook.css';
+import '../../styles/UsersBook.css';
 
 const UsersBook = (props) => {
     //React hook which determines the conditional rendering of the view when confirming a the deletion of a book

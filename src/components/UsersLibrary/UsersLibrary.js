@@ -6,7 +6,7 @@ import { clearUser } from '../../redux/reducer';
 import { Typography, Grid } from '@material-ui/core';
 import Navbar from '../Navbar/Navbar';
 import UsersBook from './UsersBook';
-import './UsersLibrary.css';
+import '../../styles/UsersLibrary.css';
 
 const UsersLibrary = (props) => {
     //User's id and username from redux
