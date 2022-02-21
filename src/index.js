@@ -6,8 +6,6 @@ import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-//Remember that to view in development mode you must do npm dev -- NOT npm start
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
