@@ -1,11 +1,25 @@
 # Your Library
 ### [Live-Website]: (Currently available at: 147.182.193.201:5656 ) (Domain name pending: https://yourlibrary.xyz)
 
+
 ## Description:
 Your Library is a full-stack full-CRUD website that is populated with book data from free books in the public domain from Project Gutenberg. The user can search among all the 60,000+ books available by author's name or title. The user can create an account and add whatever book from the public library (as sent by Gutenberg) into their own account, the data thereof being saved in a heroku database. The user can delete any book, or edit the book's data as they desire, from their our library. The user can also search from among their own books by author's name or title. From either their own library or the public library the user can access the book's text by a link to that book's page on Project Gutenberg.
 
-## Technologies Employed:
-React (including functional components, hooks, and hook-forms) was used to create the core of the application. Axios was employed for api requests. Massive and express were used in the server. Redux and react-redux were used to store state data for the user's info and for selected books.
+
+## Frontend Packages:
+*  React - Front end JavaScript Library
+*  redux - State Management
+*  react-redux - Connecting a React application to a Redux store
+*  react-router-dom - Allows for routing in a React application
+* axios - Makes http requests to a server
+
+
+## Backend Packages:
+*  express - Node framework for building a server
+*  dotenv - Makes building environmental easier
+*  massive - Connecting to a db
+*  express-session - Allows creating and tracking user sessions
+*  bcryptjs - Hashing and Salting passwords
 
 
 ## My Experience:
