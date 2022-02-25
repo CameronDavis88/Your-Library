@@ -105,3 +105,69 @@ img{
   height: auto;
   width: auto;
 }
+
+
+
+
+@media (max-width: 775px) {
+
+  h1 {
+    
+  }
+  
+  section {
+   
+  }
+  
+  #addBtn {
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+  }
+  
+  .message-box {
+    
+  }
+  
+  .close-mes-btn {
+  
+  }
+  .close-mes-btn:hover {
+  }
+  
+  .dash-box {
+
+  }
+  
+  .library-content {
+   
+  }
+  
+  .navbar {
+    width: 100%;
+    margin-bottom: 20vh;
+  }
+  
+  button {
+    font-size: x-large;
+  }
+
+  input {
+    font-size:x-large
+  }
+  
+  .upper-box {
+
+  
+  }
+  
+  img{
+    height: auto;
+    width: auto;
+  }
+}
+
+
+
+@media (max-width: 400px) {
+ 
+}

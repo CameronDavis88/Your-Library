@@ -75,3 +75,15 @@ h3 {
 .book-btn:hover {
     background-color: #bfafa6;
 }
+
+
+@media (max-width: 775px) {
+
+ 
+}
+
+
+
+@media (max-width: 400px) {
+ 
+}
