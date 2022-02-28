@@ -87,79 +87,10 @@ h3 {
 
 @media (max-width: 775px) {
     .book-box {
-       
-   
-        margin: 7px 7px;
-        padding: 7px 7px;
         width: 40vw;
         height: 45vh;
-        
     }
-    
-    .nav-a {
-        margin-top: -2vh;
-        margin-bottom: 1vh;
-      
-        padding: 5px 5px;
-    }
-    .nav-a:hover {
-        border: solid thin #d4d2d5;
-        box-shadow: 0px 0px 0px 3px #d4d2d5;
-    }
-    
-    img {
-        height: auto;
-        width: auto;
-    }
-    
-    .cover-image-small {
-        max-height: 15vh;
-        height: auto;
-        max-width: 15vw;
-        margin-bottom: 3vh;
-    }
-    
-    nav {
-      
-        width: 100%;
-      
-    }
-    
-    .image-box {
-      
-        width: 100%;
-    }
-    
-    h3 {
-      font-size: larger;
-    }
-    
-    .book {
-      
-        max-width: 30vw;
-       
-        margin-bottom: 10px;
-        padding: 5px 5px;
-    }
-    .book:hover {
-        box-shadow: 0px 0px 0px 5px #d4d2d5;
-    }
-    
-    .book-btn {
-        min-height: 5vh;
-        min-width: 15vw;
-       
-    }
-    .book-btn:hover {
-     
-    }
-    
-    .title{
-        font-size: larger;
-    }
- 
 }
-
 
 
 @media (max-width: 400px) {
