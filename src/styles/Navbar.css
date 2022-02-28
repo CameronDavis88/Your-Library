@@ -49,13 +49,46 @@
 
 
 
-@media (max-width: 775px) {
+/* @media (max-width: 775px) {
 
  
-}
+} */
 
 
 
 @media (max-width: 400px) {
- 
+    .navbar {
+        width: 100%;
+        margin-bottom: 0vh;
+        height: 10vh;
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+    
+    .nav-link-box {
+        width: 70%;
+   
+    }
+    
+    .nav-links {
+  
+        margin-right: 0px;
+    }
+    
+    .nav-link {
+        margin-left: 3vw;
+        margin-left: 3vw;
+    }
+
+    
+    .nav-title {
+        width: 30%;
+        position: relative;
+    }
+
+    .link-text{
+        font-size: x-small;
+    }
+    
 }

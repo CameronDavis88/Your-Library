@@ -24,13 +24,13 @@ const Navbar = ({ props }) => {
       return (
         <>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+            <Typography variant='h6' onClick={handleLogout} >Logout</Typography>
           </div>
         </>
       );
@@ -39,13 +39,13 @@ const Navbar = ({ props }) => {
       return (
         <>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/')} >Public Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+            <Typography variant='h6' onClick={handleLogout} >Logout</Typography>
           </div>
         </>
       );
@@ -54,13 +54,13 @@ const Navbar = ({ props }) => {
       return (
         <>
           <div className='nav-link' >
-            <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/')} >Public Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+            <Typography variant='h6' onClick={handleLogout} >Logout</Typography>
           </div>
         </>
       );
@@ -69,16 +69,16 @@ const Navbar = ({ props }) => {
       return (
         <>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/')} >Public Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+            <Typography variant='h6' onClick={handleLogout} >Logout</Typography>
           </div>
         </>
       );
@@ -87,16 +87,16 @@ const Navbar = ({ props }) => {
       return (
         <>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/users_library')} >Your Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/')} >Public Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/authentication')} >Your Account</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={handleLogout} >Logout</Typography>
+            <Typography variant='h6' onClick={handleLogout} >Logout</Typography>
           </div>
         </>
       );
@@ -114,22 +114,22 @@ const Navbar = ({ props }) => {
       //Conditional rendering of Navbar when NOT logged in and on Dashboard view
     } else if (props.location.pathname === '/') {
       return (
-        <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
+        <Typography variant='h6' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
       );
        //Conditional rendering of Navbar when NOT logged in and on Authentication view
     } else if (props.location.pathname === '/authentication') {
       return (
-        <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
+        <Typography variant='h6' className='nav-link' onClick={() => props.history.push('/')} >Public Library</Typography>
       );
        //Conditional rendering of Navbar when NOT logged in and on view of a Selected Book from the Public Library
     } else if (props.location.pathname === '/selected_pub_book') {
       return (
         <>
           <div className='nav-link'>
-            <Typography variant='h5' onClick={() => props.history.push('/')} >Public Library</Typography>
+            <Typography variant='h6' onClick={() => props.history.push('/')} >Public Library</Typography>
           </div>
           <div className='nav-link'>
-            <Typography variant='h5' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
+            <Typography variant='h6' className='nav-link' onClick={() => props.history.push('/authentication')}>Login/Register</Typography>
           </div>
         </>
       );
@@ -145,7 +145,7 @@ const Navbar = ({ props }) => {
   //Navbar conditionally rendering the according to the logged in or logged out views from above
   return (
     <div className='navbar' >
-      <Typography variant='h4' className='nav-title' >Your Library</Typography>
+      <h2  className='nav-title' >Your Library</h2>
       <div className='spacer' ></div>
       <div className='nav-link-box'>
         <div className='nav-links' >
