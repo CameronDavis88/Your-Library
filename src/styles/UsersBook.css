@@ -78,7 +78,15 @@ h3 {
 
 
 @media (max-width: 775px) {
-
+    .book-box {
+       
+   
+       
+        width: 40vw;
+        height: 45vh;
+        
+    }
+    
  
 }
 
