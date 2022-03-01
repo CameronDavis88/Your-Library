@@ -94,5 +94,29 @@ h3 {
 
 
 @media (max-width: 400px) {
- 
+    .book-box {
+        width: 75vw;
+        height: 65vh;
+    }
+
+    .book {
+        max-width: 35vw;
+        margin-bottom: -2px;
+        padding: 1px 1px;
+    }
+
+    .book-btn {
+        width: 55vw;
+        height: 5vw;
+        font-size: medium;
+    }
+
+    .nav-a {
+        margin-top: -3vh;
+        margin-bottom: 2vh;
+        text-decoration: none;
+        color: black;
+        border: solid thin black;
+        padding: 2px 2px;
+    }
 }
