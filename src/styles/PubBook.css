@@ -114,9 +114,6 @@ h3 {
     .nav-a {
         margin-top: -3vh;
         margin-bottom: 2vh;
-        text-decoration: none;
-        color: black;
-        border: solid thin black;
         padding: 2px 2px;
     }
 }
