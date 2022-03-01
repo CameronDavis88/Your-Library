@@ -105,7 +105,7 @@ const UsersLibrary = (props) => {
             <Navbar props={props} className='navbar' />
             <Grid className='users-page' >
                 <div>
-                    <Typography variant='h2' >Welcome to Your Library, {username}!</Typography>
+                    <Typography variant='h2' align='center'>Welcome to Your Library, {username}!</Typography>
                 </div>
                 {!books[0]
                     ?
