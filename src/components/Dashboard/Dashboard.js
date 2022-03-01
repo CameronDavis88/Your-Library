@@ -110,9 +110,9 @@ class Dashboard extends Component {
             <main className='dashboard' >
                 <Navbar className='navbar' props={this.props} />
                 <Grid className='dash-box' >
-                    <Typography variant='h2' className='page-title' >The Public Library</Typography>
+                    <Typography variant='h2' align='center' className='page-title' >The Public Library</Typography>
                     <div className='register-title-box' >
-                        <Typography variant='h6'  >To save books to your own library make an account and login</Typography>
+                        <Typography variant='h6' align='center' >To save books to your own library make an account and login</Typography>
                     </div>
                     <br />
                     {/* Conditionally renders this message for 2.5 seconds if the user clicked search with both search fields empty */}
